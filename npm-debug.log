@@ -1,0 +1,157 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'n',
+1 verbose cli   'win64' ]
+2 info using npm@3.10.9
+3 info using node@v6.9.2
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readGlobalPackageData
+7 silly fetchPackageMetaData n
+8 silly fetchPackageMetaData win64
+9 silly fetchNamedPackageData n
+10 silly mapToRegistry name n
+11 silly mapToRegistry using default registry
+12 silly mapToRegistry registry https://registry.npmjs.org/
+13 silly mapToRegistry data Result {
+13 silly mapToRegistry   raw: 'n',
+13 silly mapToRegistry   scope: null,
+13 silly mapToRegistry   escapedName: 'n',
+13 silly mapToRegistry   name: 'n',
+13 silly mapToRegistry   rawSpec: '',
+13 silly mapToRegistry   spec: 'latest',
+13 silly mapToRegistry   type: 'tag' }
+14 silly mapToRegistry uri https://registry.npmjs.org/n
+15 silly fetchNamedPackageData win64
+16 silly mapToRegistry name win64
+17 silly mapToRegistry using default registry
+18 silly mapToRegistry registry https://registry.npmjs.org/
+19 silly mapToRegistry data Result {
+19 silly mapToRegistry   raw: 'win64',
+19 silly mapToRegistry   scope: null,
+19 silly mapToRegistry   escapedName: 'win64',
+19 silly mapToRegistry   name: 'win64',
+19 silly mapToRegistry   rawSpec: '',
+19 silly mapToRegistry   spec: 'latest',
+19 silly mapToRegistry   type: 'tag' }
+20 silly mapToRegistry uri https://registry.npmjs.org/win64
+21 verbose request uri https://registry.npmjs.org/win64
+22 verbose request no auth needed
+23 info attempt registry request try #1 at 11:35:49
+24 verbose request using bearer token for auth
+25 verbose request id 29412751f0046eab
+26 http request GET https://registry.npmjs.org/win64
+27 verbose request uri https://registry.npmjs.org/n
+28 verbose request no auth needed
+29 info attempt registry request try #1 at 11:35:49
+30 verbose request using bearer token for auth
+31 verbose etag "584f1c1f-f9ff"
+32 http request GET https://registry.npmjs.org/n
+33 http 404 https://registry.npmjs.org/win64
+34 verbose headers { 'content-type': 'application/json',
+34 verbose headers   'cache-control': 'max-age=0',
+34 verbose headers   'content-length': '2',
+34 verbose headers   'accept-ranges': 'bytes',
+34 verbose headers   date: 'Wed, 28 Dec 2016 03:35:51 GMT',
+34 verbose headers   via: '1.1 varnish',
+34 verbose headers   connection: 'keep-alive',
+34 verbose headers   'x-served-by': 'cache-itm7423-ITM',
+34 verbose headers   'x-cache': 'MISS',
+34 verbose headers   'x-cache-hits': '0',
+34 verbose headers   'x-timer': 'S1482896150.381224,VS0,VE736',
+34 verbose headers   vary: 'Accept-Encoding' }
+35 silly get cb [ 404,
+35 silly get   { 'content-type': 'application/json',
+35 silly get     'cache-control': 'max-age=0',
+35 silly get     'content-length': '2',
+35 silly get     'accept-ranges': 'bytes',
+35 silly get     date: 'Wed, 28 Dec 2016 03:35:51 GMT',
+35 silly get     via: '1.1 varnish',
+35 silly get     connection: 'keep-alive',
+35 silly get     'x-served-by': 'cache-itm7423-ITM',
+35 silly get     'x-cache': 'MISS',
+35 silly get     'x-cache-hits': '0',
+35 silly get     'x-timer': 'S1482896150.381224,VS0,VE736',
+35 silly get     vary: 'Accept-Encoding' } ]
+36 silly fetchPackageMetaData Error: Registry returned 404 for GET on https://registry.npmjs.org/win64
+36 silly fetchPackageMetaData     at makeError (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:302:12)
+36 silly fetchPackageMetaData     at CachingRegistryClient.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:280:14)
+36 silly fetchPackageMetaData     at Request._callback (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:210:14)
+36 silly fetchPackageMetaData     at Request.self.callback (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:187:22)
+36 silly fetchPackageMetaData     at emitTwo (events.js:106:13)
+36 silly fetchPackageMetaData     at Request.emit (events.js:191:7)
+36 silly fetchPackageMetaData     at Request.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1048:10)
+36 silly fetchPackageMetaData     at emitOne (events.js:96:13)
+36 silly fetchPackageMetaData     at Request.emit (events.js:188:7)
+36 silly fetchPackageMetaData     at IncomingMessage.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:969:12)
+36 silly fetchPackageMetaData  error for win64 { Error: Registry returned 404 for GET on https://registry.npmjs.org/win64
+36 silly fetchPackageMetaData     at makeError (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:302:12)
+36 silly fetchPackageMetaData     at CachingRegistryClient.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:280:14)
+36 silly fetchPackageMetaData     at Request._callback (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:210:14)
+36 silly fetchPackageMetaData     at Request.self.callback (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:187:22)
+36 silly fetchPackageMetaData     at emitTwo (events.js:106:13)
+36 silly fetchPackageMetaData     at Request.emit (events.js:191:7)
+36 silly fetchPackageMetaData     at Request.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1048:10)
+36 silly fetchPackageMetaData     at emitOne (events.js:96:13)
+36 silly fetchPackageMetaData     at Request.emit (events.js:188:7)
+36 silly fetchPackageMetaData     at IncomingMessage.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:969:12) pkgid: 'win64', statusCode: 404, code: 'E404' }
+37 http 304 https://registry.npmjs.org/n
+38 verbose headers { etag: '"584f1c1f-f9ff"',
+38 verbose headers   'cache-control': 'max-age=300',
+38 verbose headers   'accept-ranges': 'bytes',
+38 verbose headers   date: 'Wed, 28 Dec 2016 03:35:50 GMT',
+38 verbose headers   via: '1.1 varnish',
+38 verbose headers   connection: 'keep-alive',
+38 verbose headers   'x-served-by': 'cache-itm7423-ITM',
+38 verbose headers   'x-cache': 'MISS',
+38 verbose headers   'x-cache-hits': '0',
+38 verbose headers   'x-timer': 'S1482896150.380641,VS0,VE593',
+38 verbose headers   vary: 'Accept-Encoding' }
+39 silly get cb [ 304,
+39 silly get   { etag: '"584f1c1f-f9ff"',
+39 silly get     'cache-control': 'max-age=300',
+39 silly get     'accept-ranges': 'bytes',
+39 silly get     date: 'Wed, 28 Dec 2016 03:35:50 GMT',
+39 silly get     via: '1.1 varnish',
+39 silly get     connection: 'keep-alive',
+39 silly get     'x-served-by': 'cache-itm7423-ITM',
+39 silly get     'x-cache': 'MISS',
+39 silly get     'x-cache-hits': '0',
+39 silly get     'x-timer': 'S1482896150.380641,VS0,VE593',
+39 silly get     vary: 'Accept-Encoding' } ]
+40 verbose etag https://registry.npmjs.org/n from cache
+41 verbose get saving n to C:\Users\jianggk\AppData\Roaming\npm-cache\registry.npmjs.org\n\.cache.json
+42 verbose correctMkdir C:\Users\jianggk\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+43 silly rollbackFailedOptional Starting
+44 silly rollbackFailedOptional Finishing
+45 silly runTopLevelLifecycles Finishing
+46 silly install printInstalled
+47 verbose stack Error: Registry returned 404 for GET on https://registry.npmjs.org/win64
+47 verbose stack     at makeError (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:302:12)
+47 verbose stack     at CachingRegistryClient.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:280:14)
+47 verbose stack     at Request._callback (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:210:14)
+47 verbose stack     at Request.self.callback (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:187:22)
+47 verbose stack     at emitTwo (events.js:106:13)
+47 verbose stack     at Request.emit (events.js:191:7)
+47 verbose stack     at Request.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1048:10)
+47 verbose stack     at emitOne (events.js:96:13)
+47 verbose stack     at Request.emit (events.js:188:7)
+47 verbose stack     at IncomingMessage.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:969:12)
+48 verbose statusCode 404
+49 verbose pkgid win64
+50 verbose cwd E:\idea_project\mapApp
+51 error Windows_NT 6.1.7601
+52 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "-g" "n" "win64"
+53 error node v6.9.2
+54 error npm  v3.10.9
+55 error code E404
+56 error 404 Registry returned 404 for GET on https://registry.npmjs.org/win64
+57 error 404
+58 error 404 'win64' is not in the npm registry.
+59 error 404 You should bug the author to publish it (or use the name yourself!)
+60 error 404 Note that you can also install from a
+61 error 404 tarball, folder, http url, or git url.
+62 verbose exit [ 1, true ]
