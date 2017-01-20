@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 
-@SpringBootApplication
+//@SpringBootApplication
 
 //@EnableConfigurationProperties({SmsServieImpl.class})
 public class CCSSmsSenderImpl implements CommandLineRunner {//换卡短信发送程序

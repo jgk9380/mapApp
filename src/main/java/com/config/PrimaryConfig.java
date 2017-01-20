@@ -23,7 +23,7 @@ import java.util.Map;
 @EnableJpaRepositories(
         entityManagerFactoryRef="entityManagerFactoryPrimary",
         transactionManagerRef="transactionManagerPrimary",
-        basePackages= { "com.dao.p,com.config" }) //设置Repository所在位置
+        basePackages= { "com.dao.p," }) //设置Repository所在位置
 
 public class PrimaryConfig {
     @Autowired
