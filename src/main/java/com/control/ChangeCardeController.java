@@ -1,7 +1,7 @@
 package com.control;
 
-import com.dao.ChargeCardDao;
-import com.entity.ChangeCard;
+import com.dao.s.ChargeCardDao;
+import com.entity.s.ChangeCard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

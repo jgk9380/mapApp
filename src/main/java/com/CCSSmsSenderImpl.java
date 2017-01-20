@@ -2,26 +2,20 @@ package com;
 
 import com.onesms.bean.SmsService;
 
-import com.dao.ChargeCardDao;
-import com.entity.ChangeCard;
+import com.dao.s.ChargeCardDao;
+import com.entity.s.ChangeCard;
 import com.onesms.bean.SmsServieImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.SpringBootConfiguration;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
-@Order(value = 3)
+
 @SpringBootApplication
 
 //@EnableConfigurationProperties({SmsServieImpl.class})
@@ -33,29 +27,29 @@ public class CCSSmsSenderImpl implements CommandLineRunner {//换卡短信发送
     @Autowired
     private SmsService smsService;
 
-//    public static void main(String[] args) throws Exception {
-//        System.out.println("----------ChangeCardSmsSenderStarter main started");
-//        final ApplicationContext ctx = SpringApplication.run(CCSSmsSenderImpl.class);
-//    }
+    public static void main(String[] args) throws Exception {
+        System.out.println("----------ChangeCardSmsSenderStarter main started");
+       final ApplicationContext ctx = SpringApplication.run(CCSSmsSenderImpl.class);
+    }
 
     @Override
     public void run(String... strings) {
-//        System.out.println("----------ChangeCardSmsSenderStarter task started");
-//        ChangeCard cc = chargeCarDao.findByDeviceNumber("15651554341");
-//
-//        if (cc != null) {
-//            System.out.println("corpId=" + ((SmsServieImpl) smsService).getCorpId() + "   cc.id=" + cc.getDevcieNumber());
-//        } else {
-//            System.out.println("corpId=" + ((SmsServieImpl) smsService).getCorpId() + "   cc is null ");
-//        }
-//        //List<ChangeCard> l = chargeCarDao.findAll();
-//        //sendSms(smsService,cc);
-//        if (cc != null)
-//            try {
-//                sendSms(smsService, cc);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
+      System.out.println("----------ChangeCardSmsSenderStarter task started");
+        ChangeCard cc = chargeCarDao.findByDeviceNumber("15651554341");
+
+        if (cc != null) {
+            System.out.println("corpId=" + ((SmsServieImpl) smsService).getCorpId() + "   cc.id=" + cc.getDevcieNumber());
+        } else {
+            System.out.println("corpId=" + ((SmsServieImpl) smsService).getCorpId() + "   cc is null ");
+        }
+        //List<ChangeCard> l = chargeCarDao.findAll();
+        //sendSms(smsService,cc);
+        if (cc != null)
+            try {
+                sendSms(smsService, cc);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
     }
 
     public boolean sendSms(SmsService os, ChangeCard cc) throws Exception {
