@@ -25,7 +25,7 @@ import java.util.Map;
         transactionManagerRef="transactionManagerPrimary",
         basePackages= { "com.dao.p," }) //设置Repository所在位置
 
-public class PrimaryConfig {
+public class JpaPrimaryConfig {
     @Autowired
     @Qualifier("primaryDataSource")
     private DataSource primaryDataSource;

@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 
-//@SpringBootApplication
+@SpringBootApplication
 
 //@EnableConfigurationProperties({SmsServieImpl.class})
 public class CCSSmsSenderImpl implements CommandLineRunner {//换卡短信发送程序
@@ -27,14 +27,14 @@ public class CCSSmsSenderImpl implements CommandLineRunner {//换卡短信发送
     @Autowired
     private SmsService smsService;
 
-    public static void main(String[] args) throws Exception {
-        System.out.println("----------ChangeCardSmsSenderStarter main started");
-       final ApplicationContext ctx = SpringApplication.run(CCSSmsSenderImpl.class);
-    }
+//    public static void main(String[] args) throws Exception {
+//        System.out.println("----------ChangeCardSmsSenderStarter main started");
+//       final ApplicationContext ctx = SpringApplication.run(CCSSmsSenderImpl.class);
+//    }
 
     @Override
     public void run(String... strings) {
-      System.out.println("----------ChangeCardSmsSenderStarter task started");
+//      System.out.println("----------ChangeCardSmsSenderStarter task started");
         ChangeCard cc = chargeCarDao.findByDeviceNumber("15651554341");
 
         if (cc != null) {
@@ -42,14 +42,14 @@ public class CCSSmsSenderImpl implements CommandLineRunner {//换卡短信发送
         } else {
             System.out.println("corpId=" + ((SmsServieImpl) smsService).getCorpId() + "   cc is null ");
         }
-        //List<ChangeCard> l = chargeCarDao.findAll();
-        //sendSms(smsService,cc);
-        if (cc != null)
-            try {
-                sendSms(smsService, cc);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+//        //List<ChangeCard> l = chargeCarDao.findAll();
+//        //sendSms(smsService,cc);
+//        if (cc != null)
+//            try {
+//                sendSms(smsService, cc);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
     }
 
     public boolean sendSms(SmsService os, ChangeCard cc) throws Exception {
