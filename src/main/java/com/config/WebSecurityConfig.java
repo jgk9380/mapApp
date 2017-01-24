@@ -3,10 +3,12 @@ package com.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 import javax.sql.DataSource;
 
@@ -35,15 +37,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                            .and()
 //                            .logout()
 //                            .permitAll();
-  //     http.authorizeRequests() .anyRequest().permitAll();
+    http.authorizeRequests() .anyRequest().permitAll();
+//        http.httpBasic().and().authorizeRequests()
+//                .antMatchers(        "/api/**","/user")
+//                .permitAll()
+//                .anyRequest()
+//                .authenticated()
+//                .and().csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+        //对于Angular2来说，需要设置CSRF token存储，否则浏览器没有办法取得正确的CSRF token，
 
-        http.httpBasic().and().authorizeRequests()
-                .antMatchers(        "/api/**")
-                .permitAll()
-                .anyRequest()
-                .authenticated();
-               // .and().csrf().csrfTokenRepository(
-               // CookieCsrfTokenRepository.withHttpOnlyFalse());
+
+        //http.authorizeRequests().antMatchers(HttpMethod.OPTIONS, "/**").permitAll();
+
     }
 
     @Autowired

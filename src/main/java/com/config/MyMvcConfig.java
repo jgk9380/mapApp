@@ -13,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan("config")
+//@ComponentScan("config")
 public class MyMvcConfig extends WebMvcConfigurerAdapter {
     @Bean
     public DemoIntecepter getDemoIntcepter() {
@@ -27,7 +27,11 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**");
+        System.out.println("addCorsMappings");
+        registry.addMapping("/**")
+                .allowedOrigins("*")
+                .allowCredentials(true)
+                .allowedMethods("GET", "POST", "DELETE", "PUT","OPTION");
     }
 
 }

@@ -8,8 +8,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.sql.DataSource;
+import java.util.Hashtable;
 
 /**
  * Created by jianggk on 2017/1/20.
@@ -32,6 +37,27 @@ public class DataSourceConfig {
     }
 
 
+    @Bean(name="thirdDataSource")
+    public DataSource dataSource()
+    {
+//        JndiDataSourceLookup dataSourceLookup = new JndiDataSourceLookup();
+//        DataSource dataSource = dataSourceLookup.getDataSource("java:comp/env/jdbc/MyDataSourceName");
+//        return dataSource;
+        Hashtable ht = new Hashtable();
+        ht.put(Context.INITIAL_CONTEXT_FACTORY, "weblogic.jndi.WLInitialContextFactory");
+        ht.put(Context.PROVIDER_URL, "T3://10.35.32.53:7001/");//http://10.35.32.53:7001/console
+        Context context= null;
+        DataSource  ds=null;
+        try {
+            context = new InitialContext(ht);
+            ds = (DataSource) context.lookup("dss");
+            return ds;
+        } catch (NamingException e) {
+            e.printStackTrace();
+        }
+        return ds;
+    }
+
 
     @Bean(name = "primaryJdbcTemplate")
     public JdbcTemplate primaryJdbcTemplate(
@@ -46,4 +72,9 @@ public class DataSourceConfig {
         return new JdbcTemplate(dataSource);
     }
 
+    @Bean(name = "thirdJdbcTemplate")
+    public JdbcTemplate thirdJdbcTemplate(
+            @Qualifier("thirdDataSource") DataSource dataSource) {
+        return new JdbcTemplate(dataSource);
+    }
 }

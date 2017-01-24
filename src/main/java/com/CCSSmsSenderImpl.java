@@ -6,17 +6,22 @@ import com.dao.s.ChargeCardDao;
 import com.entity.s.ChangeCard;
 import com.onesms.bean.SmsServieImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.annotation.Order;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import javax.sql.DataSource;
 import java.util.List;
+import java.util.Map;
 
 
-@SpringBootApplication
+@SpringBootApplication(exclude = JmxAutoConfiguration.class)
 
 //@EnableConfigurationProperties({SmsServieImpl.class})
 public class CCSSmsSenderImpl implements CommandLineRunner {//换卡短信发送程序
@@ -26,24 +31,48 @@ public class CCSSmsSenderImpl implements CommandLineRunner {//换卡短信发送
     //一信通服务注入
     @Autowired
     private SmsService smsService;
+    @Autowired
+    @Qualifier("thirdJdbcTemplate")
+    JdbcTemplate jt;
+    //
+    @Autowired
+    @Qualifier("thirdDataSource")
+    DataSource ds;
 
-//    public static void main(String[] args) throws Exception {
-//        System.out.println("----------ChangeCardSmsSenderStarter main started");
-//       final ApplicationContext ctx = SpringApplication.run(CCSSmsSenderImpl.class);
-//    }
+    //    public static void main(String[] args) throws Exception {
+    //        System.out.println("----------ChangeCardSmsSenderStarter main started");
+    //       final AplicationContext ctx = SpringApplication.run(CCSSmsSenderImpl.class);
+    //    }
 
     @Override
     public void run(String... strings) {
-//      System.out.println("----------ChangeCardSmsSenderStarter task started");
-        ChangeCard cc = chargeCarDao.findByDeviceNumber("15651554341");
+        //testJdbcTemplate();
+        //testDao();
+    }
 
+    public void testJdbcTemplate() {
+        System.out.println("ds3="+ds);
+        List<Map<String, Object>> res = jt.queryForList("select * from tab");
+        System.out.println("res.size+" + res.size());
+        for (Map<String, Object> m : res) {
+            System.out.println();
+            for (String s : m.keySet()) {
+                System.out.print(s + ".value=" + m.get(s) + "   ");
+            }
+            System.out.println();
+        }
+    }
+
+    public void testDao() {
+        System.out.println("----------ChangeCardSmsSenderStarter task started");
+        ChangeCard cc = chargeCarDao.findByDeviceNumber("15651554341");
         if (cc != null) {
             System.out.println("corpId=" + ((SmsServieImpl) smsService).getCorpId() + "   cc.id=" + cc.getDevcieNumber());
         } else {
             System.out.println("corpId=" + ((SmsServieImpl) smsService).getCorpId() + "   cc is null ");
         }
-//        //List<ChangeCard> l = chargeCarDao.findAll();
-//        //sendSms(smsService,cc);
+        //List<ChangeCard> l = chargeCarDao.findAll();
+        //sendSms(smsService,cc);
 //        if (cc != null)
 //            try {
 //                sendSms(smsService, cc);

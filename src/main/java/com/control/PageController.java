@@ -21,15 +21,15 @@ public class PageController {
         return "hello";
     }
 
-    @RequestMapping("/login")
-    public String login() {
-        return "login";
-    }
-
-    @RequestMapping(value = "/login.action", method = RequestMethod.POST)
-    @ResponseBody
-    public String login(String username, String password) throws Exception {
-        System.out.println("userName="+username+"  pwd="+password);
-        return username + ":" + password;
-    }
+//    @RequestMapping("/login")
+//    public String login() {
+//        return "login";
+//    }
+//
+//    @RequestMapping(value = "/login.action", method = RequestMethod.POST)
+//    @ResponseBody
+//    public String login(String username, String password) throws Exception {
+//        System.out.println("userName="+username+"  pwd="+password);
+//        return username + ":" + password;
+//    }
 }
