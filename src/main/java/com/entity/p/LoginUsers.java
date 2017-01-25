@@ -32,6 +32,7 @@ public class LoginUsers implements Serializable {
     @Id
       @Column(nullable = false, length = 20)
       private String name;
+
       @Column(length = 20)
       private String password;
       @Column(length = 20, name = "EMP_ID")
