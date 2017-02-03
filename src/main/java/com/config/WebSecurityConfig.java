@@ -6,11 +6,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 import javax.sql.DataSource;
+
 
 /**
  * Created by jianggk on 2016/11/7.
@@ -21,40 +24,35 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     @Qualifier("primaryDataSource")
     DataSource ds;
+
+    private static String REALM = "MY_APP_REALM";
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//                    http.authorizeRequests().antMatchers("*").permitAll()
-//                            .antMatchers("/", "/home").permitAll()
-//                            .anyRequest().authenticated()
-//                            .and()
-//                                    .rememberMe()
-//                                    .tokenValiditySeconds(3600)
-//                                    .key("userName")
-//                            .and()
-//                            .formLogin()
-//                            .loginPage("/login")
-//                            .permitAll()
-//                            .and()
-//                            .logout()
-//                            .permitAll();
-    http.authorizeRequests() .anyRequest().permitAll();
-//        http.httpBasic().and().authorizeRequests()
-//                .antMatchers(        "/api/**","/user")
-//                .permitAll()
+
+        //http.authorizeRequests() .anyRequest().permitAll();
+//        http.
+//                httpBasic().and().authorizeRequests()
+//              //  .antMatchers(        "/api/**","/user")
+//             //   .permitAll()
 //                .anyRequest()
 //                .authenticated()
 //                .and().csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+
+                http.httpBasic()
+                .and().csrf().disable()
+                .authorizeRequests()
+                //.antMatchers("/user/**").hasRole("ADMIN")
+                //.and().httpBasic().realmName(REALM).authenticationEntryYiibai(getBasicAuthEntryYiibai())
+                .anyRequest().authenticated()
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         //对于Angular2来说，需要设置CSRF token存储，否则浏览器没有办法取得正确的CSRF token，
-
-
-        //http.authorizeRequests().antMatchers(HttpMethod.OPTIONS, "/**").permitAll();
-
+        http.authorizeRequests().antMatchers(HttpMethod.OPTIONS, "/**").permitAll();
     }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-
-        System.out.println("ds="+ds);
+        System.out.println("ds=" + ds);
 //        auth.inMemoryAuthentication()
 //                .withUser("jgk").password("jianggk").roles("admin");
 //        auth.inMemoryAuthentication()
@@ -72,4 +70,39 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         ") where username=?");
     }
 
+//    @Bean
+//    public CustomBasicAuthenticationEntryYiibai getBasicAuthEntryYiibai(){
+//        return new CustomBasicAuthenticationEntryYiibai();
+//    }
+
+    /* To allow Pre-flight [OPTIONS] request from browser */
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**");
+    }
+
 }
+
+
+//
+//
+//public class CustomBasicAuthenticationEntryYiibai extends BasicAuthenticationEntryYiibai {
+//
+//    @Override
+//    public void commence(final HttpServletRequest request,
+//                         final HttpServletResponse response,
+//                         final AuthenticationException authException) throws IOException, ServletException {
+//
+//        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+//        response.addHeader("WWW-Authenticate", "Basic realm=" + getRealmName() + "");
+//
+//        PrintWriter writer = response.getWriter();
+//        writer.println("HTTP Status 401 : " + authException.getMessage());
+//    }
+//
+//    @Override
+//    public void afterPropertiesSet() throws Exception {
+//        setRealmName("MY_TEST_REALM");
+//        super.afterPropertiesSet();
+//    }
+//}
