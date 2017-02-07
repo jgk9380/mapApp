@@ -15,7 +15,6 @@ import java.io.IOException;
  */
 @Component
 public class SomeAuthenticationEntryPoint implements AuthenticationEntryPoint {
-
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         HttpStatus responseStatus = HttpStatus.UNAUTHORIZED;

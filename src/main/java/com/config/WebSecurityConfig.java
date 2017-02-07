@@ -2,6 +2,7 @@ package com.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -10,9 +11,26 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+
+import java.io.PrintWriter;
+
+import static weblogic.security.internal.SAMLServerConfig.getRealmName;
 
 
 /**
@@ -24,9 +42,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     @Qualifier("primaryDataSource")
     DataSource ds;
-
-    private static String REALM = "MY_APP_REALM";
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
@@ -40,23 +55,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .and().csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 
                 http.httpBasic()
-                .and().csrf().disable()
+                .and()
+                //.csrf().disable()
                 .authorizeRequests()
-                //.antMatchers("/user/**").hasRole("ADMIN")
-                //.and().httpBasic().realmName(REALM).authenticationEntryYiibai(getBasicAuthEntryYiibai())
-                .anyRequest().authenticated()
+                        .antMatchers("/currentUser").permitAll()
+                        .anyRequest().authenticated()
+                .and().httpBasic().realmName(CustomBasicAuthenticationEntryPoint.REALM).authenticationEntryPoint(getBasicAuthEntryPoint())
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         //对于Angular2来说，需要设置CSRF token存储，否则浏览器没有办法取得正确的CSRF token，
-        http.authorizeRequests().antMatchers(HttpMethod.OPTIONS, "/**").permitAll();
+        //http.authorizeRequests().antMatchers(HttpMethod.OPTIONS, "/**").permitAll();
     }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        System.out.println("ds=" + ds);
-//        auth.inMemoryAuthentication()
-//                .withUser("jgk").password("jianggk").roles("admin");
-//        auth.inMemoryAuthentication()
-//                .withUser("jianggk").password("jianggk").roles("admin");
         auth.jdbcAuthentication().dataSource(ds)
                 .usersByUsernameQuery("select name,password,isvalid from login_users where name=?")
                 .authoritiesByUsernameQuery("select username,auth from (\n" +
@@ -70,10 +81,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         ") where username=?");
     }
 
-//    @Bean
-//    public CustomBasicAuthenticationEntryYiibai getBasicAuthEntryYiibai(){
-//        return new CustomBasicAuthenticationEntryYiibai();
-//    }
+    @Bean
+    public CustomBasicAuthenticationEntryPoint getBasicAuthEntryPoint(){
+        return new CustomBasicAuthenticationEntryPoint();
+    }
 
     /* To allow Pre-flight [OPTIONS] request from browser */
     @Override
@@ -84,25 +95,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 }
 
 
-//
-//
-//public class CustomBasicAuthenticationEntryYiibai extends BasicAuthenticationEntryYiibai {
-//
-//    @Override
-//    public void commence(final HttpServletRequest request,
-//                         final HttpServletResponse response,
-//                         final AuthenticationException authException) throws IOException, ServletException {
-//
+
+
+class CustomBasicAuthenticationEntryPoint extends BasicAuthenticationEntryPoint {
+      public final static  String     REALM = "MY_APP_REALM";
+    @Override
+    public void commence(final HttpServletRequest request,
+                         final HttpServletResponse response,
+                         final AuthenticationException authException) throws IOException, ServletException {
+//        System.out.println("------authException:"+authException.getMessage());
 //        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 //        response.addHeader("WWW-Authenticate", "Basic realm=" + getRealmName() + "");
-//
 //        PrintWriter writer = response.getWriter();
-//        writer.println("HTTP Status 401 : " + authException.getMessage());
-//    }
-//
-//    @Override
-//    public void afterPropertiesSet() throws Exception {
-//        setRealmName("MY_TEST_REALM");
-//        super.afterPropertiesSet();
-//    }
-//}
+//        writer.println("------HTTP Status 401----------- : " + authException.getMessage());
+    }
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        setRealmName(CustomBasicAuthenticationEntryPoint.REALM);
+        super.afterPropertiesSet();
+    }
+
+}
