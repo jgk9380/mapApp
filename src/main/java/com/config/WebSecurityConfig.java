@@ -42,6 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     @Qualifier("primaryDataSource")
     DataSource ds;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
@@ -58,7 +59,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 //.csrf().disable()
                 .authorizeRequests()
-                        .antMatchers("/users/currentUser").permitAll()
+                        .antMatchers("/users/currentUser","/users/queryPwd/**","/users/valid/**" ).permitAll()
                         .anyRequest().authenticated()
                 .and().httpBasic().realmName(CustomBasicAuthenticationEntryPoint.REALM).authenticationEntryPoint(getBasicAuthEntryPoint())
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
@@ -100,11 +101,12 @@ class CustomBasicAuthenticationEntryPoint extends BasicAuthenticationEntryPoint 
     public void commence(final HttpServletRequest request,
                          final HttpServletResponse response,
                          final AuthenticationException authException) throws IOException, ServletException {
-        System.out.println("------authException:"+authException.getMessage());
-        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        response.addHeader("WWW-Authenticate", "Basic realm=" + getRealmName() + "");
-        PrintWriter writer = response.getWriter();
-        writer.println("------HTTP Status 401----------- : " + authException.getMessage());
+        //TODO客户端是否弹出自带登录窗口
+        //        System.out.println("------authException:"+authException.getMessage());
+        //        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        //        response.addHeader("WWW-Authenticate", "Basic realm=" + getRealmName() + "");
+        //        PrintWriter writer = response.getWriter();
+        //        writer.println("------HTTP Status 401----------- : " + authException.getMessage());
     }
     @Override
     public void afterPropertiesSet() throws Exception {

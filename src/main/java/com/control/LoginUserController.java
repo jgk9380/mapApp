@@ -1,7 +1,9 @@
 package com.control;
 
 import com.dao.p.LoginUserDao;
+import com.entity.p.Employee;
 import com.entity.p.LoginUser;
+import com.onesms.bean.SmsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +17,7 @@ import java.util.List;
  * Created by jianggk on 2017/1/23.
  */
 
+//登录工号服务及员工信息服务
 @RestController
 @RequestMapping("/users")
 public class LoginUserController {
@@ -25,6 +28,8 @@ public class LoginUserController {
 
     @Autowired
     LoginUserDao lud;
+    @Autowired
+    private SmsService smsService;
 
     @RequestMapping(value="/",method= RequestMethod.GET)
     List<LoginUser> getUsers(String id) {
@@ -43,11 +48,45 @@ public class LoginUserController {
         lud.save(lu);
         return new ReponseResult(1,"ok");
     }
-
     //用户客户端登录测试及取得当前用户。
     @RequestMapping("/currentUser")
     Principal principal(Principal principal) {
         return principal;
+    }
+
+    @RequestMapping("/queryPwd/{userId}")
+    ReponseResult queryPwd(@PathVariable("userId") String userId) {
+        LoginUser lu= lud.findByName(userId);
+        if(lu==null){
+            return new ReponseResult(-1,"没有该用户");
+        }
+        if(!lu.getIsValid()){
+            return new ReponseResult(-1,"失效用户");
+        }
+        if(lu.getEmployee()==null||lu.getEmployee().getTele()==null){
+            return new ReponseResult(-1,"没有用户emp数据或没有电话号码数据");
+        }
+        //TODO发送短信代码
+        //smsService.sendSms(lu.getEmployee().getTele(),"你的密码为：["+lu.getPassword()+"],请妥善保管");
+        System.out.println("发送短信 号码："+lu.getEmployee().getTele()+"     发送内容：\"你的密码为：["+lu.getPassword()+"],请妥善保管\"");
+        return new ReponseResult(1,"密码已发送");
+    }
+
+    @RequestMapping("/valid/{userId}/{pwd}")//验证用户信息
+    ReponseResult valid(@PathVariable("userId") String userId,@PathVariable("pwd") String pwd) {
+        if(userId==null||pwd==null)
+            return new ReponseResult(1,"没有用户名或密码");
+        LoginUser lu= lud.findByName(userId);
+        if(lu==null){
+            return new ReponseResult(1,"没有该用户");
+        }
+        if(!lu.getIsValid()){
+            return new ReponseResult(1,"失效用户");
+        }
+        if(!lu.getPassword().equals(pwd)){
+            return new ReponseResult(1,"密码错，输入的密码为："+pwd);
+        }
+        return new ReponseResult(1,"登录信息正确");
     }
 
 }

@@ -37,10 +37,10 @@ public class LoginUser implements Serializable {
 
       @ManyToOne(optional = true, fetch = FetchType.EAGER)
       @JoinColumn(name = "EMP_ID", insertable = false, updatable = false)
-      private Employee employees;
+      private Employee employee;
 
       @Column(name = "isvalid")
-      private int isValid;
+      private boolean isValid;
 
       @Column(name = "MANAGER_TARGET_ID")
       private String managerTargetId;
@@ -55,7 +55,7 @@ public class LoginUser implements Serializable {
       }
 
       public LoginUser(Employee employees, String name, String password) {
-            this.employees = employees;
+            this.employee = employees;
             this.name = name;
             this.password = password;
       }
@@ -77,19 +77,19 @@ public class LoginUser implements Serializable {
             this.password = password;
       }
 
-      public Employee getEmployees() {
-            return employees;
+      public Employee getEmployee() {
+            return employee;
       }
 
-      public void setEmployees(Employee employees) {
-            this.employees = employees;
+      public void setEmployee(Employee employee) {
+            this.employee = employee;
       }
 
-      public void setIsValid(int isValid) {
+      public void setIsValid(boolean isValid) {
             this.isValid = isValid;
       }
 
-      public int getIsValid() {
+      public boolean getIsValid() {
             return isValid;
       }
 
