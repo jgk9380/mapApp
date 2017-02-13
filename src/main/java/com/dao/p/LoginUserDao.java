@@ -1,12 +1,12 @@
 package com.dao.p;
 
-import com.entity.p.LoginUsers;
-import com.entity.s.User;
+import com.entity.p.LoginUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * Created by jianggk on 2017/1/24.
  */
-public interface LoginUserDao extends JpaRepository<LoginUsers, Long> {
-    LoginUsers findByName(String name);
+public interface LoginUserDao extends JpaRepository<LoginUser, Long> {
+    LoginUser findByName(String name);
+
 }

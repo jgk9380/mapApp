@@ -5,8 +5,16 @@ package com.control;
  */
 public class ReponseResult {
 
+    public static final int OK = 1;
+    public static final int ERROR = -1;
+
     int result;
     String msg;
+
+    public ReponseResult(int result, String msg) {
+        this.result = result;
+        this.msg = msg;
+    }
 
     public String getMsg() {
         return msg;

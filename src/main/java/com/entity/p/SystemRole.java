@@ -23,90 +23,75 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 
-
-
 @Entity
 
 @Table(name = "SYSTEM_ROLE")
 public class SystemRole implements Serializable {
-      @Id
-      @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "comm_seq")
-      @SequenceGenerator(name = "comm_seq",sequenceName = "comm_seq",allocationSize = 1)
-      @Column(nullable = false)
-      private BigDecimal id;
-      @Column(unique = true,length = 20)
-      private String name;
-      @Column(name = "SHORT_DESC",length = 200)
-      private String shortDesc;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "comm_seq")
+    @SequenceGenerator(name = "comm_seq", sequenceName = "comm_seq", allocationSize = 1)
+    @Column(nullable = false)
+    private BigDecimal id;
+    @Column(unique = true, length = 20)
+    private String name;
+    @Column(name = "SHORT_DESC", length = 200)
+    private String shortDesc;
 
 
+    public SystemRole() {
+    }
 
-      public SystemRole() {
-      }
+    public SystemRole(BigDecimal id, String name, String shortDesc) {
+        this.id = id;
+        this.name = name;
+        this.shortDesc = shortDesc;
+    }
 
-      public SystemRole(BigDecimal id,String name,String shortDesc) {
-            this.id = id;
-            this.name = name;
-            this.shortDesc = shortDesc;
-      }
+    public BigDecimal getId() {
+        return id;
+    }
 
-      public BigDecimal getId() {
-            return id;
-      }
+    public void setId(BigDecimal id) {
+        this.id = id;
+    }
 
-      public void setId(BigDecimal id) {
-            this.id = id;
-      }
+    public String getName() {
+        return name;
+    }
 
-      public String getName() {
-            return name;
-      }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-      public void setName(String name) {
-            this.name = name;
-      }
+    public String getShortDesc() {
+        return shortDesc;
+    }
 
-      public String getShortDesc() {
-            return shortDesc;
-      }
-
-      public void setShortDesc(String shortDesc) {
-            this.shortDesc = shortDesc;
-      }
-
+    public void setShortDesc(String shortDesc) {
+        this.shortDesc = shortDesc;
+    }
 
 
-
-
-
-
-
-
-
-
-
-
-
-      @Override
-      public boolean equals(Object object) {
-            if (this == object) {
-                  return true;
-            }
-            if (!(object instanceof SystemRole)) {
-                  return false;
-            }
-            final SystemRole other = (SystemRole)object;
-            if (!(id == null ? other.id == null :id.equals(other.id))) {
-                  return false;
-            }
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) {
             return true;
-      }
+        }
+        if (!(object instanceof SystemRole)) {
+            return false;
+        }
+        final SystemRole other = (SystemRole) object;
+        if (!(id == null ? other.id == null : id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
 
-      @Override
-      public int hashCode() {
-            final int PRIME = 37;
-            int result = 1;
-            result = PRIME * result + ((id == null) ? 0 :id.hashCode());
-            return result;
-      }
+    @Override
+    public int hashCode() {
+        final int PRIME = 37;
+        int result = 1;
+        result = PRIME * result + ((id == null) ? 0 : id.hashCode());
+        return result;
+    }
 }
