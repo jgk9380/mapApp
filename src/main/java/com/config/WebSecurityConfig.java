@@ -46,18 +46,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        //http.authorizeRequests() .anyRequest().permitAll();
-//        http.
-//                httpBasic().and().authorizeRequests()
-//              //  .antMatchers(        "/api/**","/user")
-//             //   .permitAll()
-//                .anyRequest()
-//                .authenticated()
-//                .and().csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
-
+                        //http.authorizeRequests() .anyRequest().permitAll();
+                //        http.
+                //                httpBasic().and().authorizeRequests()
+                //              //  .antMatchers(        "/api/**","/user")
+                //             //   .permitAll()
+                //                .anyRequest()
+                //                .authenticated()
+                //                .and().csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+                //如果是使用的是 Java 代码配置 spring Security，那么 CSRF 保护默认是开启的，那么在 POST 方式提交表单的时候就必须验证 Token，
+                // 如果没有，那么自然也就是 403 没权限了。
                 http.httpBasic()
                 .and()
-                //.csrf().disable()
+                .csrf().disable()
                 .authorizeRequests()
                         .antMatchers("/users/currentUser","/users/queryPwd/**","/users/valid/**" ).permitAll()
                         .anyRequest().authenticated()
@@ -102,11 +103,11 @@ class CustomBasicAuthenticationEntryPoint extends BasicAuthenticationEntryPoint 
                          final HttpServletResponse response,
                          final AuthenticationException authException) throws IOException, ServletException {
         //TODO客户端是否弹出自带登录窗口
-        //        System.out.println("------authException:"+authException.getMessage());
-        //        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        //        response.addHeader("WWW-Authenticate", "Basic realm=" + getRealmName() + "");
-        //        PrintWriter writer = response.getWriter();
-        //        writer.println("------HTTP Status 401----------- : " + authException.getMessage());
+                System.out.println("------authException:"+authException.getMessage());
+                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                response.addHeader("WWW-Authenticate", "Basic realm=" + getRealmName() + "");
+                PrintWriter writer = response.getWriter();
+                writer.println("------HTTP Status 401----------- : " + authException.getMessage());
     }
     @Override
     public void afterPropertiesSet() throws Exception {

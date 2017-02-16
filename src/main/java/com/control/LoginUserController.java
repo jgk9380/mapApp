@@ -41,13 +41,17 @@ public class LoginUserController {
         return lud.findByName(name);
     }
 
-    @RequestMapping(value="/editPwd/{pwd}",method= RequestMethod.POST)
-    ReponseResult editPwd(@PathVariable("pwd") String pwd,Principal principal) {
-        LoginUser lu= lud.findByName(principal.getName());
+    @RequestMapping(value="/editPwd/{userId}/{pwd}",method= RequestMethod.POST)
+    ReponseResult editPwd(@PathVariable("pwd") String pwd,@PathVariable("userId") String userId) {
+        LoginUser lu= lud.findByName(userId);
+        if(lu==null)
+            return new ReponseResult(-1,"没有有效用户");
         lu.setPassword(pwd);
         lud.save(lu);
-        return new ReponseResult(1,"ok");
+        System.out.println("密码修改成功");
+        return new ReponseResult(1,"密码修改成功");
     }
+
     //用户客户端登录测试及取得当前用户。
     @RequestMapping("/currentUser")
     Principal principal(Principal principal) {
@@ -69,7 +73,7 @@ public class LoginUserController {
         //TODO发送短信代码
         //smsService.sendSms(lu.getEmployee().getTele(),"你的密码为：["+lu.getPassword()+"],请妥善保管");
         System.out.println("发送短信 号码："+lu.getEmployee().getTele()+"     发送内容：\"你的密码为：["+lu.getPassword()+"],请妥善保管\"");
-        return new ReponseResult(1,"密码已发送");
+        return new ReponseResult(1,"密码已发送到尾号为"+lu.getEmployee().getTele().substring(7)+"的号码");
     }
 
     @RequestMapping("/valid/{userId}/{pwd}")//验证用户信息
