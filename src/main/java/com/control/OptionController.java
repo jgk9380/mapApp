@@ -1,10 +1,17 @@
 package com.control;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.faces.model.SelectItem;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * Created by jianggk on 2017/2/13.
@@ -13,6 +20,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/option")
 public class OptionController {
+    @Autowired
+    @Qualifier("primaryJdbcTemplate")
+    JdbcTemplate jdbcTemplate;
+
     @RequestMapping("/depart")//部门
     List<SelectItem> getDepartSelectItems(){
         return null;
@@ -48,6 +59,18 @@ public class OptionController {
     @RequestMapping("/channelManager/{channelId}")//渠道负责人,根据ID，自建选店长，共建选渠道经理。
     List<SelectItem> getChannelManagerSelectItems(){
         return null;
+    }
+    @RequestMapping("/bySql/{sql}")//渠道负责人,根据ID，自建选店长，共建选渠道经理。
+    List<SelectItem> getOpenBySqlSelectItems(@PathVariable("sql") String sql){
+        List<Map<String,Object>> data=jdbcTemplate.queryForList(sql);
+        List<SelectItem> res=new ArrayList<>();
+        for(Map<String,Object> m:data){
+            SelectItem selectItem=new SelectItem();
+            selectItem.setLabel(m.get("label").toString());
+            selectItem.setValue( m.get("value").toString());
+            res.add(selectItem);
+        }
+        return res;
     }
 
 }
