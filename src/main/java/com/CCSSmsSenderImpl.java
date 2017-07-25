@@ -14,6 +14,7 @@ import org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.annotation.Order;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
@@ -24,6 +25,7 @@ import java.util.Map;
 @SpringBootApplication(exclude = JmxAutoConfiguration.class)
 
 //@EnableConfigurationProperties({SmsServieImpl.class})
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class CCSSmsSenderImpl implements CommandLineRunner {//换卡短信发送程序
     //Dao注入
     @Autowired

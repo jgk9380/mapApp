@@ -50,6 +50,10 @@ public class LoginUser implements Serializable {
                  inverseJoinColumns = { @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID") })
       List<SystemRole> userRoles;
 
+//    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+//    @JoinTable(name = "USER_ROLE", joinColumns = { @JoinColumn(name = "USER_ID", referencedColumnName = "NAME") },
+//            inverseJoinColumns = { @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID") })
+//    List<SystemPrivilege> userPrivilege;
 
       public LoginUser() {
       }

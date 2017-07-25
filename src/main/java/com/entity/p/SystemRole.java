@@ -38,7 +38,13 @@ public class SystemRole implements Serializable {
     private String shortDesc;
 
 
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JoinTable(name = "ROLE_PRIVILEGE", joinColumns = { @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID") },
+            inverseJoinColumns = { @JoinColumn(name = "PRIVILEGE_ID", referencedColumnName = "ID") })
+    List<SystemPrivilege> systemPrivileges;
+
     public SystemRole() {
+
     }
 
     public SystemRole(BigDecimal id, String name, String shortDesc) {
@@ -71,6 +77,13 @@ public class SystemRole implements Serializable {
         this.shortDesc = shortDesc;
     }
 
+    public List<SystemPrivilege> getSystemPrivileges() {
+        return systemPrivileges;
+    }
+
+    public void setSystemPrivileges(List<SystemPrivilege> systemPrivileges) {
+        this.systemPrivileges = systemPrivileges;
+    }
 
     @Override
     public boolean equals(Object object) {
