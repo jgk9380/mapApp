@@ -1,6 +1,5 @@
 package com.config.security;
 
-import com.control.LoginController;
 import com.dao.p.LoginUserDao;
 import com.entity.p.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,7 @@ LoginUserDao loginUserDao;
         LoginUser loginUser=loginUserDao.findByName(username);
 
         if (loginUser==null) {
-            throw new UsernameNotFoundException(String.format("登录用户错误 '%s'.", username));
+            throw new UsernameNotFoundException(String.format("找不到登录用户：'%s'.", username));
         } else if(loginUser.getIsValid()==false) {
             throw new UsernameNotFoundException(String.format("用户 '%s'状态错误", username));
         }else{

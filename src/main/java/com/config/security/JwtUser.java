@@ -4,6 +4,7 @@ import com.entity.p.LoginUser;
 import com.entity.p.SystemPrivilege;
 import com.entity.p.SystemRole;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ import java.util.List;
 public class JwtUser implements UserDetails {
 
 
-    LoginUser loginUser;
+   private LoginUser loginUser;
 
     public JwtUser(LoginUser loginUser) {
         this.loginUser = loginUser;
@@ -28,16 +29,12 @@ public class JwtUser implements UserDetails {
 
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        Collection<ConfigAuthority> result = new ArrayList<>();
+    public List<? extends GrantedAuthority> getAuthorities() {
+        List<SimpleGrantedAuthority> result = new ArrayList<>();
         List<SystemRole> lsr = loginUser.getUserRoles();
         for (SystemRole sr : lsr) {
-            List<SystemPrivilege> lsp=sr.getSystemPrivileges();
-            for(SystemPrivilege sp:lsp)
-            {
-                ConfigAuthority ca = new ConfigAuthority(sp.getName());
-                result.add(ca);
-            }
+            SimpleGrantedAuthority ca = new SimpleGrantedAuthority(sr.getName());
+            result.add(ca);
         }
         return result;
     }
@@ -75,15 +72,3 @@ public class JwtUser implements UserDetails {
 }
 
 
-class ConfigAuthority implements GrantedAuthority {
-    String auth;
-
-    public ConfigAuthority(String auth) {
-        this.auth = auth;
-    }
-
-    @Override
-    public String getAuthority() {
-        return auth;
-    }
-}

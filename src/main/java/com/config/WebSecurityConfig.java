@@ -2,11 +2,13 @@ package com.config;
 
 import com.config.security.JwtAuthenticationTokenFilter;
 import com.config.security.JwtRestAuthenticationEntryPoint;
+import com.config.security.JwtUserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -60,6 +62,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         //$2a$10$qsYvMwvld7FMGKp45AQjpun6otC8b.eFN7Be5KAr0vuEQWgT.uvgm  //对应的密码是111
         return new BCryptPasswordEncoder();
     }
+    //    换成Annotation方式以后，则需要使用@EnableGlobalMethodSecurity(prePostEnabled=true)注解来开启。
+    //    并且需要提供以下方法：
+    //    @Bean
+    //    @Override
+    //    public AuthenticationManager authenticationManagerBean() throws Exception {
+    //        return super.authenticationManagerBean();
+    //    }
+    //
+    //    @Autowired//注意这个方法是注入的
+    //    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+    //        auth.userDetailsService(new JwtUserDetailsServiceImpl());
+    //    }
+    //!!!至此可以正常拦截
 
     @Bean
     public JwtAuthenticationTokenFilter jwtAuthenticationTokenFilterBean() throws Exception {
@@ -153,6 +168,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**");
     }
+
 }
 
 
