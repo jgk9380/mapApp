@@ -16,7 +16,11 @@ public class DingRobotTest {
 
     public static String WEBHOOK_TOKEN = "https://oapi.dingtalk.com/robot/send?access_token=0e7423e704c033b6be893b080b3eb943f40b654cc7ebbcf40d6c3234dffabffa";
     //https://oapi.dingtalk.com/robot/send?access_token=0e7423e704c033b6be893b080b3eb943f40b654cc7ebbcf40d6c3234dffabffa
-
+    //try {
+    //        DingRobotTest.test();
+    //    } catch (Exception e) {
+    //        e.printStackTrace();
+    //    }
     public static void test() throws Exception{
         HttpClient httpclient = HttpClients.createDefault();
         HttpPost httppost = new HttpPost(WEBHOOK_TOKEN);

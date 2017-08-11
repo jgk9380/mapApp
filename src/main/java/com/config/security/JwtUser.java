@@ -1,14 +1,12 @@
 package com.config.security;
 
 import com.entity.p.LoginUser;
-import com.entity.p.SystemPrivilege;
 import com.entity.p.SystemRole;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 

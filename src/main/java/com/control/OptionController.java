@@ -61,8 +61,10 @@ public class OptionController {
         return null;
     }
     @RequestMapping("/bySql/{sql}")//渠道负责人,根据ID，自建选店长，共建选渠道经理。
+
     List<SelectItem> getOpenBySqlSelectItems(@PathVariable("sql") String sql){
-        List<Map<String,Object>> data=jdbcTemplate.queryForList(sql);
+        //sql需要中含有 label 和 value 字段。
+            List<Map<String,Object>> data=jdbcTemplate.queryForList(sql);
         List<SelectItem> res=new ArrayList<>();
         for(Map<String,Object> m:data){
             SelectItem selectItem=new SelectItem();
