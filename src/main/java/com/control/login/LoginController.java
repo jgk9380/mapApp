@@ -86,7 +86,7 @@ public class LoginController {
             r.put("errorInfo","用户状态错误！");
             return r;
         }
-        if(loginUser.getPassword().equals(passwd)){
+        if(!loginUser.getPassword().equals(passwd)){
             r.put("errorCode","-4");
             r.put("errorInfo","密码错误！");
             return r;
