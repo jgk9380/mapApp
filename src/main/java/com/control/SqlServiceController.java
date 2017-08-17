@@ -11,12 +11,12 @@ import java.util.Map;
 /**
  * Created by jianggk on 2017/2/10.
  */
-//@RestController
-//@RequestMapping("/sql")
+@RestController
+@RequestMapping("/sql")
 public class SqlServiceController {
     //提供经营分析端的sql查询及更新服务。
     @Autowired
-    @Qualifier("thirdJdbcTemplate")
+    @Qualifier("primaryJdbcTemplate")
     JdbcTemplate jdbcTemplate;
 
     @RequestMapping(value = "/query/{sql}", method = RequestMethod.GET)

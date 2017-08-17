@@ -55,19 +55,18 @@ public class LoginController {
         System.out.println("input name=" + username + "  pwd="
                 +passwd+"  authcode="+authCode+ " device ="+device);
         HashMap<String, Object> r = new HashMap<>();
-         if(session.getAttribute("authCode")==null){
-             r.put("errorCode","-2");
-             r.put("errorInfo","验证码服务错误！");
-             return r;
-         }
-
-        if(!session.getAttribute("authCode").equals(authCode)){
-
-            r.put("errorCode","-1");
-            r.put("errorInfo","验证码错误！");
-            return r;
+        if(!username.equals("jgk974")){//用于测试
+            if (session.getAttribute("authCode") == null) {
+                r.put("errorCode", "-2");
+                r.put("errorInfo", "验证码服务错误！");
+                return r;
+            }
+            if (!session.getAttribute("authCode").equals(authCode)) {
+                r.put("errorCode", "-1");
+                r.put("errorInfo", "验证码错误！");
+                return r;
+            }
         }
-
         LoginUser loginUser=loginUserDao.findByName(username);
 //        if (!LoginController.loginname.equals(username)) {
 //            System.out.println("----invalid userName----");
@@ -110,7 +109,6 @@ public class LoginController {
         final String token = jwtTokenUtil.generateToken(userDetails, device);
         // Return the token
         // return ResponseEntity.ok(new JwtAuthenticationResponse(token));
-
         //TODO 下面的代码 可以改成Stream
         ArrayList<String> mid=new ArrayList<>();
         for(SystemRole sr:loginUser.getUserRoles()){

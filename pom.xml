@@ -24,6 +24,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <springside.version>4.1.0.GA</springside.version>
     </properties>
 
     <dependencies>
@@ -205,6 +206,9 @@
             <version>2.5.2</version>
         </dependency>
         <!--/*解决参数以json方式传递*/-->
+
+
+
     </dependencies>
 
     <build>

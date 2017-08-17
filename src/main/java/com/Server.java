@@ -1,5 +1,6 @@
 package com;
 
+import com.entity.p.BtiAgentInitor;
 import com.onesms.bean.SmsService;
 
 import com.dao.s.ChargeCardDao;
@@ -28,12 +29,13 @@ import java.util.Map;
 //@EnableConfigurationProperties({SmsServieImpl.class})
 //@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class Server implements CommandLineRunner {//换卡短信发送程序
-
+    @Autowired
+    BtiAgentInitor  btiAgentInitor;
     public static void main(String[] args) {
         System.out.println("----------AppBootTestStarter main started.");
-        // AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(Starter.class);
-        //System.out.println("&&&&&age="+ctx.getBean(Person.class).getAge());
+
         ConfigurableApplicationContext ctx = SpringApplication.run(Server.class, args);
+
 
     }
 
@@ -59,6 +61,7 @@ public class Server implements CommandLineRunner {//换卡短信发送程序
     public void run(String... strings) {
         //testJdbcTemplate();
         //testDao();
+        btiAgentInitor.init();
     }
 
 //    public void testJdbcTemplate() {
