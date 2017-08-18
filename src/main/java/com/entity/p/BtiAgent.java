@@ -1,14 +1,13 @@
 package com.entity.p;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "b2i_agent")
 public class BtiAgent {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator="agent_id_SequenceGenerator")
+    @SequenceGenerator(name="agent_id_SequenceGenerator", sequenceName="comm_seq")
     @Column(nullable = false)
     long id ;
     @Column()

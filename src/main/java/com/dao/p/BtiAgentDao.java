@@ -10,9 +10,9 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 
-public interface BtiAgentDao extends JpaRepository<BtiAgent, String> {
+public interface BtiAgentDao extends JpaRepository<BtiAgent, Long> {
     BtiAgent findByName(BtiAgent name);
-    BtiAgent findById(String id);
-    @Query(value="select o from Employee o where o.name like :where or o.tele like :where or o.depart.name like :where ")
-    List<BtiAgent> findByWhere(@Param("where")String where);
+    BtiAgent findById(Long id);
+//    @Query(value="select o from Employee o where o.name like :where or o.tele like :where or o.depart.name like :where ")
+//    List<BtiAgent> findByWhere(@Param("where")String where);
 }
