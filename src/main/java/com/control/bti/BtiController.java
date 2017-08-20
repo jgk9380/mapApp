@@ -26,36 +26,21 @@ public class BtiController {
     BtiAgentDao btiAgentDao;
     @Autowired
     LoginUserDao loginUserDao;
+    @Autowired
+    BtiService bs;
 
-    @RequestMapping(value = "/getUnCheckedOverOrder",method = RequestMethod.GET)//
-    @Transactional
+
+    @RequestMapping(value = "/getUnCheckedOverOrder",method = RequestMethod.GET)
+
     List<BtiOrder> getUncheckedOrder(Principal p ) {//未处理机处理中订单
-        //todo
-        Pageable pageable = new PageRequest(0, 5);
-        List<BtiOrder> l1=btiOrderDao.findUnCheckOrder(p.getName(),pageable).getContent();
-        for(BtiOrder bo:l1){
-            if(null==bo.getCheckerLoginUserId()){
-                bo.setCheckerLoginUserId(p.getName());
-                btiOrderDao.save(bo);
-            }
-        }
-        List<BtiOrder> l2=btiOrderDao.findCheckingOrder(p.getName());
-//        if(null==l1)
-//            l1=new ArrayList<>();
-//        if(null==l2)
-//           l2=new ArrayList<>();
-//        System.out.println("l1="+l1+"  l1.class="+l1.getClass()+"l1.size="+l1.size()+"  p.name="+p.getName());
-//        System.out.println("l2="+l2+"  l2.class="+l2.getClass()+"l2.size="+l2.size()+"  p.name="+p.getName());
-        List result=new ArrayList();
-        for(BtiOrder bo:l2){
-            result.add(bo);//todo 相加 ?
-        }
-        for(BtiOrder bo:l1){
-            result.add(bo);//todo 相加 ?
-        }
-        return  result;
+        return  bs.getUncheckedOrder(p.getName());
     }
 
+    @RequestMapping(value = "/getOrder/{id}",method = RequestMethod.GET)
+
+    BtiOrder getdOrder(Long id ) {//未处理机处理中订单
+        return  btiOrderDao.findById(id);
+    }
     @RequestMapping(value = "/addOrder",method = RequestMethod.POST)//获取员工信息,登录时获取员工登录信息传送给客户端。
     BtiOrder addOrder(@RequestBody Map map, Principal principal) {
         String certName=(String)map.get("certName");

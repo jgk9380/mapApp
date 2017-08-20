@@ -18,6 +18,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import java.util.List;
@@ -25,9 +26,9 @@ import java.util.Map;
 
 
 @SpringBootApplication(exclude = JmxAutoConfiguration.class)
-
 //@EnableConfigurationProperties({SmsServieImpl.class})
 //@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableTransactionManagement
 public class Server implements CommandLineRunner {//换卡短信发送程序
     @Autowired
     BtiAgentInitor  btiAgentInitor;
