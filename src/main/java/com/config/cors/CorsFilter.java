@@ -36,3 +36,17 @@ public class CorsFilter implements Filter {
 
     }
 }
+
+
+//SPRING 4中更优雅的办法
+//        SpringMVC4提供了非常方便的实现跨域的方法。在requestMapping中使用注解。
+//@CrossOrigin(origins = “http://kbiao.me”)
+//        全局实现 .定义类继承WebMvcConfigurerAdapter,设置跨域相关的配置
+//        public class CorsConfigurerAdapter extends WebMvcConfigurerAdapter{
+//
+//        @Override
+//        public void addCorsMappings(CorsRegistry registry) {
+//
+//        registry.addMapping("/api/*").allowedOrigins("*");
+//        }
+//        }

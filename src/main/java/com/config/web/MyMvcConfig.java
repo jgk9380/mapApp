@@ -32,7 +32,7 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
         registry.addMapping("/**")
                 .allowedOrigins("*")
                 .allowCredentials(true)
-                .allowedMethods("GET", "POST", "DELETE", "PUT","OPTION");
+                .allowedMethods("GET", "POST", "DELETE", "PUT","OPTION","PATCH");
     }
 
 }
