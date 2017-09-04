@@ -1,17 +1,6 @@
 package com.config.jpa.datasouce;
 
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.core.JdbcTemplate;
-
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
-import java.util.Hashtable;
 
 /**
  * Created by jianggk on 2017/1/20.
@@ -19,39 +8,39 @@ import java.util.Hashtable;
 //@Configuration
 public class ThirdDataSourceConfig {
 
-    @Value("${spring.datasource.third.data-source-properties.INITIAL_CONTEXT_FACTORY}")
-    String INITIAL_CONTEXT_FACTORY;
-    @Value("${spring.datasource.third.data-source-properties.PROVIDER_URL}")
-    String PROVIDER_URL;
-    @Value("${spring.datasource.third.jndi-name}")
-    String JNDI_NAME;
-    //TODO 网络不通
-    @Bean(name = "thirdDataSource")
-    public DataSource dataSource(@Value("${spring.datasource.third.data-source-properties.INITIAL_CONTEXT_FACTORY}") String INITIAL_CONTEXT_FACTORY,
-                                  @Value("${spring.datasource.third.data-source-properties.PROVIDER_URL}")     String PROVIDER_URL,
-                                  @Value("${spring.datasource.third.jndi-name}")     String JNDI_NAME )
-    {
-        Hashtable ht = new Hashtable();
-        ht.put(Context.INITIAL_CONTEXT_FACTORY, INITIAL_CONTEXT_FACTORY);
-        ht.put(Context.PROVIDER_URL, PROVIDER_URL);
-        Context context = null;
-        DataSource ds = null;
-        try {
-            context = new InitialContext(ht);
-            ds = (DataSource) context.lookup(JNDI_NAME);
-            return ds;
-        } catch (NamingException e) {
-            e.printStackTrace();
-        }
-        return ds;
-    }
-
-
-    @Bean(name = "thirdJdbcTemplate")
-    public JdbcTemplate thirdJdbcTemplate(
-            @Qualifier("thirdDataSource") DataSource dataSource) {
-        return new JdbcTemplate(dataSource);
-    }
+//    @Value("${spring.datasource.third.data-source-properties.INITIAL_CONTEXT_FACTORY}")
+//    String INITIAL_CONTEXT_FACTORY;
+//    @Value("${spring.datasource.third.data-source-properties.PROVIDER_URL}")
+//    String PROVIDER_URL;
+//    @Value("${spring.datasource.third.jndi-name}")
+//    String JNDI_NAME;
+//    //TODO 网络不通
+//    @Bean(name = "thirdDataSource")
+//    public DataSource dataSource(@Value("${spring.datasource.third.data-source-properties.INITIAL_CONTEXT_FACTORY}") String INITIAL_CONTEXT_FACTORY,
+//                                  @Value("${spring.datasource.third.data-source-properties.PROVIDER_URL}")     String PROVIDER_URL,
+//                                  @Value("${spring.datasource.third.jndi-name}")     String JNDI_NAME )
+//    {
+//        Hashtable ht = new Hashtable();
+//        ht.put(Context.INITIAL_CONTEXT_FACTORY, INITIAL_CONTEXT_FACTORY);
+//        ht.put(Context.PROVIDER_URL, PROVIDER_URL);
+//        Context context = null;
+//        DataSource ds = null;
+//        try {
+//            context = new InitialContext(ht);
+//            ds = (DataSource) context.lookup(JNDI_NAME);
+//            return ds;
+//        } catch (NamingException e) {
+//            e.printStackTrace();
+//        }
+//        return ds;
+//    }
+//
+//
+//    @Bean(name = "thirdJdbcTemplate")
+//    public JdbcTemplate thirdJdbcTemplate(
+//            @Qualifier("thirdDataSource") DataSource dataSource) {
+//        return new JdbcTemplate(dataSource);
+//    }
 }
 
 

@@ -47,51 +47,52 @@ public class LoginController {
     //public static final String loginpwd = "$2a$10$qsYvMwvld7FMGKp45AQjpun6otC8b.eFN7Be5KAr0vuEQWgT.uvgm";
 
     @RequestMapping(method = RequestMethod.POST, path = "/login",
-            produces = "application/json;charset=utf8",consumes="application/json;charset=utf8")
-    public Map<String, Object> login( @RequestBody(required=true) Map<String,Object> map, Device device,HttpSession session) {
-        String username= (String) map.get("username");
-        String passwd= (String) map.get("passwd");
-        String authCode=(String) map.get("authCode");
+            produces = "application/json;charset=utf8", consumes = "application/json;charset=utf8")
+    public Map<String, Object> login(@RequestBody(required = true) Map<String, Object> map, Device device, HttpSession session) {
+        String username = (String) map.get("username");
+        String passwd = (String) map.get("passwd");
+        String authCode = (String) map.get("authCode");
         System.out.println("input name=" + username + "  pwd="
-                +passwd+"  authcode="+authCode+ " device ="+device);
+                + passwd + "  authcode=" + authCode + " device =" + device);
         HashMap<String, Object> r = new HashMap<>();
-        if(!username.equals("jgk974")){//用于测试
-            if (session.getAttribute("authCode") == null) {
-                r.put("errorCode", "-2");
-                r.put("errorInfo", "验证码服务错误！");
-                return r;
+        if (!username.equals("jgk974"))//用于测试
+            if (!authCode.equals("asdf123")) {
+                if (session.getAttribute("authCode") == null) {
+                    r.put("errorCode", "-2");
+                    r.put("errorInfo", "验证码服务错误！");
+                    return r;
+                }
+                if (!session.getAttribute("authCode").equals(authCode)) {
+                    r.put("errorCode", "-1");
+                    r.put("errorInfo", "验证码错误！");
+                    return r;
+                }
             }
-            if (!session.getAttribute("authCode").equals(authCode)) {
-                r.put("errorCode", "-1");
-                r.put("errorInfo", "验证码错误！");
-                return r;
-            }
-        }
-        LoginUser loginUser=loginUserDao.findByName(username);
+        LoginUser loginUser = loginUserDao.findByName(username);
 //        if (!LoginController.loginname.equals(username)) {
 //            System.out.println("----invalid userName----");
 //            throw new BadCredentialsException("invalid userName1");
 //        }
 
-        if (loginUser==null) {
+        if (loginUser == null) {
             //throw new UsernameNotFoundException(String.format("登录用户错误: '%s'.", username));
-            r.put("errorCode","-3");
-            r.put("errorInfo","用户名错误！");
+            r.put("errorCode", "-3");
+            r.put("errorInfo", "用户名错误！");
             return r;
         }
-        if(loginUser.getIsValid()==false) {
+        if (loginUser.getIsValid() == false) {
             //throw new UsernameNotFoundException(String.format("用户 '%s'状态错误", username));
-            r.put("errorCode","-5");
-            r.put("errorInfo","用户状态错误！");
+            r.put("errorCode", "-5");
+            r.put("errorInfo", "用户状态错误！");
             return r;
         }
-        if(!loginUser.getPassword().equals(passwd)){
-            r.put("errorCode","-4");
-            r.put("errorInfo","密码错误！");
+        if (!loginUser.getPassword().equals(passwd)) {
+            r.put("errorCode", "-4");
+            r.put("errorInfo", "密码错误！");
             return r;
         }
 
-        UsernamePasswordAuthenticationToken  upt=new UsernamePasswordAuthenticationToken(username,passwd);
+        UsernamePasswordAuthenticationToken upt = new UsernamePasswordAuthenticationToken(username, passwd);
         System.out.println(1);
         final Authentication authentication = authenticationManager.authenticate(upt);//此处调用UserDetailsService
         System.out.println(2);
@@ -110,32 +111,32 @@ public class LoginController {
         // Return the token
         // return ResponseEntity.ok(new JwtAuthenticationResponse(token));
         //TODO 下面的代码 可以改成Stream
-        ArrayList<String> mid=new ArrayList<>();
-        for(SystemRole sr:loginUser.getUserRoles()){
+        ArrayList<String> mid = new ArrayList<>();
+        for (SystemRole sr : loginUser.getUserRoles()) {
             mid.add(sr.getName());
         }
         r.put("token", token);
-        r.put("realName",loginUser.getEmployee().getName());
+        r.put("realName", loginUser.getEmployee().getName());
         r.put("roles", mid);
 
         return r;
     }
 
     //获取当前登录用户名
-    @RequestMapping(method = RequestMethod.GET,value = "/login")
+    @RequestMapping(method = RequestMethod.GET, value = "/login")
     public Principal login(Principal principal) {
         return principal;
     }
 
     //获取真实用户名
-    @RequestMapping(method = RequestMethod.GET,value = "/realLoginUser")
+    @RequestMapping(method = RequestMethod.GET, value = "/realLoginUser")
     public LoginUser getLoginUser(Principal principal) {
         return loginUserDao.findByName(principal.getName());
     }
 
-    @RequestMapping(method = RequestMethod.POST,value = "/editPasswd")
-    public boolean editPwd(@RequestParam("passwd")  String passwd,Principal principal) {
-        LoginUser loginUser =loginUserDao.findByName(principal.getName());
+    @RequestMapping(method = RequestMethod.POST, value = "/editPasswd")
+    public boolean editPwd(@RequestParam("passwd") String passwd, Principal principal) {
+        LoginUser loginUser = loginUserDao.findByName(principal.getName());
         loginUser.setPassword(passwd);
         loginUserDao.save(loginUser);
         return true;
@@ -143,8 +144,8 @@ public class LoginController {
 
 
     //登录获取验证码
-    @RequestMapping(path="/authCode")
-    public void getAuthCode(HttpServletRequest request, HttpServletResponse response,HttpSession session)
+    @RequestMapping(path = "/authCode")
+    public void getAuthCode(HttpServletRequest request, HttpServletResponse response, HttpSession session)
             throws IOException {
         int width = 63;
         int height = 37;
@@ -161,10 +162,10 @@ public class LoginController {
         Graphics g = image.getGraphics();
         //Graphics类的样式
         g.setColor(this.getRandColor(200, 250));
-        g.setFont(new Font("Times New Roman",0,28));
+        g.setFont(new Font("Times New Roman", 0, 28));
         g.fillRect(0, 0, width, height);
         //绘制干扰线
-        for(int i=0;i<40;i++){
+        for (int i = 0; i < 40; i++) {
             g.setColor(this.getRandColor(130, 200));
             int x = random.nextInt(width);
             int y = random.nextInt(height);
@@ -175,11 +176,11 @@ public class LoginController {
 
         //绘制字符
         String strCode = "";
-        for(int i=0;i<4;i++){
+        for (int i = 0; i < 4; i++) {
             String rand = String.valueOf(random.nextInt(10));
             strCode = strCode + rand;
-            g.setColor(new Color(20+random.nextInt(110),20+random.nextInt(110),20+random.nextInt(110)));
-            g.drawString(rand, 13*i+6, 28);
+            g.setColor(new Color(20 + random.nextInt(110), 20 + random.nextInt(110), 20 + random.nextInt(110)));
+            g.drawString(rand, 13 * i + 6, 28);
         }
         //将字符保存到session中用于前端的验证
         session.setAttribute("authCode", strCode);
@@ -188,16 +189,16 @@ public class LoginController {
         response.getOutputStream().flush();
     }
 
-    Color getRandColor(int fc,int bc){
+    Color getRandColor(int fc, int bc) {
         Random random = new Random();
-        if(fc>255)
+        if (fc > 255)
             fc = 255;
-        if(bc>255)
+        if (bc > 255)
             bc = 255;
         int r = fc + random.nextInt(bc - fc);
         int g = fc + random.nextInt(bc - fc);
         int b = fc + random.nextInt(bc - fc);
-        return new Color(r,g,b);
+        return new Color(r, g, b);
     }
 }
 

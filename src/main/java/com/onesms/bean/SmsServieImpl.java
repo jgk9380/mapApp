@@ -14,7 +14,7 @@ import java.util.Date;
 
 @Component
 @Scope("singleton")
-@ConfigurationProperties(locations = "classpath:config/smsService.properties", prefix = "sms")
+//@ConfigurationProperties(locations = "classpath:config/smsService.properties", prefix = "sms")
 public class SmsServieImpl implements SmsService {
    //  @Value("${sms.corpId}")
     private String corpId;

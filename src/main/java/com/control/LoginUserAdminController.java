@@ -84,7 +84,6 @@ public class LoginUserAdminController {
         Page<LoginUser> result = this.loginUserDao. findAll(pageRequest);
         System.out.println("---"+result+"\n"+result.getClass());
         return result;
-
         //return loginUserDao.findAll(sort);
     }
 

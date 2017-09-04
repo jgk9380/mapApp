@@ -7,29 +7,21 @@ import com.dao.s.ChargeCardDao;
 import com.entity.s.ChangeCard;
 import com.onesms.bean.SmsServieImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.core.annotation.Order;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.sql.DataSource;
 import java.util.List;
-import java.util.Map;
 
 
 @SpringBootApplication(exclude = JmxAutoConfiguration.class)
 //@EnableConfigurationProperties({SmsServieImpl.class})
 //@EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableTransactionManagement
-public class Server implements CommandLineRunner {//换卡短信发送程序
+public class Server implements CommandLineRunner {
     @Autowired
     BtiAgentInitor  btiAgentInitor;
     public static void main(String[] args) {

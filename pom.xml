@@ -8,6 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
+
     <name>mapApp</name>
     <description>Demo project for Spring Boot</description>
 
@@ -19,47 +20,77 @@
     </parent>
 
 
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <springside.version>4.1.0.GA</springside.version>
+
     </properties>
 
     <dependencies>
+
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>jcl-over-slf4j</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jul-to-slf4j</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>log4j-over-slf4j</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!--&lt;!&ndash; 打war包时加入此项， 告诉spring-boot tomcat相关jar包用外部的，不要打进去 &ndash;&gt;-->
         <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-tomcat</artifactId>-->
-            <!--<scope> provided</scope>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-tomcat</artifactId>-->
+        <!--<scope> provided</scope>-->
         <!--</dependency>-->
         <!--&lt;!&ndash; 打war包时加入此项， 告诉spring-boot tomcat相关jar包用外部的，不要打进去 &ndash;&gt;-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <!--解决启动异常，使用jetty-->
             <exclusions>
                 <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>servlet-api</artifactId>
                 </exclusion>
+                <!--<exclusion>-->
+                    <!--<groupId>org.springframework.boot</groupId>-->
+                    <!--<artifactId>spring-boot-starter-tomcat</artifactId>-->
+                <!--</exclusion>-->
             </exclusions>
-            <!--解决启动异常，使用jetty-->
+            <!--&lt;!&ndash;解决启动异常，使用jetty&ndash;&gt;-->
+
+            <!--&lt;!&ndash;解决启动异常，使用jetty&ndash;&gt;-->
         </dependency>
-        <!--解决启动异常，使用jetty-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jetty</artifactId>
-        </dependency>
-        <!--解决启动异常，使用jetty-->
+        <!--&lt;!&ndash;解决启动异常，使用jetty&ndash;&gt;-->
         <!--<dependency>-->
             <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-actuator</artifactId>-->
+            <!--<artifactId>spring-boot-starter-jetty</artifactId>-->
+            <!--<exclusions>-->
+                <!--<exclusion>-->
+                    <!--<groupId>org.slf4j</groupId>-->
+                    <!--<artifactId>slf4j-log4j12</artifactId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
+        <!--</dependency>-->
+        <!--解决启动异常，使用jetty-->
+        <!--<dependency>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-actuator</artifactId>-->
         <!--</dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -78,21 +109,34 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-rest</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>servlet-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-rest-webmvc</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>servlet-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
-            <version>4.3.3.RELEASE</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-test</artifactId>
-            <version>1.4.1.RELEASE</version>
+            <!--<version>1.4.1.RELEASE</version>-->
 
         </dependency>
 
@@ -101,11 +145,6 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
-        <!--<dependency>-->
-            <!--<groupId>com.oracle</groupId>-->
-            <!--<artifactId>jdbc</artifactId>-->
-            <!--<version>1.0</version>-->
-        <!--</dependency>-->
 
         <dependency>
             <groupId>com.oracle</groupId>
@@ -132,8 +171,8 @@
         </dependency>
 
         <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-redis</artifactId>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-redis</artifactId>-->
         <!--</dependency>-->
 
 
@@ -149,13 +188,22 @@
             <groupId>org.springframework.session</groupId>
             <artifactId>spring-session</artifactId>
             <version>1.2.2.RELEASE</version>
+
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>servlet-api</artifactId>
+                </exclusion>
+            </exclusions>
+
+
         </dependency>
 
-        <dependency>
-            <groupId>com.oracle</groupId>
-            <artifactId>wlfullclient</artifactId>
-            <version>6.0</version>
-        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>com.oracle</groupId>-->
+        <!--<artifactId>wlfullclient</artifactId>-->
+        <!--<version>6.0</version>-->
+        <!--</dependency>-->
 
         <!--一信通的依赖包-->
         <dependency>
@@ -193,7 +241,7 @@
             <groupId>org.springframework.mobile</groupId>
             <artifactId>spring-mobile-device</artifactId>
         </dependency>
-    <!--/*解决参数以json方式传递*/-->
+        <!--/*解决参数以json方式传递*/-->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
@@ -206,7 +254,46 @@
             <version>2.5.2</version>
         </dependency>
         <!--/*解决参数以json方式传递*/-->
+        <!-- https://mvnrepository.com/artifact/com.sun.faces/jsf-impl -->
+        <dependency>
+            <groupId>com.sun.faces</groupId>
+            <artifactId>jsf-impl</artifactId>
+            <exclusions>
+            <exclusion>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            </exclusion>
+            </exclusions>
+            <version>2.2.14</version>
+        </dependency>
 
+        <dependency>
+            <groupId>javax.faces</groupId>
+            <artifactId>jsf-api</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>servlet-api</artifactId>
+                </exclusion>
+            </exclusions>
+
+            <version>2.1</version>
+            <!--<scope>provided</scope>-->
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/commons-collections/commons-collections -->
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>3.2.1</version>
+        </dependency>
+
+        <!--https://mvnrepository.com/artifact/javax.servlet/servlet-api-->
+        <!--<dependency>-->
+        <!--<groupId>javax.servlet</groupId>-->
+        <!--<artifactId>servlet-api</artifactId>-->
+        <!--<version>3.0.1</version>-->
+        <!--<scope>provided</scope>-->
+        <!--</dependency>-->
 
 
     </dependencies>
@@ -216,8 +303,34 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+
             </plugin>
+
         </plugins>
+
     </build>
 
 </project>
+
+
+        <!--<dependency>-->
+        <!--<groupId>org.apache.hadoop</groupId>-->
+        <!--<artifactId>hadoop-client</artifactId>-->
+        <!--<version>2.6.0</version>-->
+        <!--<exclusions>-->
+        <!--<exclusion>-->
+        <!--<groupId>org.slf4j</groupId>-->
+        <!--<artifactId>slf4j-log4j12</artifactId>-->
+        <!--</exclusion>-->
+        <!--</exclusions>-->
+        <!--</dependency>-->
+
+
+        <!--<exclusions>-->
+        <!--<exclusion>-->
+        <!--<groupId>javax.servlet</groupId>-->
+        <!--<artifactId>servlet-api</artifactId>-->
+        <!--</exclusion>-->
+        <!--</exclusions>-->
+
+<!--todo 手工删除servlet-api.2.5 2.3-->
