@@ -91,7 +91,7 @@ public class Server implements CommandLineRunner {
         String s = os.sendSms(cc.getDevcieNumber(), smsContent);
         System.out.println("s=" + s);
         if (!s.contains("result=0")) throw new Exception("发送短信 失败：" + s);
-        //wx.apache.axis2.transport.local.LocalTransportSender
+        //operator.apache.axis2.transport.local.LocalTransportSender
         return (s.contains("result=0"));
     }
 

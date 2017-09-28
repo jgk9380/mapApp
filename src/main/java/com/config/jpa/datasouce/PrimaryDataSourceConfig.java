@@ -15,6 +15,12 @@ import javax.sql.DataSource;
  */
 @Configuration
 public class PrimaryDataSourceConfig {
+/**
+ * spring.datasource.primary.url=jdbc:oracle:thin:@130.34.22.3:1521:ora11g
+ * spring.datasource.primary.username=commmanager
+ * spring.datasource.primary.password=commmanager
+ *
+ **/
     @Bean(name = "primaryDataSource")
     @ConfigurationProperties(prefix = "spring.datasource.primary")
     public DataSource primaryDataSource() {

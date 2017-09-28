@@ -1848,7 +1848,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
          *
          * @param parentQName
          * @param factory
-         * @return wx.apache.axiom.om.OMElement
+         * @return operator.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getOMElement(
                 final javax.xml.namespace.QName parentQName,
@@ -1910,11 +1910,11 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                 java.lang.String namespacePrefix = registerPrefix(xmlWriter, "http://ws.flaginfo.com.cn");
                 if ((namespacePrefix != null) && (namespacePrefix.trim().length() > 0)) {
-                    writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "type",
+                    writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "type",
                             namespacePrefix + ":SearchSmsNumResponse",
                             xmlWriter);
                 } else {
-                    writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "type",
+                    writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "type",
                             "SearchSmsNumResponse",
                             xmlWriter);
                 }
@@ -1945,7 +1945,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localResult == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -1979,7 +1979,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localNumber == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -2194,8 +2194,8 @@ public class SmsStub extends org.apache.axis2.client.Stub {
                         reader.next();
 
 
-                    if (reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "type") != null) {
-                        java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance",
+                    if (reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "type") != null) {
+                        java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance",
                                 "type");
                         if (fullTypeName != null) {
                             java.lang.String nsPrefix = null;
@@ -2232,7 +2232,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "result").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -2260,7 +2260,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "number").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -2428,7 +2428,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
          *
          * @param parentQName
          * @param factory
-         * @return wx.apache.axiom.om.OMElement
+         * @return operator.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getOMElement(
                 final javax.xml.namespace.QName parentQName,
@@ -2490,11 +2490,11 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                 java.lang.String namespacePrefix = registerPrefix(xmlWriter, "http://ws.flaginfo.com.cn");
                 if ((namespacePrefix != null) && (namespacePrefix.trim().length() > 0)) {
-                    writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "type",
+                    writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "type",
                             namespacePrefix + ":Report",
                             xmlWriter);
                 } else {
-                    writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "type",
+                    writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "type",
                             "Report",
                             xmlWriter);
                 }
@@ -2525,7 +2525,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localIn0 == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -2559,7 +2559,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localIn1 == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -2593,7 +2593,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localIn2 == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -2814,8 +2814,8 @@ public class SmsStub extends org.apache.axis2.client.Stub {
                         reader.next();
 
 
-                    if (reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "type") != null) {
-                        java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance",
+                    if (reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "type") != null) {
+                        java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance",
                                 "type");
                         if (fullTypeName != null) {
                             java.lang.String nsPrefix = null;
@@ -2852,7 +2852,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "in0").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -2880,7 +2880,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "in1").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -2908,7 +2908,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "in2").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -3018,7 +3018,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
          *
          * @param parentQName
          * @param factory
-         * @return wx.apache.axiom.om.OMElement
+         * @return operator.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getOMElement(
                 final javax.xml.namespace.QName parentQName,
@@ -3080,11 +3080,11 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                 java.lang.String namespacePrefix = registerPrefix(xmlWriter, "http://ws.flaginfo.com.cn");
                 if ((namespacePrefix != null) && (namespacePrefix.trim().length() > 0)) {
-                    writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "type",
+                    writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "type",
                             namespacePrefix + ":AuditingResponse",
                             xmlWriter);
                 } else {
-                    writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "type",
+                    writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "type",
                             "AuditingResponse",
                             xmlWriter);
                 }
@@ -3115,7 +3115,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localOut == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -3324,8 +3324,8 @@ public class SmsStub extends org.apache.axis2.client.Stub {
                         reader.next();
 
 
-                    if (reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "type") != null) {
-                        java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance",
+                    if (reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "type") != null) {
+                        java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance",
                                 "type");
                         if (fullTypeName != null) {
                             java.lang.String nsPrefix = null;
@@ -3362,7 +3362,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "out").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -3530,7 +3530,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
          *
          * @param parentQName
          * @param factory
-         * @return wx.apache.axiom.om.OMElement
+         * @return operator.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getOMElement(
                 final javax.xml.namespace.QName parentQName,
@@ -3592,11 +3592,11 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                 java.lang.String namespacePrefix = registerPrefix(xmlWriter, "http://ws.flaginfo.com.cn");
                 if ((namespacePrefix != null) && (namespacePrefix.trim().length() > 0)) {
-                    writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "type",
+                    writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "type",
                             namespacePrefix + ":SearchSmsNumRequest",
                             xmlWriter);
                 } else {
-                    writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "type",
+                    writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "type",
                             "SearchSmsNumRequest",
                             xmlWriter);
                 }
@@ -3627,7 +3627,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localIn0 == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -3661,7 +3661,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localIn1 == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -3695,7 +3695,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localIn2 == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -3916,8 +3916,8 @@ public class SmsStub extends org.apache.axis2.client.Stub {
                         reader.next();
 
 
-                    if (reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "type") != null) {
-                        java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance",
+                    if (reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "type") != null) {
+                        java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance",
                                 "type");
                         if (fullTypeName != null) {
                             java.lang.String nsPrefix = null;
@@ -3954,7 +3954,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "in0").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -3982,7 +3982,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "in1").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -4010,7 +4010,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "in2").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -4250,7 +4250,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
          *
          * @param parentQName
          * @param factory
-         * @return wx.apache.axiom.om.OMElement
+         * @return operator.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getOMElement(
                 final javax.xml.namespace.QName parentQName,
@@ -4312,11 +4312,11 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                 java.lang.String namespacePrefix = registerPrefix(xmlWriter, "http://ws.flaginfo.com.cn");
                 if ((namespacePrefix != null) && (namespacePrefix.trim().length() > 0)) {
-                    writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "type",
+                    writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "type",
                             namespacePrefix + ":ReplyConfirmRequest",
                             xmlWriter);
                 } else {
-                    writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "type",
+                    writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "type",
                             "ReplyConfirmRequest",
                             xmlWriter);
                 }
@@ -4347,7 +4347,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localIn0 == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -4381,7 +4381,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localIn1 == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -4415,7 +4415,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localIn2 == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -4449,7 +4449,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localIn3 == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -4483,7 +4483,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
                 if (localIn4 == null) {
                     // write the nil attribute
 
-                    writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                    writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
                 } else {
 
@@ -4716,8 +4716,8 @@ public class SmsStub extends org.apache.axis2.client.Stub {
                         reader.next();
 
 
-                    if (reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "type") != null) {
-                        java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance",
+                    if (reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "type") != null) {
+                        java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance",
                                 "type");
                         if (fullTypeName != null) {
                             java.lang.String nsPrefix = null;
@@ -4754,7 +4754,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "in0").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -4782,7 +4782,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "in1").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -4810,7 +4810,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "in2").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -4838,7 +4838,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "in3").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -4866,7 +4866,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "in4").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -4975,7 +4975,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
          *
          * @param parentQName
          * @param factory
-         * @return wx.apache.axiom.om.OMElement
+         * @return operator.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getOMElement(
                 final javax.xml.namespace.QName parentQName,
@@ -5037,11 +5037,11 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                 java.lang.String namespacePrefix = registerPrefix(xmlWriter, "http://ws.flaginfo.com.cn");
                 if ((namespacePrefix != null) && (namespacePrefix.trim().length() > 0)) {
-                    writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "type",
+                    writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "type",
                             namespacePrefix + ":SmsResponse",
                             xmlWriter);
                 } else {
-                    writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "type",
+                    writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "type",
                             "SmsResponse",
                             xmlWriter);
                 }
@@ -5072,7 +5072,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localOut == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -5281,8 +5281,8 @@ public class SmsStub extends org.apache.axis2.client.Stub {
                         reader.next();
 
 
-                    if (reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "type") != null) {
-                        java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance",
+                    if (reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "type") != null) {
+                        java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance",
                                 "type");
                         if (fullTypeName != null) {
                             java.lang.String nsPrefix = null;
@@ -5319,7 +5319,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "out").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -5516,7 +5516,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
          *
          * @param parentQName
          * @param factory
-         * @return wx.apache.axiom.om.OMElement
+         * @return operator.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getOMElement(
                 final javax.xml.namespace.QName parentQName,
@@ -5578,11 +5578,11 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                 java.lang.String namespacePrefix = registerPrefix(xmlWriter, "http://ws.flaginfo.com.cn");
                 if ((namespacePrefix != null) && (namespacePrefix.trim().length() > 0)) {
-                    writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "type",
+                    writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "type",
                             namespacePrefix + ":AuditingRequest",
                             xmlWriter);
                 } else {
-                    writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "type",
+                    writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "type",
                             "AuditingRequest",
                             xmlWriter);
                 }
@@ -5613,7 +5613,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localIn0 == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -5647,7 +5647,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localIn1 == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -5681,7 +5681,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localIn2 == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -5715,7 +5715,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localIn3 == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -5942,8 +5942,8 @@ public class SmsStub extends org.apache.axis2.client.Stub {
                         reader.next();
 
 
-                    if (reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "type") != null) {
-                        java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance",
+                    if (reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "type") != null) {
+                        java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance",
                                 "type");
                         if (fullTypeName != null) {
                             java.lang.String nsPrefix = null;
@@ -5980,7 +5980,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "in0").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -6008,7 +6008,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "in1").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -6036,7 +6036,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "in2").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -6064,7 +6064,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "in3").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -6337,7 +6337,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
          *
          * @param parentQName
          * @param factory
-         * @return wx.apache.axiom.om.OMElement
+         * @return operator.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getOMElement(
                 final javax.xml.namespace.QName parentQName,
@@ -6399,11 +6399,11 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                 java.lang.String namespacePrefix = registerPrefix(xmlWriter, "http://ws.flaginfo.com.cn");
                 if ((namespacePrefix != null) && (namespacePrefix.trim().length() > 0)) {
-                    writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "type",
+                    writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "type",
                             namespacePrefix + ":ReplyResponse",
                             xmlWriter);
                 } else {
-                    writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "type",
+                    writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "type",
                             "ReplyResponse",
                             xmlWriter);
                 }
@@ -6434,7 +6434,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localResult == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -6468,7 +6468,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
                 if (localConfirm_time == null) {
                     // write the nil attribute
 
-                    writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                    writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
                 } else {
 
@@ -6503,7 +6503,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
                 if (localId == null) {
                     // write the nil attribute
 
-                    writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                    writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
                 } else {
 
@@ -6543,7 +6543,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
                             }
 
                             // write the nil attribute
-                            writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                            writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
                             xmlWriter.writeEndElement();
 
                         }
@@ -6572,7 +6572,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
                     }
 
                     // write the nil attribute
-                    writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                    writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
                     xmlWriter.writeEndElement();
 
                 }
@@ -6814,8 +6814,8 @@ public class SmsStub extends org.apache.axis2.client.Stub {
                         reader.next();
 
 
-                    if (reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "type") != null) {
-                        java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance",
+                    if (reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "type") != null) {
+                        java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance",
                                 "type");
                         if (fullTypeName != null) {
                             java.lang.String nsPrefix = null;
@@ -6854,7 +6854,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "result").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -6882,7 +6882,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "confirm_time").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -6909,7 +6909,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "id").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -6939,7 +6939,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                         // Process the array and step past its final element's end.
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
                             list4.add(null);
                             reader.next();
@@ -6963,7 +6963,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
                             } else {
                                 if (new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "replys").equals(reader.getName())) {
 
-                                    nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                                    nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                                     if ("true".equals(nillableValue) || "1".equals(nillableValue)) {
                                         list4.add(null);
                                         reader.next();
@@ -7097,7 +7097,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
          *
          * @param parentQName
          * @param factory
-         * @return wx.apache.axiom.om.OMElement
+         * @return operator.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getOMElement(
                 final javax.xml.namespace.QName parentQName,
@@ -7159,11 +7159,11 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                 java.lang.String namespacePrefix = registerPrefix(xmlWriter, "http://ws.flaginfo.com.cn");
                 if ((namespacePrefix != null) && (namespacePrefix.trim().length() > 0)) {
-                    writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "type",
+                    writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "type",
                             namespacePrefix + ":ReplyConfirmResponse",
                             xmlWriter);
                 } else {
-                    writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "type",
+                    writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "type",
                             "ReplyConfirmResponse",
                             xmlWriter);
                 }
@@ -7194,7 +7194,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localResult == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -7403,8 +7403,8 @@ public class SmsStub extends org.apache.axis2.client.Stub {
                         reader.next();
 
 
-                    if (reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "type") != null) {
-                        java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance",
+                    if (reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "type") != null) {
+                        java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance",
                                 "type");
                         if (fullTypeName != null) {
                             java.lang.String nsPrefix = null;
@@ -7441,7 +7441,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "result").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -7652,7 +7652,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
          *
          * @param parentQName
          * @param factory
-         * @return wx.apache.axiom.om.OMElement
+         * @return operator.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getOMElement(
                 final javax.xml.namespace.QName parentQName,
@@ -7714,11 +7714,11 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                 java.lang.String namespacePrefix = registerPrefix(xmlWriter, "http://ws.flaginfo.com.cn");
                 if ((namespacePrefix != null) && (namespacePrefix.trim().length() > 0)) {
-                    writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "type",
+                    writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "type",
                             namespacePrefix + ":ReplyRequest",
                             xmlWriter);
                 } else {
-                    writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "type",
+                    writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "type",
                             "ReplyRequest",
                             xmlWriter);
                 }
@@ -7749,7 +7749,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localIn0 == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -7783,7 +7783,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localIn1 == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -7817,7 +7817,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localIn2 == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -7851,7 +7851,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
                 if (localIn3 == null) {
                     // write the nil attribute
 
-                    writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                    writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
                 } else {
 
@@ -8078,8 +8078,8 @@ public class SmsStub extends org.apache.axis2.client.Stub {
                         reader.next();
 
 
-                    if (reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "type") != null) {
-                        java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance",
+                    if (reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "type") != null) {
+                        java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance",
                                 "type");
                         if (fullTypeName != null) {
                             java.lang.String nsPrefix = null;
@@ -8116,7 +8116,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "in0").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -8144,7 +8144,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "in1").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -8172,7 +8172,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "in2").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -8200,7 +8200,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "in3").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -8627,7 +8627,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
          *
          * @param parentQName
          * @param factory
-         * @return wx.apache.axiom.om.OMElement
+         * @return operator.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getOMElement(
                 final javax.xml.namespace.QName parentQName,
@@ -8689,11 +8689,11 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                 java.lang.String namespacePrefix = registerPrefix(xmlWriter, "http://ws.flaginfo.com.cn");
                 if ((namespacePrefix != null) && (namespacePrefix.trim().length() > 0)) {
-                    writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "type",
+                    writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "type",
                             namespacePrefix + ":Sms",
                             xmlWriter);
                 } else {
-                    writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "type",
+                    writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "type",
                             "Sms",
                             xmlWriter);
                 }
@@ -8724,7 +8724,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localIn0 == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -8758,7 +8758,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localIn1 == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -8792,7 +8792,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localIn2 == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -8826,7 +8826,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localIn3 == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -8860,7 +8860,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localIn4 == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -8894,7 +8894,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localIn5 == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -8928,7 +8928,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localIn6 == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -8962,7 +8962,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localIn7 == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -8996,7 +8996,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localIn8 == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -9030,7 +9030,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
                 if (localIn9 == null) {
                     // write the nil attribute
 
-                    writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                    writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
                 } else {
 
@@ -9065,7 +9065,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
                 if (localIn10 == null) {
                     // write the nil attribute
 
-                    writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                    writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
                 } else {
 
@@ -9335,8 +9335,8 @@ public class SmsStub extends org.apache.axis2.client.Stub {
                         reader.next();
 
 
-                    if (reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "type") != null) {
-                        java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance",
+                    if (reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "type") != null) {
+                        java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance",
                                 "type");
                         if (fullTypeName != null) {
                             java.lang.String nsPrefix = null;
@@ -9373,7 +9373,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "in0").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -9401,7 +9401,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "in1").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -9429,7 +9429,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "in2").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -9457,7 +9457,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "in3").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -9485,7 +9485,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "in4").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -9513,7 +9513,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "in5").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -9541,7 +9541,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "in6").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -9569,7 +9569,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "in7").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -9597,7 +9597,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "in8").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -9625,7 +9625,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "in9").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -9652,7 +9652,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "in10").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -9761,7 +9761,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
          *
          * @param parentQName
          * @param factory
-         * @return wx.apache.axiom.om.OMElement
+         * @return operator.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getOMElement(
                 final javax.xml.namespace.QName parentQName,
@@ -9823,11 +9823,11 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                 java.lang.String namespacePrefix = registerPrefix(xmlWriter, "http://ws.flaginfo.com.cn");
                 if ((namespacePrefix != null) && (namespacePrefix.trim().length() > 0)) {
-                    writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "type",
+                    writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "type",
                             namespacePrefix + ":ReportResponse",
                             xmlWriter);
                 } else {
-                    writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "type",
+                    writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "type",
                             "ReportResponse",
                             xmlWriter);
                 }
@@ -9858,7 +9858,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localOut == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -10067,8 +10067,8 @@ public class SmsStub extends org.apache.axis2.client.Stub {
                         reader.next();
 
 
-                    if (reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "type") != null) {
-                        java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance",
+                    if (reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "type") != null) {
+                        java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance",
                                 "type");
                         if (fullTypeName != null) {
                             java.lang.String nsPrefix = null;
@@ -10105,7 +10105,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "out").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -10302,7 +10302,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
          *
          * @param parentQName
          * @param factory
-         * @return wx.apache.axiom.om.OMElement
+         * @return operator.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getOMElement(
                 final javax.xml.namespace.QName parentQName,
@@ -10364,11 +10364,11 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                 java.lang.String namespacePrefix = registerPrefix(xmlWriter, "http://ws.flaginfo.com.cn");
                 if ((namespacePrefix != null) && (namespacePrefix.trim().length() > 0)) {
-                    writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "type",
+                    writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "type",
                             namespacePrefix + ":Reply",
                             xmlWriter);
                 } else {
-                    writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "type",
+                    writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "type",
                             "Reply",
                             xmlWriter);
                 }
@@ -10399,7 +10399,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localCallMdn == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -10433,7 +10433,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localMdn == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -10467,7 +10467,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localContent == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -10501,7 +10501,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
             if (localReply_time == null) {
                 // write the nil attribute
 
-                writeAttribute("xsi", "http://www.w3.wx/2001/XMLSchema-instance", "nil", "1", xmlWriter);
+                writeAttribute("xsi", "http://www.w3.operator/2001/XMLSchema-instance", "nil", "1", xmlWriter);
 
             } else {
 
@@ -10728,8 +10728,8 @@ public class SmsStub extends org.apache.axis2.client.Stub {
                         reader.next();
 
 
-                    if (reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "type") != null) {
-                        java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance",
+                    if (reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "type") != null) {
+                        java.lang.String fullTypeName = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance",
                                 "type");
                         if (fullTypeName != null) {
                             java.lang.String nsPrefix = null;
@@ -10766,7 +10766,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "callMdn").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -10794,7 +10794,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "mdn").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -10822,7 +10822,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "content").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();
@@ -10850,7 +10850,7 @@ public class SmsStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() && new javax.xml.namespace.QName("http://ws.flaginfo.com.cn", "reply_time").equals(reader.getName())) {
 
-                        nillableValue = reader.getAttributeValue("http://www.w3.wx/2001/XMLSchema-instance", "nil");
+                        nillableValue = reader.getAttributeValue("http://www.w3.operator/2001/XMLSchema-instance", "nil");
                         if (!"true".equals(nillableValue) && !"1".equals(nillableValue)) {
 
                             java.lang.String content = reader.getElementText();

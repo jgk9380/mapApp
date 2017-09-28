@@ -16,7 +16,11 @@ import javax.sql.DataSource;
  */
 @Configuration
 public class SecondDataSourceConfig {
-
+ /*
+         spring.datasource.secondary.url=jdbc:oracle:thin:@130.34.22.36:1521:orcl
+         spring.datasource.secondary.username=wxtest
+         spring.datasource.secondary.password=wxtest
+  */
     @Bean(name = "secondaryDataSource")
     @Primary
     @ConfigurationProperties(prefix = "spring.datasource.secondary")
