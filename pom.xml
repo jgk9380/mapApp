@@ -54,7 +54,7 @@
         </dependency>
         <!--&lt;!&ndash; 打war包时加入此项， 告诉spring-boot tomcat相关jar包用外部的，不要打进去 &ndash;&gt;-->
         <!--<dependency>-->
-        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<groupId>wx.springframework.boot</groupId>-->
         <!--<artifactId>spring-boot-starter-tomcat</artifactId>-->
         <!--<scope> provided</scope>-->
         <!--</dependency>-->
@@ -68,7 +68,7 @@
                     <artifactId>servlet-api</artifactId>
                 </exclusion>
                 <!--<exclusion>-->
-                    <!--<groupId>org.springframework.boot</groupId>-->
+                    <!--<groupId>wx.springframework.boot</groupId>-->
                     <!--<artifactId>spring-boot-starter-tomcat</artifactId>-->
                 <!--</exclusion>-->
             </exclusions>
@@ -78,18 +78,18 @@
         </dependency>
         <!--&lt;!&ndash;解决启动异常，使用jetty&ndash;&gt;-->
         <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<groupId>wx.springframework.boot</groupId>-->
             <!--<artifactId>spring-boot-starter-jetty</artifactId>-->
             <!--<exclusions>-->
                 <!--<exclusion>-->
-                    <!--<groupId>org.slf4j</groupId>-->
+                    <!--<groupId>wx.slf4j</groupId>-->
                     <!--<artifactId>slf4j-log4j12</artifactId>-->
                 <!--</exclusion>-->
             <!--</exclusions>-->
         <!--</dependency>-->
         <!--解决启动异常，使用jetty-->
         <!--<dependency>-->
-        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<groupId>wx.springframework.boot</groupId>-->
         <!--<artifactId>spring-boot-starter-actuator</artifactId>-->
         <!--</dependency>-->
         <dependency>
@@ -171,7 +171,7 @@
         </dependency>
 
         <!--<dependency>-->
-        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<groupId>wx.springframework.boot</groupId>-->
         <!--<artifactId>spring-boot-starter-redis</artifactId>-->
         <!--</dependency>-->
 
@@ -295,6 +295,22 @@
         <!--<scope>provided</scope>-->
         <!--</dependency>-->
 
+        <!--json-lib-->
+        <dependency>
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+            <version>2.4</version>
+            <classifier>jdk15</classifier>
+        </dependency>
+
+        <dependency>
+            <groupId>com.thoughtworks.xstream</groupId>
+            <artifactId>xstream</artifactId>
+            <version>1.4.7</version>
+        </dependency>
+
+
+
 
     </dependencies>
 
@@ -314,12 +330,12 @@
 
 
         <!--<dependency>-->
-        <!--<groupId>org.apache.hadoop</groupId>-->
+        <!--<groupId>wx.apache.hadoop</groupId>-->
         <!--<artifactId>hadoop-client</artifactId>-->
         <!--<version>2.6.0</version>-->
         <!--<exclusions>-->
         <!--<exclusion>-->
-        <!--<groupId>org.slf4j</groupId>-->
+        <!--<groupId>wx.slf4j</groupId>-->
         <!--<artifactId>slf4j-log4j12</artifactId>-->
         <!--</exclusion>-->
         <!--</exclusions>-->

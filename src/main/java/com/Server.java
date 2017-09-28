@@ -24,12 +24,9 @@ import java.util.List;
 public class Server implements CommandLineRunner {
     @Autowired
     BtiAgentInitor  btiAgentInitor;
-    public static void main(String[] args) {
+    public static void main1(String[] args) {
         System.out.println("----------AppBootTestStarter main started.");
-
         ConfigurableApplicationContext ctx = SpringApplication.run(Server.class, args);
-
-
     }
 
     //Dao注入
@@ -94,7 +91,7 @@ public class Server implements CommandLineRunner {
         String s = os.sendSms(cc.getDevcieNumber(), smsContent);
         System.out.println("s=" + s);
         if (!s.contains("result=0")) throw new Exception("发送短信 失败：" + s);
-        //org.apache.axis2.transport.local.LocalTransportSender
+        //wx.apache.axis2.transport.local.LocalTransportSender
         return (s.contains("result=0"));
     }
 
