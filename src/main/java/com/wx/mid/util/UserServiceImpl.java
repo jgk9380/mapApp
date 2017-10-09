@@ -37,11 +37,11 @@ import org.springframework.stereotype.Component;
 �û����	Varchar(1)	0-	Ԥ�����û�
 
  */
-@Component("userService")
+//@Component("userService")
 public class UserServiceImpl implements UserService {
     private   String userName ;
     private   String password ;
-    @Autowired
+    ////@Autowired
     Sms sms;
 
     public void setUserName(String userName) {
@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService {
         super();
     }
 
-    public static void main(String[] args) throws UnsupportedEncodingException {
+    public static void main1(String[] args) throws UnsupportedEncodingException {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
         UserService us = (UserService) ctx.getBean("userService");
         us.addFee("15651554341", 1);

@@ -1,4 +1,4 @@
-package com.wx.web.bean;
+package com.wx.web;
 
 import com.wx.mid.util.PictUtils;
 
@@ -23,8 +23,8 @@ public class Pict {
         return source;
     }
 
-    public static void main(String[] args) {
+    public static void main1(String[] args) {
 //        String ticket =
-//            WxBeanFactoryImpl.getInstance().getConfigWxAppManager().getOperator().getJsApiTicket().getTicket();
+//            WxFactoryImpl.getInstance().getConfigWxAppManager().getOperator().getJsApiTicket().getTicket();
     }
 }

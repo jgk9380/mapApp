@@ -33,24 +33,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
-            <exclusions>
-                <exclusion>
-                    <artifactId>jcl-over-slf4j</artifactId>
-                    <groupId>org.slf4j</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>jul-to-slf4j</artifactId>
-                    <groupId>org.slf4j</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>slf4j-api</artifactId>
-                    <groupId>org.slf4j</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>log4j-over-slf4j</artifactId>
-                    <groupId>org.slf4j</groupId>
-                </exclusion>
-            </exclusions>
+
         </dependency>
         <!--&lt;!&ndash; 打war包时加入此项， 告诉spring-boot tomcat相关jar包用外部的，不要打进去 &ndash;&gt;-->
         <!--<dependency>-->
@@ -62,30 +45,21 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>javax.servlet</groupId>
-                    <artifactId>servlet-api</artifactId>
-                </exclusion>
-                <!--<exclusion>-->
-                    <!--<groupId>operator.springframework.boot</groupId>-->
-                    <!--<artifactId>spring-boot-starter-tomcat</artifactId>-->
-                <!--</exclusion>-->
-            </exclusions>
+
             <!--&lt;!&ndash;解决启动异常，使用jetty&ndash;&gt;-->
 
             <!--&lt;!&ndash;解决启动异常，使用jetty&ndash;&gt;-->
         </dependency>
         <!--&lt;!&ndash;解决启动异常，使用jetty&ndash;&gt;-->
         <!--<dependency>-->
-            <!--<groupId>operator.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-jetty</artifactId>-->
-            <!--<exclusions>-->
-                <!--<exclusion>-->
-                    <!--<groupId>operator.slf4j</groupId>-->
-                    <!--<artifactId>slf4j-log4j12</artifactId>-->
-                <!--</exclusion>-->
-            <!--</exclusions>-->
+        <!--<groupId>operator.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-jetty</artifactId>-->
+        <!--<exclusions>-->
+        <!--<exclusion>-->
+        <!--<groupId>operator.slf4j</groupId>-->
+        <!--<artifactId>slf4j-log4j12</artifactId>-->
+        <!--</exclusion>-->
+        <!--</exclusions>-->
         <!--</dependency>-->
         <!--解决启动异常，使用jetty-->
         <!--<dependency>-->
@@ -95,6 +69,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
+
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -109,33 +84,27 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-rest</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>javax.servlet</groupId>
-                    <artifactId>servlet-api</artifactId>
-                </exclusion>
-            </exclusions>
+
         </dependency>
+
 
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-rest-webmvc</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>javax.servlet</groupId>
-                    <artifactId>servlet-api</artifactId>
-                </exclusion>
-            </exclusions>
+
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
+
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-test</artifactId>
+
+
             <!--<version>1.4.1.RELEASE</version>-->
 
         </dependency>
@@ -143,18 +112,21 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
+
         </dependency>
 
 
         <dependency>
             <groupId>com.oracle</groupId>
             <artifactId>jdbc</artifactId>
+
             <version>7.0</version>
         </dependency>
 
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
+
             <version>0.6.0</version>
         </dependency>
 
@@ -162,6 +134,7 @@
         <dependency>
             <groupId>org.codehaus.woodstox</groupId>
             <artifactId>stax2-api</artifactId>
+
             <version>4.0.0</version>
         </dependency>
 
@@ -174,12 +147,20 @@
         <!--<groupId>operator.springframework.boot</groupId>-->
         <!--<artifactId>spring-boot-starter-redis</artifactId>-->
         <!--</dependency>-->
-
-
         <!-- https://mvnrepository.com/artifact/com.netflix.zuul/zuul-netflix -->
         <dependency>
             <groupId>com.netflix.zuul</groupId>
             <artifactId>zuul-netflix</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.mortbay.jetty</groupId>
+                    <artifactId>servlet-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>servlet-api</artifactId>
+                </exclusion>
+            </exclusions>
             <version>1.3.0</version>
         </dependency>
 
@@ -188,13 +169,6 @@
             <groupId>org.springframework.session</groupId>
             <artifactId>spring-session</artifactId>
             <version>1.2.2.RELEASE</version>
-
-            <exclusions>
-                <exclusion>
-                    <groupId>javax.servlet</groupId>
-                    <artifactId>servlet-api</artifactId>
-                </exclusion>
-            </exclusions>
 
 
         </dependency>
@@ -209,24 +183,36 @@
         <dependency>
             <groupId>org.apache.axis2</groupId>
             <artifactId>axis2-adb</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>servlet-api</artifactId>
+                </exclusion>
+            </exclusions>
             <version>1.5</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.axis2</groupId>
             <artifactId>axis2-transport-local</artifactId>
+
             <version>1.5</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.axis2</groupId>
             <artifactId>axis2-transport-http</artifactId>
+
             <version>1.5</version>
         </dependency>
         <!--httpClients的依赖包，一信通和钉钉机器人测试用-->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
+            <exclusions>
+
+            </exclusions>
+
             <version>4.5.1</version>
         </dependency>
         <!--一信通的依赖包-->
@@ -235,22 +221,26 @@
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
             <version>0.7.0</version>
+
         </dependency>
 
         <dependency>
             <groupId>org.springframework.mobile</groupId>
             <artifactId>spring-mobile-device</artifactId>
+
         </dependency>
         <!--/*解决参数以json方式传递*/-->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
+
             <version>2.5.2</version>
         </dependency>
 
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
+
             <version>2.5.2</version>
         </dependency>
         <!--/*解决参数以json方式传递*/-->
@@ -258,24 +248,14 @@
         <dependency>
             <groupId>com.sun.faces</groupId>
             <artifactId>jsf-impl</artifactId>
-            <exclusions>
-            <exclusion>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            </exclusion>
-            </exclusions>
+
             <version>2.2.14</version>
         </dependency>
 
         <dependency>
             <groupId>javax.faces</groupId>
             <artifactId>jsf-api</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>javax.servlet</groupId>
-                    <artifactId>servlet-api</artifactId>
-                </exclusion>
-            </exclusions>
+
 
             <version>2.1</version>
             <!--<scope>provided</scope>-->
@@ -284,6 +264,7 @@
         <dependency>
             <groupId>commons-collections</groupId>
             <artifactId>commons-collections</artifactId>
+
             <version>3.2.1</version>
         </dependency>
 
@@ -302,17 +283,18 @@
             <groupId>net.sf.json-lib</groupId>
             <artifactId>json-lib</artifactId>
             <version>2.4</version>
+
             <classifier>jdk15</classifier>
         </dependency>
 
         <dependency>
             <groupId>com.thoughtworks.xstream</groupId>
             <artifactId>xstream</artifactId>
+
             <version>1.4.7</version>
         </dependency>
 
         <!--用于微信接口-->
-
 
 
     </dependencies>
@@ -324,10 +306,23 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
 
             </plugin>
+            <!--警告：com.sun.image.codec.jpeg.JPEGCodec 是Sun 的专用 API，可能会在未来版本中删除解决办法            在pom.xml中bulid -> publgins加入：-->
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <compilerArguments>
+                        <verbose/>
+                        <bootclasspath>${java.home}\lib\rt.jar</bootclasspath>
+                    </compilerArguments>
+                </configuration>
+            </plugin>
 
         </plugins>
 
+
     </build>
+
 
 </project>
 
@@ -352,4 +347,4 @@
         <!--</exclusion>-->
         <!--</exclusions>-->
 
-<!--todo 手工删除servlet-api.2.5 2.3-->
+        <!--todo 手工删除servlet-api.2.5 2.3-->

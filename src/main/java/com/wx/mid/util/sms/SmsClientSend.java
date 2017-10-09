@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
  * @author LIP
  * @version 1.0.1
  */
-@Component("sms")
+//@Component("sms")
 public class SmsClientSend implements Sms {
     String url, userid, account, password;
 
@@ -182,7 +182,7 @@ public class SmsClientSend implements Sms {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main1(String[] args) {
         System.out.println((new Date()).toString());
         String res =
             sendSms("http://114.215.192.27:9001/sms.aspx", "9682", "280915481", "888888", "15651554341",

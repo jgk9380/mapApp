@@ -172,7 +172,7 @@ public class PictUtils {
     }
 
 
-    public static void main(String[] args) {
+    public static void main1(String[] args) {
         PictUtils pictUtil = new PictUtils();
         //        BufferedImage source = pictUtil.loadImageLocal("D:\\image\\cc.jpg");
         //        BufferedImage target = pictUtil.loadImageLocal("D:\\image\\11.jpg");

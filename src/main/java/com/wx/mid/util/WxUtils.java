@@ -4,15 +4,12 @@ import java.math.BigDecimal;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.wx.mid.WxBeanFactoryImpl;
 import org.jboss.logging.Logger;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 public class WxUtils {
-    static JdbcTemplate jdbcTemplate; 
-    static{
-        jdbcTemplate= WxBeanFactoryImpl.getInstance().getJdbcTemplate();
-    }
+    private static JdbcTemplate jdbcTemplate;
+
 
     public static BigDecimal getSeqencesValue() {
         BigDecimal l = jdbcTemplate.queryForObject("select wx_seq_generator.nextval from dual", BigDecimal.class);

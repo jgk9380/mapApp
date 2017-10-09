@@ -14,19 +14,15 @@ import net.sf.json.JSONObject;
 
 
 public interface WxOperator {
-
     boolean checkSignature(String signature, String timestamp, String nonce);
-
     /**
      * ��ȡˢ����ҳ��Ȩƾ֤����ͨToken
      */
+    public void initAppId(String appId);
     Token getToken();
     JsApiTicket getJsApiTicket();
 
-    /**
-     * @param code
-     * @return
-     */
+
     WeixinOauth2Token getOauth2AccessToken(String code);
     WeixinOauth2Token refreshOauth2AccessToken(String refreshToken);
 

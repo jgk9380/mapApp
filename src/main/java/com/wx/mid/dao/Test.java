@@ -5,7 +5,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 
 
-import com.wx.mid.WxBeanFactoryImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -24,14 +23,14 @@ public class Test {
     }
 
     public static void main1(String[] args) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-
-        WxArticleDiscussDao wxMenuDao = WxBeanFactoryImpl.getInstance().getBean("wxArticleDiscussDao", WxArticleDiscussDao.class);
-        int i = wxMenuDao.findCountByArtId(new BigDecimal(2));
-        System.out.println(i);
-        Pageable pageAble = new PageRequest(10, 5, new Sort(Sort.Direction.DESC, "discussDate"));
-//       List<WxArticleDiscuss> l=wxMenuDao.findByArtId(pageAble, new BigDecimal(2));
-//        for(WxArticleDiscuss w:l){
-//            System.out.println(w.getId());
+//
+//        WxArticleDiscussDao wxMenuDao = WxFactoryImpl.getInstance().getBean("wxArticleDiscussDao", WxArticleDiscussDao.class);
+//        int i = wxMenuDao.findCountByArtId(new BigDecimal(2));
+//        System.out.println(i);
+//        Pageable pageAble = new PageRequest(10, 5, new Sort(Sort.Direction.DESC, "discussDate"));
+////       List<WxArticleDiscuss> l=wxMenuDao.findByArtId(pageAble, new BigDecimal(2));
+////        for(WxArticleDiscuss w:l){
+////            System.out.println(w.getId());
 //        }
 
     }

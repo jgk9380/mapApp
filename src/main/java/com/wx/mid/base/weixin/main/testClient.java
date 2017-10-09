@@ -155,7 +155,7 @@ public class testClient {
     }
 
 
-    public static void main(String args[]) throws IOException {
+    public static void main1(String args[]) throws IOException {
         String appId = "wx7dcc6b2e03a47c0b";//盐城通迅圈
         String appSecret = "fb845f65afd06d318e7a961d867f877f";
         String openId = "oEsXmwWQkf6V5KaLUMHCQHpC8F1E";//jgk的openId

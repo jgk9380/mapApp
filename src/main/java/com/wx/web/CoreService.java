@@ -1,4 +1,4 @@
-package com.wx.web.servlet;
+package com.wx.web;
 
 
 import com.wx.mid.base.message.req.TextMessage;
@@ -13,62 +13,60 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-
-
 public class CoreService {
     /**
-     * ����΢�ŷ���������
+     * 处理微信发来的请求
      *
      * @param request
      * @return xml
      */
     public static String processRequest(HttpServletRequest request) {
-        // xml��ʽ����Ϣ����
+        // xml格式的消息数据
         String respXml = null;
         try {
-            // ����parseXml��������������Ϣ
+            // 调用parseXml方法解析请求消息
             Map<String, String> requestMap = MessageUtil.parseXml(request);
-            // ���ͷ��ʺ�
+            // 发送方帐号
             String fromUserName = requestMap.get("FromUserName");
-            // ������΢�ź�
+            // 开发者微信号
             String toUserName = requestMap.get("ToUserName");
-            // ��Ϣ����
+            // 消息类型
             String msgType = requestMap.get("MsgType");
-           
+
 
             TextMessage textMessage = new TextMessage();
             textMessage.setToUserName(fromUserName);
             textMessage.setFromUserName(toUserName);
             textMessage.setCreateTime(new Date().getTime());
             textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
-            // �¼�����
+            // 事件推送
             if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_EVENT)) {
-                // �¼�����
+                // 事件类型
                 String eventType = requestMap.get("Event");
-                // ����
+                // 订阅
                 if (eventType.equals(MessageUtil.EVENT_TYPE_SUBSCRIBE)) {
-                    textMessage.setContent("���ã���ӭ�γ�ͨ��Ȧ");
-                    // ����Ϣ����ת����xml
+                    textMessage.setContent("您好，欢迎盐城通信圈");
+                    // 将消息对象转换成xml
                     respXml = MessageUtil.messageToXml(textMessage);
                 }
-                // ȡ������
+                // 取消订阅
                 else if (eventType.equals(MessageUtil.EVENT_TYPE_UNSUBSCRIBE)) {
-                    // TODO �ݲ�������
+                    // TODO 暂不做处理
                 }
-                // �Զ���˵�����¼�
+                // 自定义菜单点击事件
                 else if (eventType.equals(MessageUtil.EVENT_TYPE_CLICK)) {
-                    // �¼�KEYֵ���봴���˵�ʱ��keyֵ��Ӧ
+                    // 事件KEY值，与创建菜单时的key值对应
                     String eventKey = requestMap.get("EventKey");
-                    // ����keyֵ�ж��û�����İ�ť
+                    // 根据key值判断用户点击的按钮
                     if (eventKey.equals("oschina")) {
                         Article article = new Article();
-                        article.setTitle("�й���ͨ��ӭ��");
-                        article.setDescription("�й���ͨ����á�\n�й���ͨ������");
+                        article.setTitle("中国联通欢迎你");
+                        article.setDescription("中国联通服务好、\n中国联通服务优");
                         article.setPicUrl("");
                         article.setUrl("http://www.10010.com");
                         List<Article> articleList = new ArrayList<Article>();
                         articleList.add(article);
-                        // ����ͼ����Ϣ
+                        // 创建图文消息
                         NewsMessage newsMessage = new NewsMessage();
                         newsMessage.setToUserName(fromUserName);
                         newsMessage.setFromUserName(toUserName);
@@ -83,9 +81,9 @@ public class CoreService {
                     }
                 }
             }
-            // ���û�����Ϣʱ
+            // 当用户发消息时
             else {
-                textMessage.setContent("��ͨ���˵�ʹ����ַ��������");
+                textMessage.setContent("请通过菜单使用网址导航服务！");
                 respXml = MessageUtil.messageToXml(textMessage);
             }
         } catch (Exception e) {
@@ -94,4 +92,3 @@ public class CoreService {
         return respXml;
     }
 }
-

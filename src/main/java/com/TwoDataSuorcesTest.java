@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 //@Order(value = 3)
 //@SpringBootApplication
 public class TwoDataSuorcesTest  implements CommandLineRunner {
-//    public static void main(String[] args) {
+//    public static void main1(String[] args) {
 //        ConfigurableApplicationContext ctx = SpringApplication.run(TwoDataSuorcesTest.class, args);
 //    }
 

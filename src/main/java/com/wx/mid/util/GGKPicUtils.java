@@ -189,7 +189,7 @@ public class GGKPicUtils {
         return b;
     }
 
-    public static void main(String[] args) {
+    public static void main1(String[] args) {
         GGKPicUtils pictUtil = new GGKPicUtils();
         //        BufferedImage source = pictUtil.loadImageLocal("D:\\image\\cc.jpg");
         //        BufferedImage target = pictUtil.loadImageLocal("D:\\image\\11.jpg");

@@ -24,7 +24,7 @@ import java.util.Map;
 @EnableJpaRepositories(
         entityManagerFactoryRef="entityManagerFactorySecondary",
         transactionManagerRef="transactionManagerSecondary",
-        basePackages= { "com.dao.s" }) //设置Repository所在位置
+        basePackages= { "com.dao.s"}) //设置Repository所在位置//"com.wx.mid.dao",
 
 public class SecondaryJpaConfig {
 

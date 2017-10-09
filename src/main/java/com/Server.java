@@ -24,7 +24,7 @@ import java.util.List;
 public class Server implements CommandLineRunner {
     @Autowired
     BtiAgentInitor  btiAgentInitor;
-    public static void main1(String[] args) {
+    public static void main(String[] args) {
         System.out.println("----------AppBootTestStarter main started.");
         ConfigurableApplicationContext ctx = SpringApplication.run(Server.class, args);
     }
@@ -42,7 +42,7 @@ public class Server implements CommandLineRunner {
     //    @Autowired
     //    @Qualifier("thirdDataSource")
     //    DataSource ds;
-    //    public static void main(String[] args) throws Exception {
+    //    public static void main1(String[] args) throws Exception {
     //        System.out.println("----------ChangeCardSmsSenderStarter main started");
     //       final AplicationContext ctx = SpringApplication.run(CCSSmsSenderImpl.class);
     //    }

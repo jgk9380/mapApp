@@ -58,7 +58,7 @@ public class UnicomRobot {
         return res;
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main1(String[] args) throws Exception {
         System.out.println(UnicomRobot.getAnswer("���ӳ���", "1"));
     }
 }

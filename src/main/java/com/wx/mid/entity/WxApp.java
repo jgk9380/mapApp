@@ -14,7 +14,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@NamedQueries({ @NamedQuery(name = "WxApp.findAll", query = "select o from WxApp o") })
 @Table(name = "WX_APP")
 public class WxApp implements Serializable {
     @SuppressWarnings("compatibility:-8972255795179508943")

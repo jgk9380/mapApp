@@ -60,7 +60,7 @@ public class MD5 {
         return resultString;
     }
 
-    public static void main(String[] args) {
+    public static void main1(String[] args) {
         MD5 getMD5 = new MD5();
         //System.out.println(MD5.GetMD5Code("000000"));
     }
