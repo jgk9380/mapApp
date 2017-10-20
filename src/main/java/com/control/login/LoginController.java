@@ -116,6 +116,7 @@ public class LoginController {
             mid.add(sr.getName());
         }
         r.put("token", token);
+        r.put("token1", "testCompile1234111");
         r.put("realName", loginUser.getEmployee().getName());
         r.put("roles", mid);
 

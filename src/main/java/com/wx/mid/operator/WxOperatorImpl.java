@@ -1,6 +1,7 @@
 package com.wx.mid.operator;
 
 
+import com.wx.entity.WxApp;
 import com.wx.mid.base.menu.Menu;
 import com.wx.mid.base.message.resp.Article;
 import com.wx.mid.base.pojo.*;
@@ -8,8 +9,7 @@ import com.wx.mid.base.util.AdvancedUtil;
 import com.wx.mid.base.util.CommonUtil;
 import com.wx.mid.base.util.MenuUtil;
 import com.wx.mid.base.util.SignUtil;
-import com.wx.mid.dao.WxAppDao;
-import com.wx.mid.entity.WxApp;
+import com.wx.dao.WxAppDao;
 import net.sf.json.JSONObject;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 
 import java.awt.image.BufferedImage;
 import java.util.List;
-//@Component
+@Component
 public class WxOperatorImpl  implements WxOperator {
     public WxOperatorImpl() {
 
@@ -29,7 +29,7 @@ public class WxOperatorImpl  implements WxOperator {
     //private Token accessToken;
     private String savePath = "d:/temp";
 
-    //@Autowired
+    @Autowired
     private WxAppDao wxAppDao;
 
     public void initAppId(String appId) {
@@ -95,7 +95,7 @@ public class WxOperatorImpl  implements WxOperator {
             jsApiTicket= AdvancedUtil.getJSAPITicket(this.getToken().getAccessToken());
             wa.setJsTicket(jsApiTicket.getTicket());
             wa.setJsTicketExpire(jsApiTicket.getExpires_in());
-            wa.setJsTicketDate(jsApiTicket.getOccurDate());
+            wa.setJsTicketDate((jsApiTicket.getOccurDate()));
             wxAppDao.save(wa);
         }
 

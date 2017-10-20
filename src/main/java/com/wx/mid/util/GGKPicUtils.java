@@ -1,7 +1,5 @@
 package com.wx.mid.util;
 
-import com.wx.mid.entity.WxPromotionGift;
-
 import javax.imageio.ImageIO;
 
 import java.awt.Color;
@@ -174,20 +172,7 @@ public class GGKPicUtils {
         return null;
     }
 
-    public byte[] getGgkPictureBytes(WxPromotionGift wpg) {
-      
-        BufferedImage source = loadImageLocal("D:\\image\\ggk.jpg");
-        BufferedImage t1 = modifyImage(source, "SN:" + wpg.getId(), 190, 107);
-        BufferedImage t2 = modifyImage(source, wpg.getContent(), 150, 190);
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        try {
-            boolean flag = ImageIO.write(t2, "jpg", out);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        byte[] b = out.toByteArray();
-        return b;
-    }
+
 
     public static void main1(String[] args) {
         GGKPicUtils pictUtil = new GGKPicUtils();

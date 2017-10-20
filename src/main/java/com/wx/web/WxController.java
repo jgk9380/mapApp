@@ -1,7 +1,10 @@
 package com.wx.web;
 
+import com.wx.dao.WxEventDao;
+import com.wx.entity.WxEvent;
 import com.wx.mid.base.util.MessageUtil;
 import com.wx.mid.operator.WxManager;
+import com.wx.mid.util.WxUtils;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +16,7 @@ import java.io.*;
 
 import java.io.IOException;
 
+import java.util.Date;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -30,8 +34,13 @@ public class WxController {
         super();
     }
 
-    //    @Autowired
-//    WxManager wxManager;
+    @Autowired
+    WxUtils wxUtils;
+    @Autowired
+    WxEventDao wxEventDao;
+    @Autowired
+    WxManager wxManager;
+
     @RequestMapping(value = "/core", method = {RequestMethod.GET})
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Logger.getLogger(WxController.class).info("doGet");
@@ -44,18 +53,21 @@ public class WxController {
         String nonce = request.getParameter("nonce");
         // 随机字符串
         String echostr = request.getParameter("echostr");
-        Logger.getLogger(WxController.class).info("nonce=" + nonce + "   signature=" + signature + "   timestamp=" + timestamp + "   echostr=" + echostr);
+
+        Logger.getLogger(WxController.class).info("nonce=" + nonce + "signature=" + signature + "   timestamp=" + timestamp + "   echostr=" + echostr);
+
         PrintWriter out = response.getWriter();
-
-
-        //        System.out.println("------------old return:" +
-        //                           SignUtil.checkSignature(wam.getTokeString(), signature, timestamp, nonce));
-//        if (wxManager.getOperator().checkSignature(signature, timestamp, nonce)) {
-//            Logger.getLogger(WxController.class).warn("匹配成功");
-//            out.print(echostr);
-//        }else
-        {
-            Logger.getLogger(WxController.class).warn("没有匹配成功但是通过");
+        boolean result= wxManager.checkSignature(signature, timestamp, nonce);
+        WxEvent wxEvent=new WxEvent();
+        wxEvent.setId(wxUtils.getSeqencesValue().intValue());
+        wxEvent.setContent("校验：nonce=" + nonce + "signature=" + signature + "   timestamp=" + timestamp + "   echostr=" + echostr  +"结果："+result);
+        wxEvent.setOccureDate(new Date());
+        wxEventDao.save(wxEvent);
+        if (result) {
+            Logger.getLogger(WxController.class).warn("\n---success");
+            out.print(echostr);
+        } else {
+            Logger.getLogger(WxController.class).warn("\n----no success,and passed it ");
             out.print(echostr);
         }
         out.close();
@@ -79,9 +91,14 @@ public class WxController {
         //发送留言
         try {
             Map<String, String> requestMap = MessageUtil.parseXml(request);
-            System.out.println("接收到：" + requestMap);
+            System.out.println("\n---接收到：" + requestMap);
+            WxEvent wxEvent=new WxEvent();
+            wxEvent.setId(wxUtils.getSeqencesValue().intValue());
+            wxEvent.setContent(requestMap.toString());
+            wxEvent.setOccureDate(new Date());
+            wxEventDao.save(wxEvent);
             PrintWriter out = response.getWriter(); //可以回复空串
-            out.println("接收到信息,正在处理：");//todo 保存后待处理
+            out.println("success");//todo 保存后待处理
             out.close();
             //            WxFactory wf=WxFactoryImpl.getInstance();
             //            String appName=wf.getBean("wxAppDao", WxAppDao.class).findByUserName(requestMap.get("ToUserName")).getAppName();

@@ -8,7 +8,6 @@ import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -24,7 +23,7 @@ import java.util.Map;
 @EnableJpaRepositories(
         entityManagerFactoryRef="entityManagerFactorySecondary",
         transactionManagerRef="transactionManagerSecondary",
-        basePackages= { "com.dao.s"}) //设置Repository所在位置//"com.wx.mid.dao",
+        basePackages={"com.dao.s", "com.wx.dao"}) //设置Repository所在位置//"com.wx.dao",
 
 public class SecondaryJpaConfig {
 
@@ -41,10 +40,11 @@ public class SecondaryJpaConfig {
         return builder
                 .dataSource(secondaryDataSource)
                 .properties(getVendorProperties(secondaryDataSource))
-                .packages("com.entity.s") //设置实体类所在位置
+                .packages("com.entity.s","com.wx.entity") //设置实体类所在位置
                 .persistenceUnit("secondaryPersistenceUnit")
                 .build();
     }
+
 
     @Autowired
     private JpaProperties jpaProperties;
@@ -57,5 +57,4 @@ public class SecondaryJpaConfig {
     PlatformTransactionManager transactionManagerSecondary(EntityManagerFactoryBuilder builder) {
         return new JpaTransactionManager(entityManagerFactorySecondary(builder).getObject());
     }
-
 }

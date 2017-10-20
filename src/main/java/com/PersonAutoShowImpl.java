@@ -24,7 +24,7 @@ public class PersonAutoShowImpl implements CommandLineRunner {
     @Bean
     public Person getPerson(Integer age) {
         Person tb = new Person();
-        tb.setAge(age);
+        tb.setAge(age+1);
         return tb;
     }
 

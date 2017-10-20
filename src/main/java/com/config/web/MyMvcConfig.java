@@ -4,10 +4,7 @@ import com.config.DemoIntecepter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.*;
 
 /**
  * Created by jianggk on 2016/11/8.
@@ -33,6 +30,12 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
                 .allowedOrigins("*")
                 .allowCredentials(true)
                 .allowedMethods("GET", "POST", "DELETE", "PUT","OPTION","PATCH");
+    }
+
+    @Override
+    public void configurePathMatch(PathMatchConfigurer configurer) {
+        super.configurePathMatch(configurer);
+        configurer.setUseSuffixPatternMatch(false);
     }
 
 }

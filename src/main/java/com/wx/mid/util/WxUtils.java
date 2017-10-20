@@ -5,24 +5,30 @@ import java.math.BigDecimal;
 import javax.servlet.http.HttpServletRequest;
 
 import org.jboss.logging.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
+@Component
 public class WxUtils {
-    private static JdbcTemplate jdbcTemplate;
+    @Autowired
+    @Qualifier("secondaryJdbcTemplate")
+    private  JdbcTemplate jdbcTemplate;
 
 
-    public static BigDecimal getSeqencesValue() {
+    public  BigDecimal getSeqencesValue() {
         BigDecimal l = jdbcTemplate.queryForObject("select wx_seq_generator.nextval from dual", BigDecimal.class);
         return l;
     }
     
-    public static int getScenenIdSeqencesValue() {
+    public  int getScenenIdSeqencesValue() {
         int l =
             jdbcTemplate.queryForObject("select wx_qr_scenen_id_seq_generator.nextval from dual", Integer.class);
          return l;
     }
      
-    public static String getIpAddress(HttpServletRequest request){
+    public  String getIpAddress(HttpServletRequest request){
         String ipAddress;
         if (request.getHeader("x-forwarded-for") == null) {
             ipAddress = request.getRemoteAddr();
@@ -31,7 +37,7 @@ public class WxUtils {
         return ipAddress;
     }
     
-      public static String getAppName(String url) {
+      public  String getAppName(String url) {
         
         int pos = url.indexOf("appName=");
         if (pos == -1){
@@ -41,7 +47,7 @@ public class WxUtils {
         String res = url.substring(pos + 8);
         return res;
     }
-      public static String getUrlHead(String url) {
+      public  String getUrlHead(String url) {
         int pos = url.indexOf("?");
         if (pos == -1){
             Logger.getLogger(WxUtils.class).error("û���ҵ�appName");

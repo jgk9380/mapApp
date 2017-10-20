@@ -25,8 +25,6 @@ public class SignUtil {
      */
     public static boolean checkSignature(String token, String signature, String timestamp, String nonce) {
 
-   
-        
         //System.out.println("88echostr="+signature);
         if (signature == null || timestamp == null || nonce == null) {
             System.out.println(" in signature=" + signature + " timestamp=" + timestamp + " nonce=" + nonce +
@@ -49,7 +47,7 @@ public class SignUtil {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-        //System.out.println("ciphertext=" + ciphertext + "   signature=" + signature);
+        System.out.println("-------校验结果 ciphertext=" + ciphertext + "   signature=" + signature);
         // ��sha1���ܺ���ַ�����signature���жԱ�
         return ciphertext != null ? ciphertext.equals(signature.toUpperCase()) : false;
     }

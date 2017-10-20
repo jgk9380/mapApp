@@ -1,39 +1,53 @@
 package com.wx.mid.operator;
 
-import java.util.Date;
 
-
-import com.wx.mid.base.pojo.WeixinUserInfo;
-import com.wx.mid.dao.WxAppDao;
-import com.wx.mid.dao.WxUserDao;
-import com.wx.mid.entity.*;
+import com.wx.dao.WxAppDao;
+import com.wx.dao.WxUserDao;
+import com.wx.entity.*;
 
 
 
 //import com.wx.mid.util.WxUtils;
 //import org.jboss.logging.Logger;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Component;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Service;
 
-//@Component
-public class WxManagerImpl implements WxManager {
+import javax.annotation.PostConstruct;
 
-    String appName;
 
+@Service
+public class WxManagerImpl implements WxManager , CommandLineRunner, InitializingBean {
+//    @Value("yctxq")
+
+    String appName="yctxq";
+
+    @Autowired
     WxOperator wxOperator;
-    //@Autowired
+
+    @Autowired
     WxAppDao wxAppDao;
-    //@Autowired
+
+    @Autowired
     WxUserDao wxUserDao;
 
+
     public WxManagerImpl() {
-        this.appName = "yctxq";
-    //    WxApp wx = wxAppDao.findByAppName("wx7dcc6b2e03a47c0b");
-//        if (wx == null) {
-//            Logger.getLogger(WxManagerImpl.class).error("找不到微信号：" + appName);
-//            return;
-//        }
-        wxOperator.initAppId("wx7dcc6b2e03a47c0b");
+
+    }
+
+
+    @Override
+    public void run(String... args) throws Exception {
+
+        System.out.println("WxManagerImpl.run()");
+
+    }
+    @Override
+    public boolean checkSignature(String signature, String timestamp, String nonce) {
+        return wxOperator.checkSignature(signature,timestamp,nonce);
     }
 
     @Override
@@ -57,10 +71,7 @@ public class WxManagerImpl implements WxManager {
         return null;
     }
 
-    @Override
-    public WxOperator getOperator() {
-        return wxOperator;
-    }
+
 
     public WxUser refreshWxUser(String openId) {
 //        WxUser res;
@@ -104,5 +115,18 @@ public class WxManagerImpl implements WxManager {
 
     public String getAppName() {
         return appName;
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        System.out.printf("wxAppDao="+wxAppDao+"\n");
+        WxApp wx = wxAppDao.findByAppName(appName);
+        if (wx == null) {
+            Logger.getLogger(WxManagerImpl.class).error("找不到微信号：" + appName+"的配置数据");
+            return;
+        }else{
+            Logger.getLogger(WxManagerImpl.class).info("微信号：" + appName+"的配置初始化成功");
+        }
+        wxOperator.initAppId(wx.getId());
     }
 }

@@ -1,15 +1,10 @@
 package com.wx.mid.operator;
 
-import com.wx.mid.entity.WxUser;
-import com.wx.mid.entity.WxUserMsg;
-
-import java.util.Map;
-
-
-
+import com.wx.entity.WxUser;
 
 
 public interface WxManager {
-    WxOperator getOperator();
-    WxUser getWxUser(String openId);  //getWxUserBo���
+    //WxOperator getOperator();
+    boolean checkSignature(String signature, String timestamp,String nonce);
+    WxUser getWxUser(String openId);  //
 }

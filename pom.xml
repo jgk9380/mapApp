@@ -7,8 +7,6 @@
     <artifactId>mapApp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-
-
     <name>mapApp</name>
     <description>Demo project for Spring Boot</description>
 
@@ -119,14 +117,12 @@
         <dependency>
             <groupId>com.oracle</groupId>
             <artifactId>jdbc</artifactId>
-
             <version>7.0</version>
         </dependency>
 
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
-
             <version>0.6.0</version>
         </dependency>
 
@@ -142,7 +138,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
-
         <!--<dependency>-->
         <!--<groupId>operator.springframework.boot</groupId>-->
         <!--<artifactId>spring-boot-starter-redis</artifactId>-->
@@ -163,20 +158,30 @@
             </exclusions>
             <version>1.3.0</version>
         </dependency>
-
-
         <dependency>
             <groupId>org.springframework.session</groupId>
             <artifactId>spring-session</artifactId>
             <version>1.2.2.RELEASE</version>
+        </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.18</version>
+            <scope>provided</scope>
         </dependency>
 
         <!--<dependency>-->
-        <!--<groupId>com.oracle</groupId>-->
-        <!--<artifactId>wlfullclient</artifactId>-->
-        <!--<version>6.0</version>-->
+            <!--&lt;!&ndash;weblogic链接包&ndash;&gt;-->
+            <!--<groupId>com.oracle</groupId>-->
+            <!--<artifactId>wlfullclient</artifactId>-->
+            <!--<version>6.0</version>-->
         <!--</dependency>-->
 
         <!--一信通的依赖包-->
@@ -191,18 +196,14 @@
             </exclusions>
             <version>1.5</version>
         </dependency>
-
         <dependency>
             <groupId>org.apache.axis2</groupId>
             <artifactId>axis2-transport-local</artifactId>
-
             <version>1.5</version>
         </dependency>
-
         <dependency>
             <groupId>org.apache.axis2</groupId>
             <artifactId>axis2-transport-http</artifactId>
-
             <version>1.5</version>
         </dependency>
         <!--httpClients的依赖包，一信通和钉钉机器人测试用-->
@@ -210,37 +211,28 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <exclusions>
-
             </exclusions>
-
             <version>4.5.1</version>
         </dependency>
         <!--一信通的依赖包-->
-
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
             <version>0.7.0</version>
-
         </dependency>
-
         <dependency>
             <groupId>org.springframework.mobile</groupId>
             <artifactId>spring-mobile-device</artifactId>
-
         </dependency>
         <!--/*解决参数以json方式传递*/-->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
-
             <version>2.5.2</version>
         </dependency>
-
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-
             <version>2.5.2</version>
         </dependency>
         <!--/*解决参数以json方式传递*/-->
@@ -255,8 +247,6 @@
         <dependency>
             <groupId>javax.faces</groupId>
             <artifactId>jsf-api</artifactId>
-
-
             <version>2.1</version>
             <!--<scope>provided</scope>-->
         </dependency>
@@ -264,47 +254,29 @@
         <dependency>
             <groupId>commons-collections</groupId>
             <artifactId>commons-collections</artifactId>
-
             <version>3.2.1</version>
         </dependency>
-
-        <!--https://mvnrepository.com/artifact/javax.servlet/servlet-api-->
-        <!--<dependency>-->
-        <!--<groupId>javax.servlet</groupId>-->
-        <!--<artifactId>servlet-api</artifactId>-->
-        <!--<version>3.0.1</version>-->
-        <!--<scope>provided</scope>-->
-        <!--</dependency>-->
-
         <!--用于微信接口-->
-
         <!--json-lib-->
         <dependency>
             <groupId>net.sf.json-lib</groupId>
             <artifactId>json-lib</artifactId>
             <version>2.4</version>
-
             <classifier>jdk15</classifier>
         </dependency>
-
         <dependency>
             <groupId>com.thoughtworks.xstream</groupId>
             <artifactId>xstream</artifactId>
 
             <version>1.4.7</version>
         </dependency>
-
         <!--用于微信接口-->
-
-
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-
             </plugin>
             <!--警告：com.sun.image.codec.jpeg.JPEGCodec 是Sun 的专用 API，可能会在未来版本中删除解决办法            在pom.xml中bulid -> publgins加入：-->
             <plugin>
@@ -317,12 +289,8 @@
                     </compilerArguments>
                 </configuration>
             </plugin>
-
         </plugins>
-
-
     </build>
-
 
 </project>
 
