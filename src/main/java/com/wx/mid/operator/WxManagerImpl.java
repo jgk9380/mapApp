@@ -2,37 +2,47 @@ package com.wx.mid.operator;
 
 
 import com.wx.dao.WxAppDao;
+import com.wx.dao.WxEventDao;
 import com.wx.dao.WxUserDao;
 import com.wx.entity.*;
 
 
-
 //import com.wx.mid.util.WxUtils;
 //import org.jboss.logging.Logger;
+import com.wx.mid.handle.WxEventSpringEvent;
+
+
+import com.wx.mid.util.WxUtils;
+import net.sf.json.JSONObject;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 
 @Service
-public class WxManagerImpl implements WxManager , CommandLineRunner, InitializingBean {
-//    @Value("yctxq")
-
-    String appName="yctxq";
+public class WxManagerImpl implements WxManager, CommandLineRunner, InitializingBean, ApplicationEventPublisherAware {
+    @Value("${wx.app.name}")
+    String appName;
 
     @Autowired
     WxOperator wxOperator;
-
     @Autowired
     WxAppDao wxAppDao;
-
     @Autowired
     WxUserDao wxUserDao;
-
+    @Autowired
+    WxUtils wxUtils;
+    @Autowired
+    WxEventDao wxEventDao;
 
     public WxManagerImpl() {
 
@@ -41,13 +51,18 @@ public class WxManagerImpl implements WxManager , CommandLineRunner, Initializin
 
     @Override
     public void run(String... args) throws Exception {
-
-        System.out.println("WxManagerImpl.run()");
-
+        System.out.println("--WxManagerImpl.run()  appId=" + this.appName);
+        //todo 测试代码
+        while(true) {
+            List<WxEvent> l = wxEventDao.findByDispDateIsNull();
+            l.stream().forEach(w -> this.applicationEventPublisher.publishEvent(new WxEventSpringEvent(w)));
+            Thread.sleep(3000);
+        }
     }
+
     @Override
     public boolean checkSignature(String signature, String timestamp, String nonce) {
-        return wxOperator.checkSignature(signature,timestamp,nonce);
+        return wxOperator.checkSignature(signature, timestamp, nonce);
     }
 
     @Override
@@ -71,6 +86,10 @@ public class WxManagerImpl implements WxManager , CommandLineRunner, Initializin
         return null;
     }
 
+    @Override
+    public WxOperator getWxOperator() {
+        return this.wxOperator;
+    }
 
 
     public WxUser refreshWxUser(String openId) {
@@ -111,7 +130,7 @@ public class WxManagerImpl implements WxManager , CommandLineRunner, Initializin
 //            return wxUserDao.save(res);
 //        }
         return null;
-  }
+    }
 
     public String getAppName() {
         return appName;
@@ -119,14 +138,39 @@ public class WxManagerImpl implements WxManager , CommandLineRunner, Initializin
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        System.out.printf("wxAppDao="+wxAppDao+"\n");
+        System.out.printf("wxAppDao=" + wxAppDao + "\n");
         WxApp wx = wxAppDao.findByAppName(appName);
         if (wx == null) {
-            Logger.getLogger(WxManagerImpl.class).error("找不到微信号：" + appName+"的配置数据");
+            Logger.getLogger(WxManagerImpl.class).error("找不到微信号：" + appName + "的配置数据");
             return;
-        }else{
-            Logger.getLogger(WxManagerImpl.class).info("微信号：" + appName+"的配置初始化成功");
+        } else {
+            Logger.getLogger(WxManagerImpl.class).info("微信号：" + appName + "的配置初始化成功");
         }
         wxOperator.initAppId(wx.getId());
+    }
+
+
+    public void addWxEvent(Map map, int flag) {
+        JSONObject jsonObject=new JSONObject();
+        for(Object key:map.keySet()){
+            jsonObject.put(key,map.get(key));
+        }
+        WxEvent wxEvent = new WxEvent();
+        wxEvent.setId(wxUtils.getSeqencesValue().intValue());
+        wxEvent.setContent(jsonObject.toString());
+        wxEvent.setOccureDate(new Date());
+        wxEvent.setFlag(flag);
+        wxEventDao.save(wxEvent);
+        this.applicationEventPublisher.publishEvent(new WxEventSpringEvent(wxEvent));
+        //发送Event
+        return;
+    }
+
+
+    private ApplicationEventPublisher applicationEventPublisher;
+
+    @Override
+    public void setApplicationEventPublisher(ApplicationEventPublisher applicationEventPublisher) {
+        this.applicationEventPublisher = applicationEventPublisher;
     }
 }

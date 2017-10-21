@@ -28,7 +28,6 @@ public class Server implements CommandLineRunner {
         System.out.println("----------AppBootTestStarter main started.");
         ConfigurableApplicationContext ctx = SpringApplication.run(Server.class, args);
     }
-
     //Dao注入
     @Autowired
     ChargeCardDao chargeCarDao;

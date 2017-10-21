@@ -5,6 +5,7 @@ import com.wx.entity.WxEvent;
 import com.wx.mid.base.util.MessageUtil;
 import com.wx.mid.operator.WxManager;
 import com.wx.mid.util.WxUtils;
+import net.sf.json.JSONObject;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,10 +36,6 @@ public class WxController {
     }
 
     @Autowired
-    WxUtils wxUtils;
-    @Autowired
-    WxEventDao wxEventDao;
-    @Autowired
     WxManager wxManager;
 
     @RequestMapping(value = "/core", method = {RequestMethod.GET})
@@ -58,11 +55,8 @@ public class WxController {
 
         PrintWriter out = response.getWriter();
         boolean result= wxManager.checkSignature(signature, timestamp, nonce);
-        WxEvent wxEvent=new WxEvent();
-        wxEvent.setId(wxUtils.getSeqencesValue().intValue());
-        wxEvent.setContent("校验：nonce=" + nonce + "signature=" + signature + "   timestamp=" + timestamp + "   echostr=" + echostr  +"结果："+result);
-        wxEvent.setOccureDate(new Date());
-        wxEventDao.save(wxEvent);
+        String info="校验：nonce=" + nonce + "signature=" + signature + "   timestamp=" + timestamp + "   echostr=" + echostr  +"结果："+result;
+       //wxManager.addWxEvent(info,-1);
         if (result) {
             Logger.getLogger(WxController.class).warn("\n---success");
             out.print(echostr);
@@ -91,12 +85,10 @@ public class WxController {
         //发送留言
         try {
             Map<String, String> requestMap = MessageUtil.parseXml(request);
+
+
             System.out.println("\n---接收到：" + requestMap);
-            WxEvent wxEvent=new WxEvent();
-            wxEvent.setId(wxUtils.getSeqencesValue().intValue());
-            wxEvent.setContent(requestMap.toString());
-            wxEvent.setOccureDate(new Date());
-            wxEventDao.save(wxEvent);
+            wxManager.addWxEvent(requestMap,0);
             PrintWriter out = response.getWriter(); //可以回复空串
             out.println("success");//todo 保存后待处理
             out.close();
@@ -113,7 +105,7 @@ public class WxController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
+
+
 }
