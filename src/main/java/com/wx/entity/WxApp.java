@@ -16,8 +16,10 @@ import javax.persistence.TemporalType;
 public class WxApp implements Serializable {
     @SuppressWarnings("compatibility:-8972255795179508943")
     private static final long serialVersionUID = 113387208321234081L;
+    @Column(name = "APP_NAME", length = 100)
+    private String appName;
     @Id
-    @Column(name="APP_ID")
+    @Column(name="APP_ID", unique = true)
     private String id;
     @Column(name = "APP_SECRET", length = 100)
     private String appSecret;
@@ -33,8 +35,7 @@ public class WxApp implements Serializable {
     @Column(name = "USER_NAME", unique = true, length = 100)
     private String userName;
 
-    @Column(name = "APP_NAME", unique = true, length = 100)
-    private String appName;
+
 
     @Column(name = "remark", unique = true, length = 100)
     private String remark;

@@ -1,5 +1,7 @@
 package com;
 
+import com.wx.QrCodeCreater;
+import com.wx.mid.handle.WxMsgListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -25,10 +27,17 @@ public class Server implements CommandLineRunner {
 
     @Autowired
     MenuPusher menuPusher;
+    @Autowired
+    QrCodeCreater qrCodeCreater;
+    @Autowired
+    WxMsgListener wxMsgListener;
     @Override
     public void run(String... strings) {
-       // boolean b = menuPusher.pushMenu();
-
+        // boolean b = menuPusher.pushMenu();
+        //todo 方便测试代码，打包时去除
+        // wxMsgListener.startListen();
+        //创建二维码
+        //qrCodeCreater.create500PermQrCode();
     }
 
 }

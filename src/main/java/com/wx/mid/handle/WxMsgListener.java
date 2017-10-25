@@ -35,11 +35,19 @@ public class WxMsgListener implements ApplicationListener<WxMsgEvent>, CommandLi
     public void run(String... args) throws Exception {
         //System.out.println("--WxManagerImpl.run()  appId=" + this.appName);
         //todo 方便测试代码，打包时去除
-//        while (true) {
-        List<WxInterfaceMessage> l = wxEventDao.findByDispDateIsNull();
-        l.stream().forEach(w -> this.applicationEventPublisher.publishEvent(new WxMsgEvent(w)));
-//            Thread.sleep(10000);
-//        }
+
+    }
+
+    public void startListen()  {
+        while (true) {
+            List<WxInterfaceMessage> l = wxEventDao.findByDispDateIsNull();
+            l.stream().forEach(w -> this.applicationEventPublisher.publishEvent(new WxMsgEvent(w)));
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
