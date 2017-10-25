@@ -31,14 +31,13 @@ public class MenuUtil {
 	public static boolean createMenu(Menu menu, String accessToken) {
 		boolean result = false;
 		String url = menu_create_url.replace("ACCESS_TOKEN", accessToken);
-		// ���˵�����ת����json�ַ���
 		String jsonMenu = JSONObject.fromObject(menu).toString();
-		// ����POST���󴴽��˵�
 		JSONObject jsonObject = CommonUtil.httpsRequest(url, "POST", jsonMenu);
-
+		System.out.printf("menu returns:"+jsonObject.toString());
 		if (null != jsonObject) {
 			int errorCode = jsonObject.getInt("errcode");
 			String errorMsg = jsonObject.getString("errmsg");
+
 			if (0 == errorCode) {
 				result = true;
 			} else {

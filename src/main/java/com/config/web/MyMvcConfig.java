@@ -37,5 +37,9 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
         super.configurePathMatch(configurer);
         configurer.setUseSuffixPatternMatch(false);
     }
-
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/**")
+                .addResourceLocations("classpath:/templates/");
+    }
 }

@@ -1,6 +1,6 @@
 package com.wx.entity;
 
-import com.wx.enump.UserType;
+import com.wx.UserType;
 
 import java.io.Serializable;
 

@@ -1,7 +1,7 @@
 package com.wx.mid.operator;
 
-import com.wx.dao.WxEventDao;
-import com.wx.entity.WxEvent;
+import com.wx.dao.WxInterfaceMessageDao;
+import com.wx.entity.WxInterfaceMessage;
 import com.wx.mid.util.WxUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -12,13 +12,13 @@ public class Test implements  CommandLineRunner {
     @Autowired
     WxUtils wxUtils;
     @Autowired
-    WxEventDao wxEventDao;
+    WxInterfaceMessageDao wxEventDao;
     @Override
     public void run(String... strings) throws Exception {
         //testInsertWxEvent();
     }
     void testInsertWxEvent(){
-        WxEvent wxEvent=new WxEvent();
+        WxInterfaceMessage wxEvent=new WxInterfaceMessage();
         wxEvent.setId(wxUtils.getSeqencesValue().intValue());
         wxEvent.setContent("test");
         wxEventDao.save(wxEvent);

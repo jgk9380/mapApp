@@ -74,5 +74,6 @@ public class JSSDKSignUtils {
     private static String create_timestamp() {
         return Long.toString(System.currentTimeMillis() / 1000);
     }
+
 }
 

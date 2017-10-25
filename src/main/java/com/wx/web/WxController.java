@@ -1,11 +1,7 @@
 package com.wx.web;
 
-import com.wx.dao.WxEventDao;
-import com.wx.entity.WxEvent;
 import com.wx.mid.base.util.MessageUtil;
 import com.wx.mid.operator.WxManager;
-import com.wx.mid.util.WxUtils;
-import net.sf.json.JSONObject;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +13,6 @@ import java.io.*;
 
 import java.io.IOException;
 
-import java.util.Date;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -34,14 +29,11 @@ public class WxController {
     public WxController() {
         super();
     }
-
     @Autowired
     WxManager wxManager;
-
     @RequestMapping(value = "/core", method = {RequestMethod.GET})
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Logger.getLogger(WxController.class).info("doGet");
-
         // 微信加密签名
         String signature = request.getParameter("signature");
         // 时间戳
@@ -50,9 +42,7 @@ public class WxController {
         String nonce = request.getParameter("nonce");
         // 随机字符串
         String echostr = request.getParameter("echostr");
-
         Logger.getLogger(WxController.class).info("nonce=" + nonce + "signature=" + signature + "   timestamp=" + timestamp + "   echostr=" + echostr);
-
         PrintWriter out = response.getWriter();
         boolean result= wxManager.checkSignature(signature, timestamp, nonce);
         String info="校验：nonce=" + nonce + "signature=" + signature + "   timestamp=" + timestamp + "   echostr=" + echostr  +"结果："+result;
@@ -85,23 +75,11 @@ public class WxController {
         //发送留言
         try {
             Map<String, String> requestMap = MessageUtil.parseXml(request);
-
-
             System.out.println("\n---接收到：" + requestMap);
-            wxManager.addWxEvent(requestMap,0);
+            wxManager.addWxEvent(requestMap);
             PrintWriter out = response.getWriter(); //可以回复空串
             out.println("success");//todo 保存后待处理
             out.close();
-            //            WxFactory wf=WxFactoryImpl.getInstance();
-            //            String appName=wf.getBean("wxAppDao", WxAppDao.class).findByUserName(requestMap.get("ToUserName")).getAppName();
-            //            WxManager wam = wf.getWxAppManager(appName);
-            //            WxUserMsg wum = wam.saveUserMsg(requestMap);
-            //            wam.dispUserMsg(wum);
-            //            {//接受文字留言和文章留言
-            //                String openId=requestMap.get("FromUserName");
-            //                wam.getWxUserBo(openId).receiveMail(false);
-            //                wam.getWxUserBo(openId).receiveMailArticle(false);
-            //            }
         } catch (Exception e) {
             e.printStackTrace();
         }

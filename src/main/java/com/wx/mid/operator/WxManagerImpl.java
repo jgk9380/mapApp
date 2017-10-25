@@ -2,14 +2,14 @@ package com.wx.mid.operator;
 
 
 import com.wx.dao.WxAppDao;
-import com.wx.dao.WxEventDao;
+import com.wx.dao.WxInterfaceMessageDao;
 import com.wx.dao.WxUserDao;
 import com.wx.entity.*;
 
 
 //import com.wx.mid.util.WxUtils;
 //import org.jboss.logging.Logger;
-import com.wx.mid.handle.WxEventSpringEvent;
+import com.wx.mid.base.pojo.WeixinUserInfo;
 
 
 import com.wx.mid.util.WxUtils;
@@ -24,7 +24,6 @@ import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 
@@ -42,7 +41,7 @@ public class WxManagerImpl implements WxManager, CommandLineRunner, Initializing
     @Autowired
     WxUtils wxUtils;
     @Autowired
-    WxEventDao wxEventDao;
+    WxInterfaceMessageDao wxEventDao;
 
     public WxManagerImpl() {
 
@@ -53,11 +52,12 @@ public class WxManagerImpl implements WxManager, CommandLineRunner, Initializing
     public void run(String... args) throws Exception {
         System.out.println("--WxManagerImpl.run()  appId=" + this.appName);
         //todo 测试代码
-        while(true) {
-            List<WxEvent> l = wxEventDao.findByDispDateIsNull();
-            l.stream().forEach(w -> this.applicationEventPublisher.publishEvent(new WxEventSpringEvent(w)));
-            Thread.sleep(3000);
-        }
+
+    }
+
+    private void prodQRCode() {
+        JSONObject json = wxOperator.createPermanentQRCode(wxUtils.getSeqencesValue().intValue());
+        System.out.println("\n qrcode jsonObject=" + json.toString() + "\n");
     }
 
     @Override
@@ -67,23 +67,22 @@ public class WxManagerImpl implements WxManager, CommandLineRunner, Initializing
 
     @Override
     public WxUser getWxUser(String openId) {
-//        WxUser res;
-//        //System.out.println("--appName=" + appName);
-//        WxApp wxApp = wxAppDao.findByAppName(appName);
-//        //Logger.getLogger(WxAppManagerImpl.class).info(operator);
-//        //System.out.println("wxappId=" + operator.getId() + "   openId " + openId);
-//        res = wxUserDao.findByAppIdAndOpenId(wxApp.getId(), openId);
-//        //res = wxUserDao.findByOpenId( openId);
-//        Date currentDate = new Date();
-//        if (res != null && res.getNickname() != null && res.getRefereshDate() != null) { //����Ϊ�ջ��ǳ�Ϊ�ջ��ϴθ���ʱ�䳬��һ��
-//            //System.out.println("res=" + res + "id=" + res.getId() + "nickName=" + res.getNickname());
-//            if ((currentDate.getTime() - res.getRefereshDate().getTime()) / 1000 / 3600 / 24 > 7) //����ʱ�䳬��һ����
-//                res = refreshWxUser(openId);
-//            return res;
-//        }
-//        res = refreshWxUser(openId);
-//        return res;
-        return null;
+        System.out.printf("\n---In getUser()   openId=" + openId);
+        WxUser res;
+        WxApp wxApp = wxAppDao.findByAppName(appName);
+        res = wxUserDao.findByAppIdAndOpenId(wxApp.getId(), openId);
+        Date currentDate = new Date();
+
+        if (res == null || res.getNickname() == null || res.getSubscribeStatus() == -1 || res.getSubscribeStatus() == 0) {
+            res = refreshWxUser(openId);
+            return res;
+        }
+        if ((currentDate.getTime() - res.getRefereshDate().getTime()) / 1000 / 3600 / 24 > 7) {
+            res = refreshWxUser(openId);
+            return res;
+        }
+
+        return res;
     }
 
     @Override
@@ -92,44 +91,44 @@ public class WxManagerImpl implements WxManager, CommandLineRunner, Initializing
     }
 
 
-    public WxUser refreshWxUser(String openId) {
-//        WxUser res;
-//        WxApp wx = wxAppDao.findByAppName(appName);
-//        res = wxUserDao.findByAppIdAndOpenId(wx.getId(), openId);
-//        //res = wxUserDao.findByOpenId(openId);
-//        if (res == null) {
-//            res = new WxUser();
-//            res.setId(WxUtils.getSeqencesValue().longValue());
-//            res.setWxApp(wx);
-//            res.setOpenId(openId);
-//        }
-//        WeixinUserInfo wui = wxOperator.getUserInfo(openId);
-//        if (wui == null) {
-//            Logger logger = Logger.getLogger(WxManagerImpl.class);
-//            logger.error("�����openId��" + openId);
-//            return null;
-//        } else if (wui.getSubscribe() == 0) {
-//            if (res.getSubscribeStatus() == 1)
-//                res.setSubscribeStatus(-1);
-//            return wxUserDao.save(res);
-//        } else {
-//            res.setNickname(wui.getNickname());
-//            res.setSex("" + wui.getSex());
-//            res.setCountry(wui.getCountry());
-//            res.setCity(wui.getCity());
-//            res.setLanguage(wui.getLanguage());
-//            res.setHeadimgurl(wui.getHeadImgUrl());
-//            //System.out.println("ss=" + wui.getSubscribe());
-//            res.setSubscribeStatus(wui.getSubscribe());
-//            Long subTime = Long.parseLong(wui.getSubscribeTime()) * 1000;
-//            Date subDate = new Date(subTime);
-//            res.setSubscribeDate(subDate);
-//            res.setProvince(wui.getProvince());
-//            res.setRefereshDate(new Date());
-//            //res.setUserGroup(userGroup);�����û�����
-//            return wxUserDao.save(res);
-//        }
-        return null;
+    private WxUser refreshWxUser(String openId) {
+        WxUser res;
+        WxApp wx = wxAppDao.findByAppName(appName);
+        res = wxUserDao.findByAppIdAndOpenId(wx.getId(), openId);
+
+        if (res == null) {
+            res = new WxUser();
+            res.setId(wxUtils.getSeqencesValue().longValue());
+            res.setWxApp(wx);
+            res.setOpenId(openId);
+        }
+        WeixinUserInfo wui = wxOperator.getUserInfo(openId);
+
+        if (wui == null) {
+            return null;
+        }
+
+        if (wui.getSubscribe() == 0) {
+            if (res.getSubscribeStatus() == 1)
+                res.setSubscribeStatus(-1);
+            return wxUserDao.save(res);
+        }
+
+        res.setNickname(wui.getNickname());
+        res.setSex("" + wui.getSex());
+        res.setCountry(wui.getCountry());
+        res.setCity(wui.getCity());
+        res.setLanguage(wui.getLanguage());
+        res.setHeadimgurl(wui.getHeadImgUrl());
+        //System.out.println("ss=" + wui.getSubscribe());
+        res.setSubscribeStatus(wui.getSubscribe());
+        Long subTime = Long.parseLong(wui.getSubscribeTime()) * 1000;
+        Date subDate = new Date(subTime);
+        res.setSubscribeDate(subDate);
+        res.setProvince(wui.getProvince());
+        res.setRefereshDate(new Date());
+        return wxUserDao.save(res);
+
     }
 
     public String getAppName() {
@@ -150,18 +149,26 @@ public class WxManagerImpl implements WxManager, CommandLineRunner, Initializing
     }
 
 
-    public void addWxEvent(Map map, int flag) {
-        JSONObject jsonObject=new JSONObject();
-        for(Object key:map.keySet()){
-            jsonObject.put(key,map.get(key));
+    public void addWxEvent(Map map) {
+        JSONObject jsonObject = new JSONObject();
+        for (Object key : map.keySet()) {
+            jsonObject.put(key, map.get(key));
         }
-        WxEvent wxEvent = new WxEvent();
-        wxEvent.setId(wxUtils.getSeqencesValue().intValue());
-        wxEvent.setContent(jsonObject.toString());
-        wxEvent.setOccureDate(new Date());
-        wxEvent.setFlag(flag);
-        wxEventDao.save(wxEvent);
-        this.applicationEventPublisher.publishEvent(new WxEventSpringEvent(wxEvent));
+
+        WxInterfaceMessage wxInterfaceMessage = new WxInterfaceMessage();
+        wxInterfaceMessage.setId(wxUtils.getSeqencesValue().intValue());
+        wxInterfaceMessage.setContent(jsonObject.toString());
+        wxInterfaceMessage.setOccureDate(new Date());
+
+        wxInterfaceMessage.setMsgType((String) map.get("MsgType"));
+        if (null != map.get("Event")) {
+            wxInterfaceMessage.setEventType((String) map.get("Event"));
+        }
+        wxInterfaceMessage.setFromUserOpenId((String) map.get("FromUserName"));
+        wxInterfaceMessage.setFlag(0);//0
+        wxEventDao.save(wxInterfaceMessage);
+        //todo 测试版本不要这个
+        //this.applicationEventPublisher.publishEvent(new WxMsgEvent(wxEvent));
         //发送Event
         return;
     }

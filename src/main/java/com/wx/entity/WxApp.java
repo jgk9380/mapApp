@@ -19,7 +19,6 @@ public class WxApp implements Serializable {
     @Id
     @Column(name="APP_ID")
     private String id;
-
     @Column(name = "APP_SECRET", length = 100)
     private String appSecret;
     @Column(name = "APP_TOKEN", length = 100)
@@ -40,15 +39,15 @@ public class WxApp implements Serializable {
     @Column(name = "remark", unique = true, length = 100)
     private String remark;
 
-//    /*欢迎图文配置*/
-//    @Column(name = "WELCOME_TITLE")
-//    private String welcomeTitle;
-//    @Column(name = "WELCOME_URL")
-//    private String welcomeUrl;
-//    @Column(name = "WELCOME_DESC")
-//    private String welcomeDesc;
-//    @Column(name = "WELCOME_PICT_URL")
-//    private String welcomePictUrl;
+    /*欢迎图文配置*/
+    @Column(name = "WELCOME_TITLE")
+    private String welcomeTitle;
+    @Column(name = "WELCOME_URL")
+    private String welcomeUrl;
+    @Column(name = "WELCOME_DESC")
+    private String welcomeDesc;
+    @Column(name = "WELCOME_PICT_URL")
+    private String welcomePictUrl;
 
 
     public void setRemark(String remark) {
@@ -189,37 +188,37 @@ public class WxApp implements Serializable {
         return jsTicketExpire;
     }
 
-//    public void setWelcomeTitle(String welcomeTitle) {
-//        this.welcomeTitle = welcomeTitle;
-//    }
-//
-//    public String getWelcomeTitle() {
-//        return welcomeTitle;
-//    }
-//
-//    public void setWelcomeUrl(String welcomeUrl) {
-//        this.welcomeUrl = welcomeUrl;
-//    }
-//
-//    public String getWelcomeUrl() {
-//        return welcomeUrl;
-//    }
-//
-//    public void setWelcomeDesc(String welcomeDesc) {
-//        this.welcomeDesc = welcomeDesc;
-//    }
-//
-//    public String getWelcomeDesc() {
-//        return welcomeDesc;
-//    }
-//
-//    public void setWelcomePictUrl(String welcomePictUrl) {
-//        this.welcomePictUrl = welcomePictUrl;
-//    }
-//
-//    public String getWelcomePictUrl() {
-//        return welcomePictUrl;
-//    }
+    public void setWelcomeTitle(String welcomeTitle) {
+        this.welcomeTitle = welcomeTitle;
+    }
+
+    public String getWelcomeTitle() {
+        return welcomeTitle;
+    }
+
+    public void setWelcomeUrl(String welcomeUrl) {
+        this.welcomeUrl = welcomeUrl;
+    }
+
+    public String getWelcomeUrl() {
+        return welcomeUrl;
+    }
+
+    public void setWelcomeDesc(String welcomeDesc) {
+        this.welcomeDesc = welcomeDesc;
+    }
+
+    public String getWelcomeDesc() {
+        return welcomeDesc;
+    }
+
+    public void setWelcomePictUrl(String welcomePictUrl) {
+        this.welcomePictUrl = welcomePictUrl;
+    }
+
+    public String getWelcomePictUrl() {
+        return welcomePictUrl;
+    }
     
     
 }
