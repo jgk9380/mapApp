@@ -9,10 +9,13 @@ import java.util.Date;
 public interface WxMsgHandle {
 
     void handleEvent(WxInterfaceMessage wxEvent);
-    default  void updateEvent(WxInterfaceMessageDao wxEventDao, WxInterfaceMessage wxEvent, String result){
+
+    WxInterfaceMessageDao getWxInterfaceMessageDao();
+
+    default  void updateEvent(WxInterfaceMessage wxEvent, String result){
         wxEvent.setDispResult( result);
         wxEvent.setDispDate(new Date());
         wxEvent.setFlag(1);
-        wxEventDao.save(wxEvent);
+        getWxInterfaceMessageDao().save(wxEvent);
     }
 }

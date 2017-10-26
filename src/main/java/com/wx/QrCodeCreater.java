@@ -26,7 +26,13 @@ public class QrCodeCreater {
         if (null == currentSceneId) {
             currentSceneId = 0;
         }
-        JSONObject json = wxManager.getWxOperator().createPermanentQRCode(currentSceneId + 1);
+        int nextCurrentSceneId=currentSceneId + 1;
+        if(nextCurrentSceneId>=100000){
+            System.out.println("\n-------------- 永久二维码已满，请整理二维码  ------------- \n ");
+            return;
+        }
+
+        JSONObject json = wxManager.getWxOperator().createPermanentQRCode(nextCurrentSceneId);
         System.out.println("\n---qrCodejson=" + json.toString());
         WxPermQrCode wxPermQrCode = new WxPermQrCode();
         wxPermQrCode.setId(wxUtils.getSeqencesValue().intValue());

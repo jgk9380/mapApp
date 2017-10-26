@@ -15,6 +15,11 @@ public class MenuClickHandle implements WxMsgHandle {
         JSONObject json = JSONObject.fromObject(wxEvent.getContent());
         String eventKey = json.getString("EventKey");
         System.out.println("/n------ clicked eventKey="+eventKey);
-        updateEvent(wxEventDao,wxEvent,"菜单clicked 已处理");
+        updateEvent(wxEvent,"菜单clicked 已处理");
+    }
+
+    @Override
+    public WxInterfaceMessageDao getWxInterfaceMessageDao() {
+        return wxEventDao;
     }
 }

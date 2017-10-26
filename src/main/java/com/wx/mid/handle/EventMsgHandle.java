@@ -1,5 +1,6 @@
 package com.wx.mid.handle;
 
+import com.wx.dao.WxInterfaceMessageDao;
 import com.wx.entity.WxInterfaceMessage;
 import com.wx.mid.base.util.MessageUtil;
 import net.sf.json.JSONObject;
@@ -25,6 +26,11 @@ public class EventMsgHandle implements WxMsgHandle, BeanFactoryAware {
             this.beanFactory.getBean(MenuClickHandle.class).handleEvent(wxInterfaceMessage);
         }
 
+    }
+
+    @Override
+    public WxInterfaceMessageDao getWxInterfaceMessageDao() {
+        return null;
     }
 
     BeanFactory beanFactory;

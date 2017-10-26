@@ -23,7 +23,7 @@ import java.util.Map;
 @EnableJpaRepositories(
         entityManagerFactoryRef="entityManagerFactoryPrimary",
         transactionManagerRef="transactionManagerPrimary",
-        basePackages= {"com.dao.p" }) //设置Repository所在位置
+        basePackages= {"com.dao.p", "com.wx.dao" }) //设置Repository所在位置
 
 public class PrimaryJpaConfig {
     @Autowired
@@ -48,7 +48,7 @@ public class PrimaryJpaConfig {
         return builder
                 .dataSource(primaryDataSource)
                 .properties(getVendorProperties(primaryDataSource))
-                .packages("com.entity.p") //设置实体类所在位置
+                .packages("com.entity.p","com.wx.entity") //设置实体类所在位置
                 .persistenceUnit("primaryPersistenceUnit")
                 .build();
     }

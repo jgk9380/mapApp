@@ -23,8 +23,6 @@ public class Server implements CommandLineRunner {
         ConfigurableApplicationContext ctx = SpringApplication.run(Server.class, args);
     }
 
-
-
     @Autowired
     MenuPusher menuPusher;
     @Autowired
@@ -33,9 +31,10 @@ public class Server implements CommandLineRunner {
     WxMsgListener wxMsgListener;
     @Override
     public void run(String... strings) {
-        // boolean b = menuPusher.pushMenu();
+        //创建菜单
+       //boolean b = menuPusher.pushMenu();
         //todo 方便测试代码，打包时去除
-        // wxMsgListener.startListen();
+        wxMsgListener.startListen();
         //创建二维码
         //qrCodeCreater.create500PermQrCode();
     }

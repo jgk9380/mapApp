@@ -149,7 +149,7 @@ public class WxManagerImpl implements WxManager, CommandLineRunner, Initializing
     }
 
 
-    public void addWxEvent(Map map) {
+    public void addInterfaceMsg(Map map) {
         JSONObject jsonObject = new JSONObject();
         for (Object key : map.keySet()) {
             jsonObject.put(key, map.get(key));

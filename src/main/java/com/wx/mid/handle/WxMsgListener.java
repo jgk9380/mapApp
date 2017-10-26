@@ -3,6 +3,7 @@ package com.wx.mid.handle;
 import com.wx.dao.WxInterfaceMessageDao;
 import com.wx.dao.WxUserDao;
 import com.wx.entity.WxInterfaceMessage;
+import com.wx.entity.WxUser;
 import com.wx.mid.base.util.MessageUtil;
 import com.wx.mid.operator.WxManager;
 import com.wx.mid.util.WxUtils;
@@ -17,6 +18,7 @@ import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -30,24 +32,27 @@ public class WxMsgListener implements ApplicationListener<WxMsgEvent>, CommandLi
     WxUtils wxUtils;
     @Autowired
     WxInterfaceMessageDao wxEventDao;
+    boolean startFlag = false;
 
     @Override
     public void run(String... args) throws Exception {
         //System.out.println("--WxManagerImpl.run()  appId=" + this.appName);
         //todo 方便测试代码，打包时去除
-
-    }
-
-    public void startListen()  {
         while (true) {
-            List<WxInterfaceMessage> l = wxEventDao.findByDispDateIsNull();
-            l.stream().forEach(w -> this.applicationEventPublisher.publishEvent(new WxMsgEvent(w)));
+            if (startFlag) {
+                List<WxInterfaceMessage> l = wxEventDao.findByDispDateIsNull();
+                l.stream().forEach(w -> this.applicationEventPublisher.publishEvent(new WxMsgEvent(w)));
+            }
             try {
-                Thread.sleep(2000);
+                Thread.sleep(3000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void startListen() {
+        startFlag = true;
     }
 
     @Override
@@ -72,6 +77,12 @@ public class WxMsgListener implements ApplicationListener<WxMsgEvent>, CommandLi
         if (wxInterfaceMessage.getMsgType().equals(MessageUtil.REQ_MESSAGE_TYPE_EVENT)) {
             this.beanFactory.getBean(EventMsgHandle.class).handleEvent(wxInterfaceMessage);
         }
+
+
+        WxUser wxUser = wxManager.getWxUser(wxInterfaceMessage.getFromUserOpenId());
+        wxUser.setLastLoginDate(new Date());
+        wxUserDao.save(wxUser);
+        System.out.println("\n---wxUser = [" + wxUser.getLastLoginDate() + "]");
 
 
     }

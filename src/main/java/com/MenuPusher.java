@@ -17,7 +17,7 @@ public class MenuPusher {
         Button buttons[] = new Button[3];
         buttons[0] = new ClickButton("通信新闻", "news");//推送图文
         buttons[1] = new ClickButton("通信趣事", "fun");//推送图文
-        buttons[2] = new ClickButton("如何理财", "financing");//推送图文
+        buttons[2] = new ClickButton("我的收藏", "favorite");//推送图文
         ComplexButton complexButton = new ComplexButton("通信知识", buttons);
         return complexButton;
     }

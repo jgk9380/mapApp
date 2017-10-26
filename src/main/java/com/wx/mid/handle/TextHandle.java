@@ -33,37 +33,43 @@ public class TextHandle implements WxMsgHandle {
            case "号码绑定":
            case "hmbd":
                wxManager.getWxOperator().sendTxtMessage(wxEvent.getFromUserOpenId(),"回复："+content);
-               updateEvent(wxEventDao,wxEvent,"--号码绑定");
+               updateEvent(wxEvent,"--号码绑定");
                break;
            case "我的海报":
            case "wdhb":
                wxManager.getWxOperator().sendTxtMessage(wxEvent.getFromUserOpenId(),"回复："+content);
-               updateEvent(wxEventDao,wxEvent,"--我的海报");
+               updateEvent(wxEvent,"--我的海报");
                break;
            case  "二维码":
            case "ewm":
                wxManager.getWxOperator().sendTxtMessage(wxEvent.getFromUserOpenId(),"回复："+content);
-               updateEvent(wxEventDao,wxEvent,"--二维码");
+               updateEvent(wxEvent,"--二维码");
                break;
            case "我要代理":
            case "wydl":
                wxManager.getWxOperator().sendTxtMessage(wxEvent.getFromUserOpenId(),"回复："+content);
-               updateEvent(wxEventDao,wxEvent,"--我要代理");
+               updateEvent(wxEvent,"--我要代理");
                break;
 
            case "发展代理":
            case "fzdl":
                wxManager.getWxOperator().sendTxtMessage(wxEvent.getFromUserOpenId(),"回复："+content);
-               updateEvent(wxEventDao,wxEvent,"--发展代理");
+               updateEvent(wxEvent,"--发展代理");
                break;
            default:
                //TODO 进入客服信息库：
                System.out.println("处理客服信息");
                //wxManager.getWxOperator().sendTxtMessage(fromUserName,"回复："+"???");
                this.handleOtherTxtMessage(wxEvent);
-               updateEvent(wxEventDao,wxEvent,"--进入客服信息库，等待人工回复");
+               updateEvent(wxEvent,"--进入客服信息库，等待人工回复");
                break;
        }
+
+    }
+
+    @Override
+    public WxInterfaceMessageDao getWxInterfaceMessageDao() {
+        return wxEventDao;
     }
 
     private void handleOtherTxtMessage(WxInterfaceMessage wim) {
