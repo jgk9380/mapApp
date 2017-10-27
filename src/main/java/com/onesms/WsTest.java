@@ -1,9 +1,11 @@
 package com.onesms;
 
+import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.onesms.ws.SmsStub;
+import org.apache.axis2.AxisFault;
 
 
 public class WsTest {
@@ -11,24 +13,9 @@ public class WsTest {
 	 * @param args
 	 */
 
-	public static void maintest(String[] args) {
+	public static void main1(String[] args) {
 		try {
-			SmsStub stub = new SmsStub("http://api.ums86.com:8899/sms_hb/services/Sms?wsdl");
-			SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
-			String sms="亲爱的蒋";
-			//发送接口
-			SmsStub.Sms sms0 = new SmsStub.Sms();
-			sms0.setIn0("201846");//企业编号
-			sms0.setIn1("yc_lhwl");//登录名
-			sms0.setIn2("lhwl555");//密码
-			sms0.setIn3(sms);//短信内容
-			sms0.setIn4("15651554341");//手机号码
-			sms0.setIn5("000000"+format.format(new Date()));
-			sms0.setIn6("");
-			sms0.setIn7("1");
-			sms0.setIn8("");
-			SmsStub.SmsResponse resp = stub.Sms(sms0);
-			System.out.println(resp.getOut());
+	test();
 		//
 		////			//回复接口
 		//			SmsStub.ReplyRequest replyRequest = new SmsStub.ReplyRequest();
@@ -78,5 +65,22 @@ public class WsTest {
 		}
 	}
 	
-	
+	public  static void test() throws RemoteException {
+		SmsStub stub = new SmsStub("http://api.ums86.com:8899/sms_hb/services/Sms?wsdl");
+		SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+		String sms="尊敬的用户:您本次验证码为1234请在10分钟内使用.";
+		//发送接口
+		SmsStub.Sms sms0 = new SmsStub.Sms();
+		sms0.setIn0("231149");//企业编号
+		sms0.setIn1("yc_hlxx");//登录名
+		sms0.setIn2("yclt123");//密码
+		sms0.setIn3(sms);//短信内容
+		sms0.setIn4("15651554341");//手机号码
+		sms0.setIn5("000000"+format.format(new Date()));
+		sms0.setIn6("");
+		sms0.setIn7("1");
+		sms0.setIn8("");
+		SmsStub.SmsResponse resp = stub.Sms(sms0);
+		System.out.println(resp.getOut());
+	}
 }

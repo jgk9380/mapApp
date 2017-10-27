@@ -113,10 +113,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.js",
                         "/authCode",
                         "/StockPromotion/**",
-                        "/wx/**"
+                        "/wx/**",
+                        "/NoAuthService/**"
                 ).permitAll()
-                .antMatchers(HttpMethod.POST, "/login").permitAll()
-                .antMatchers(HttpMethod.POST, "/wx/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/login","/wx/**","/NoAuthService/**").permitAll()
+               // .antMatchers(HttpMethod.POST, "/wx/**").permitAll()
                 // .antMatchers(HttpMethod.POST, "/**").permitAll() //debug 时, 不用对 Authorization 作验证
                 .anyRequest().authenticated();
 

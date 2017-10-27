@@ -23,16 +23,16 @@ public class UnSubscripteHandle  implements WxMsgHandle {
 
     @Override
     public void handleEvent(WxInterfaceMessage wxEvent) {
-        System.out.printf("unSubscripeHandle");
+       // System.out.printf("unSubscripeHandle");
         JSONObject json = JSONObject.fromObject(wxEvent.getContent());
         String fromUserName = json.getString("FromUserName");
         WxUser wxUser=wxManager.getWxUser(fromUserName);
         if(wxUser==null) return;
-        System.out.println("--wxUesr="+wxUser);
+        //System.out.println("--wxUesr="+wxUser);
         wxUser.setSubscribeStatus(-1);
         wxUserDao.save(wxUser);
         updateEvent(wxEvent,"用户状态变更为-1！");
-        System.out.printf("---wxUser.name="+wxManager.getWxUser(fromUserName).getNickname());
+        //System.out.printf("---wxUser.name="+wxManager.getWxUser(fromUserName).getNickname());
     }
 
     @Override

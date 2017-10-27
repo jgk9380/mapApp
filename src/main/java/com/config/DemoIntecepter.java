@@ -17,6 +17,7 @@ public class DemoIntecepter extends HandlerInterceptorAdapter {
         request.setAttribute("startTime",startTime);
         return true;
     }
+
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
         long endTime=System.currentTimeMillis();

@@ -2,8 +2,10 @@ package com.wx.mid.handle;
 
 import com.wx.dao.WxInterfaceMessageDao;
 import com.wx.dao.WxManualMessageDao;
+import com.wx.dao.WxPermQrCodeDao;
 import com.wx.entity.WxInterfaceMessage;
 import com.wx.entity.WxManualMessage;
+import com.wx.entity.WxPermQrCode;
 import com.wx.entity.WxUser;
 import com.wx.mid.operator.WxManager;
 import com.wx.mid.util.WxUtils;
@@ -23,9 +25,11 @@ public class TextHandle implements WxMsgHandle {
     WxManualMessageDao wxManualMessageDao;
     @Autowired
     WxUtils wxUtils;
+    @Autowired
+    WxPermQrCodeDao wxPermQrCodeDao;
     @Override
     public void handleEvent(WxInterfaceMessage wxEvent) {
-       // System.out.printf("TextEventHandle");  System.out.printf("SubscripeHandle");
+
         JSONObject json = JSONObject.fromObject(wxEvent.getContent());
         String content=json.getString("Content");
 
@@ -42,7 +46,18 @@ public class TextHandle implements WxMsgHandle {
                break;
            case  "二维码":
            case "ewm":
-               wxManager.getWxOperator().sendTxtMessage(wxEvent.getFromUserOpenId(),"回复："+content);
+               WxUser wxUser = wxManager.getWxUser(wxEvent.getFromUserOpenId());
+               WxPermQrCode wxPermQrCode=wxPermQrCodeDao.findByWxUserId(wxUser.getId().intValue());
+               if(wxPermQrCode!=null){
+                   String ticket=wxPermQrCode.getTicket();
+                   String url="https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket="+ticket;
+                   String cont="<a href='"+url+"'>点击查看二维码</a>";
+
+                   wxManager.getWxOperator().sendTxtMessage(wxEvent.getFromUserOpenId(), cont);
+               }else {
+                   String url=null;
+                   wxManager.getWxOperator().sendTxtMessage(wxEvent.getFromUserOpenId(), "你没有注册的二维码，注册代理点击<a href='"+url+"'>我</a>>" );//
+               }
                updateEvent(wxEvent,"--二维码");
                break;
            case "我要代理":
@@ -58,7 +73,7 @@ public class TextHandle implements WxMsgHandle {
                break;
            default:
                //TODO 进入客服信息库：
-               System.out.println("处理客服信息");
+
                //wxManager.getWxOperator().sendTxtMessage(fromUserName,"回复："+"???");
                this.handleOtherTxtMessage(wxEvent);
                updateEvent(wxEvent,"--进入客服信息库，等待人工回复");

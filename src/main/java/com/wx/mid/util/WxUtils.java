@@ -13,9 +13,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class WxUtils {
     @Autowired
-    @Qualifier("secondaryJdbcTemplate")
+    @Qualifier("primaryJdbcTemplate")
     private  JdbcTemplate jdbcTemplate;
-
 
     public  BigDecimal getSeqencesValue() {
         BigDecimal l = jdbcTemplate.queryForObject("select wx_seq_generator.nextval from dual", BigDecimal.class);

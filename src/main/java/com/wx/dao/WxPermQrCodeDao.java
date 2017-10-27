@@ -8,4 +8,5 @@ public interface WxPermQrCodeDao  extends CrudRepository<WxPermQrCode,Integer> {
     @Query("select max(o.sceneId) from WxPermQrCode o")
     Integer queryMaxSceneId();
     WxPermQrCode findBySceneId(int sceneId);
+    WxPermQrCode findByWxUserId(int wxUserId);
 }

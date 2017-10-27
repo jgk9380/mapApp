@@ -28,13 +28,13 @@ public class SubscripeHandle  implements WxMsgHandle {
     public void handleEvent(WxInterfaceMessage wxEvent){
         JSONObject json = JSONObject.fromObject(wxEvent.getContent());
         String fromUserName = json.getString("FromUserName");
-        System.out.printf("---wxUser.name="+wxManager.getWxUser(fromUserName).getNickname());
+        //System.out.printf("---wxUser.name="+wxManager.getWxUser(fromUserName).getNickname());
         wxManager.getWxOperator().sendTxtMessage(fromUserName,"您好，欢迎盐城通信圈");
         if(json.containsKey("EventKey")){
             WxUser wxUser=wxManager.getWxUser(fromUserName);
             String eventKey=json.getString("EventKey");
             String sceneId=eventKey.substring(8);
-            System.out.println("scene_id = [" + sceneId + "]");
+           // System.out.println("scene_id = [" + sceneId + "]");
             WxPermQrCode wxPermQrCode =wxPermQrCodeDao.findBySceneId(Integer.parseInt(sceneId));
             wxUser.setReferee(wxUserDao.findById(wxPermQrCode.getWxUserId()));
             wxUserDao.save(wxUser);

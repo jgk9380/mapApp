@@ -1,4 +1,10 @@
 select * from wx_app
+
+select wx_seq_generator.nextval from  tab
+
+create  sequence wx_seq_generator start with 9000000
+
+
 create table WX_APP
 (
   app_name         VARCHAR2(20) ,
@@ -18,7 +24,7 @@ create table WX_APP
   welcome_url      VARCHAR2(400),
   welcome_desc     VARCHAR2(400)
 )
-
+select * from wx_user start 9000000;
 
 create table WX_USER
 (
@@ -42,7 +48,7 @@ create table WX_USER
   referee_id       references wx_user,--推荐人
   user_type        VARCHAR2(40),--用户类型
   update_date      DATE,--上次更新时间
-  last_login_date  DATE,--上次交互时间   更新？？？
+  last_login_date  DATE--上次交互时间   更新？？？
 )
 
 
@@ -71,17 +77,18 @@ select * from wx_user
   --2，记录转发及阅读人
   --3,评论及回复。
  alter table   wx_article rename to wx_article_bak
-
+ alter table  wx_article add(picture_id references wx_resource)
 create table wx_article (
   id integer primary key ,
   title varchar2(100),--html格式输入
   clob varchar2(4000),--html格式输入
-  type integer default 3, --1新闻,2知识，3、其他。
+  type integer default 3, --1新闻,2知识，3、其他。提供一个展示模板    http://www.cu0515.com/article?id=1
   --提供三类模板，其他直接嵌套content。模板底部点赞及评论。
   creater varchar2(20), -- references emp,
   create_date date,--创建日期。
   praise_count integer,--点赞次数。
   read_count integer,  --阅读数。
+  picture_id references wx_resource,
   expires_date date --过期时间，默认3天有效器。
 )
 
@@ -100,11 +107,18 @@ create table WX_ARTICLE_READ_HISTORY   --文章阅读历史。
 (
   id         INTEGER   primary key,
   article_id references wx_article,
-  reader_open_id    INTEGER,       --阅读人 openId ,可能没有关注。
+  reader_open_id    INTEGER not null,       --阅读人 openId ,可能没有关注。
   sharer_open_id     INTEGER,      --转发人 可能没有关注。
-  praise integer default 0,        --点赞只能一次。
+  --praise integer default 0,        --点赞只能一次。
   --read_count integer default 1,    --记录同一个文章，同一个阅读次数。主要用于sharer为空的情况。
   read_date  DATE default sysdate  --记录最后一次阅读时间。
+)
+create table WX_ARTICLE_Praise  --点赞记录
+(
+  id         INTEGER   primary key,
+  article_id references wx_article,
+  reader_open_id    INTEGER not null,       --阅读人 openId ,可能没有关注。
+  praise_date  DATE default sysdate  --记录最后一次阅读时间。
 )
 
 create table wx_article_favorite  --文章收藏历史，用于我的收藏
@@ -127,9 +141,9 @@ create table wx_article_discuss(   --文章评论历史。
 
 
 
-create table wx_agent(
+create table wx_agent(--
     id  integer  primary key ,
-    wx_user_id integer unique references wx_user,--对应的微信用户ID
+    wx_user_id unique references wx_user,--对应的微信用户ID,根据界面填写的tele号确定
     cert_id varchar2(18),--身份证号码
     cert_name varchar2(12),--身份证名称
     --tele,--wx_user中保存，赠送话费的号码。
@@ -143,8 +157,8 @@ create table wx_agent(
     licence_pict_id references wx_picture,
     store_pict_id references wx_picture,
     developer_manager_id  varchar2(20) ,--references emp,--发展人
-    maintainer_id  varchar2(20) ,--references emp,--微信人
-    servcer_id  varchar2(20) --references emp,  --服务人员，配送人员。
+    maintainer_id  varchar2(20) ,       --references emp,--微信人
+    servcer_id  varchar2(20)            --references emp,  --服务人员，配送人员。
 )
 
 
@@ -156,11 +170,15 @@ create table wx_order_tele( --用户下单时联系电话,用于统计订单由�
     type integer ,--业务类型 1， 大王卡，2，冰洁林 ，3其他。
     create_date  date default sysdate--
 )
-
-create table wx_picture(   --图片库
+select * from  wx_resource
+alter table wx_picture add (file_type varchar2(8))
+create table wx_resource(   --资源
   id number primary key,
-  remark varchar2(200),
-  pict blob
+  file_name varchar2(50),
+  resource_content blob，
+  file_type varchar2(20),--doc,jpg,
+  remark varchar2(200)
+
 )
 
 --二维码扫描流程。
@@ -250,6 +268,13 @@ create table wx_mail(
   send_count integer default 0,--超过3次不再发送。
   fail_reason varchar2(40)--失败原因
 )
+
+
+
+
+
+select * from wx_app for update
+
 
 
 --每日微信推送报表

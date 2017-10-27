@@ -78,11 +78,12 @@ public class WxMsgListener implements ApplicationListener<WxMsgEvent>, CommandLi
             this.beanFactory.getBean(EventMsgHandle.class).handleEvent(wxInterfaceMessage);
         }
 
-
-        WxUser wxUser = wxManager.getWxUser(wxInterfaceMessage.getFromUserOpenId());
-        wxUser.setLastLoginDate(new Date());
-        wxUserDao.save(wxUser);
-        System.out.println("\n---wxUser = [" + wxUser.getLastLoginDate() + "]");
+        {  //修改最后一次登录时间
+            WxUser wxUser = wxManager.getWxUser(wxInterfaceMessage.getFromUserOpenId());
+            wxUser.setLastLoginDate(new Date());
+            wxUserDao.save(wxUser);
+        }
+        //System.out.println("\n---wxUser = [" + wxUser.getLastLoginDate() + "]");
 
 
     }

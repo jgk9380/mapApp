@@ -146,7 +146,7 @@ public class LoginController {
 
     //登录获取验证码
     @RequestMapping(path = "/authCode")
-    public void getAuthCode(HttpServletRequest request, HttpServletResponse response, HttpSession session)
+    public void getAuthCode(HttpServletResponse response, HttpSession session)
             throws IOException {
         int width = 63;
         int height = 37;
