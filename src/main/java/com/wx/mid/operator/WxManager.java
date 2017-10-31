@@ -12,4 +12,5 @@ public interface WxManager {
     //void dispWxEvent(int id);
     WxUser  getWxUser(String openId);//
     WxOperator getWxOperator();
+    String getAppId();
 }

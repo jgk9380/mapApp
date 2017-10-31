@@ -1,5 +1,8 @@
 package com.wx.web;
 
+import com.sun.org.apache.regexp.internal.RE;
+import com.wx.entity.WxUser;
+import com.wx.mid.base.pojo.WeixinOauth2Token;
 import com.wx.mid.base.util.MessageUtil;
 import com.wx.mid.operator.WxManager;
 import org.jboss.logging.Logger;
@@ -18,6 +21,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,8 +33,10 @@ public class WxServiceController {
     public WxServiceController() {
         super();
     }
+
     @Autowired
     WxManager wxManager;
+
     @RequestMapping(value = "/core", method = {RequestMethod.GET})
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Logger.getLogger(WxServiceController.class).info("doGet");
@@ -44,9 +50,9 @@ public class WxServiceController {
         String echostr = request.getParameter("echostr");
         Logger.getLogger(WxServiceController.class).info("nonce=" + nonce + "signature=" + signature + "   timestamp=" + timestamp + "   echostr=" + echostr);
         PrintWriter out = response.getWriter();
-        boolean result= wxManager.checkSignature(signature, timestamp, nonce);
-        String info="校验：nonce=" + nonce + "signature=" + signature + "   timestamp=" + timestamp + "   echostr=" + echostr  +"结果："+result;
-       //wxManager.addInterfaceMsg(info,-1);
+        boolean result = wxManager.checkSignature(signature, timestamp, nonce);
+        String info = "校验：nonce=" + nonce + "signature=" + signature + "   timestamp=" + timestamp + "   echostr=" + echostr + "结果：" + result;
+        //wxManager.addInterfaceMsg(info,-1);
         if (result) {
             Logger.getLogger(WxServiceController.class).warn("\n---success");
             out.print(echostr);
@@ -85,5 +91,41 @@ public class WxServiceController {
         }
     }
 
+
+    @RequestMapping(value = "/codeToOpenId/{code}", method = {RequestMethod.GET})
+    @ResponseBody
+    public ResultCode oauth(@PathVariable("code") String code) {
+        //1 第一步：用户同意授权，获取code
+        //2 第二步：通过code换取网页授权access_token
+        //3 第三步：刷新access_token（如果需要）
+        //4 第四步：拉取用户信息(需scope为 snsapi_userinfo)
+        //5 附：检验授权凭证（access_token）是否有效
+        String openId = null;
+        //TODO 测试
+        if (code.equalsIgnoreCase( "authdeny")||code==null) {
+            openId = "oEsXmwWQkf6V5KaLUMHCQHpC8F1E";
+            WxUser wxUser = wxManager.getWxUser(openId);
+            wxUser.setWxApp(null);
+            return new ResultCode<>(0, "ok", wxUser);
+        }
+        if (code != null && !"authdeny".equals(code)) {
+            WeixinOauth2Token weixinOauth2Token =
+                    wxManager.getWxOperator().getOauth2AccessToken(code);
+            if (weixinOauth2Token != null) {
+                openId = weixinOauth2Token.getOpenId(); //得到openId即可以了,是否关注
+            }
+            System.out.println("\n code=" + code + "openId=" + openId);
+            WxUser wxUser = wxManager.getWxUser(openId);
+            wxUser.setWxApp(null);
+            return new ResultCode<>(0, "ok", wxUser);
+        } else {
+            return new ResultCode<>(-1, "errorCode", code);
+        }
+
+
+    }
+
+
+//MP_verify_LNKwjvrx0iNDE9om.txt
 
 }

@@ -32,9 +32,11 @@ public class MenuPusher {
     }
 
     Button me() {
+        String bindTeleUrl="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx7dcc6b2e03a47c0b" +
+                "&redirect_uri=http://www.cu0515.com/myinfo.html&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect ";
         Button buttons[] = new Button[3];
         buttons[0] = new ViewButton("我的信息", "http://www.sohu.com");
-        buttons[1] = new ViewButton("号码绑定", "http://www.sohu.com");
+        buttons[1] = new ViewButton("号码绑定1", bindTeleUrl);
         buttons[2] = new ViewButton("有奖活动", "http://www.sohu.com");
         ComplexButton complexButton = new ComplexButton("@我", buttons);
         return complexButton;

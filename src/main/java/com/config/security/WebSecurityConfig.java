@@ -114,6 +114,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/authCode",
                         "/StockPromotion/**",
                         "/wx/**",
+                        "/MP_verify_LNKwjvrx0iNDE9om.txt",
                         "/NoAuthService/**"
                 ).permitAll()
                 .antMatchers(HttpMethod.POST, "/login","/wx/**","/NoAuthService/**").permitAll()

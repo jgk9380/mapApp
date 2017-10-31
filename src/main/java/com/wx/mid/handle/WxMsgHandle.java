@@ -8,7 +8,7 @@ import java.util.Date;
 
 public interface WxMsgHandle {
 
-    void handleEvent(WxInterfaceMessage wxEvent);
+    void handleEvent(WxInterfaceMessage wxInterfaceMessage);
 
     WxInterfaceMessageDao getWxInterfaceMessageDao();
 

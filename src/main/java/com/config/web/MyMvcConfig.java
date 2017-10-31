@@ -41,5 +41,7 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/**")
                 .addResourceLocations("classpath:/templates/");
+
     }
+
 }

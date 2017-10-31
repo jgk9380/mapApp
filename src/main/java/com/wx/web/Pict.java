@@ -6,13 +6,13 @@ import java.awt.Image;
 
 import java.awt.image.BufferedImage;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+//import javax.faces.bean.ManagedBean;
+//import javax.faces.bean.SessionScoped;
 
 
 
-@ManagedBean(name = "pict")
-@SessionScoped
+//@ManagedBean(name = "pict")
+//@SessionScoped
 public class Pict {
     public Pict() {
     }

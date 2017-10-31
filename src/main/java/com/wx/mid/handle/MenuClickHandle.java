@@ -50,6 +50,7 @@ public class MenuClickHandle implements WxMsgHandle {
         updateEvent(wxEvent, "菜单clicked 已处理");
     }
 
+
     @Override
     public WxInterfaceMessageDao getWxInterfaceMessageDao() {
         return wxEventDao;

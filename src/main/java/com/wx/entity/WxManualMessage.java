@@ -10,19 +10,71 @@ public class WxManualMessage {
     @Column
     int id;
     @Column
-    Integer wxUserId;
+    String sender;
     @Column
     String content;
+    @Column
+    Integer readed;
     @Temporal(TemporalType.TIMESTAMP)
     @Column
-    Date receivedDate;
+    Date sendDate;
     @Column
-    String replyContent;
+    String type;
+
+    public Integer getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(Integer receiver) {
+        this.receiver = receiver;
+    }
 
     @Column
-    String replyer;
-    @Column
-    int  replyFlag;//REPLE_FLAG
+    Integer receiver;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getSender() {
+        return sender;
+    }
+
+    public void setSender(String sender) {
+        this.sender = sender;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Date getSendDate() {
+        return sendDate;
+    }
+
+    public void setSendDate(Date sendDate) {
+        this.sendDate = sendDate;
+    }
+
+    public Integer getReaded() {
+        return readed;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -39,59 +91,9 @@ public class WxManualMessage {
         return id;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Integer getWxUserId() {
-        return wxUserId;
-    }
-
-    public void setWxUserId(Integer wxUserId) {
-        this.wxUserId = wxUserId;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public Date getReceivedDate() {
-        return receivedDate;
-    }
-
-    public void setReceivedDate(Date receivedDate) {
-        this.receivedDate = receivedDate;
-    }
-
-    public String getReplyContent() {
-        return replyContent;
-    }
-
-    public void setReplyContent(String replyContent) {
-        this.replyContent = replyContent;
-    }
-
-    public String getReplyer() {
-        return replyer;
-    }
-
-    public void setReplyer(String replyer) {
-        this.replyer = replyer;
-    }
-
-    public int getReplyFlag() {
-        return replyFlag;
-    }
-
-    public void setReplyFlag(int replyFlag) {
-        this.replyFlag = replyFlag;
+    public void setReaded(Integer readed) {
+        this.readed = readed;
     }
 }
+
+

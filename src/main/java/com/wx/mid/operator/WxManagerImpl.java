@@ -31,7 +31,6 @@ import java.util.Map;
 public class WxManagerImpl implements WxManager, CommandLineRunner, InitializingBean, ApplicationEventPublisherAware {
     @Value("${wx.app.name}")
     String appName;
-
     @Autowired
     WxOperator wxOperator;
     @Autowired
@@ -88,6 +87,12 @@ public class WxManagerImpl implements WxManager, CommandLineRunner, Initializing
     @Override
     public WxOperator getWxOperator() {
         return this.wxOperator;
+    }
+
+    @Override
+    public String getAppId() {
+        WxApp wx = wxAppDao.findByAppName(appName);
+        return wx.getId();
     }
 
 

@@ -29,14 +29,16 @@ public class SubscripeHandle  implements WxMsgHandle {
         JSONObject json = JSONObject.fromObject(wxEvent.getContent());
         String fromUserName = json.getString("FromUserName");
         //System.out.printf("---wxUser.name="+wxManager.getWxUser(fromUserName).getNickname());
-        wxManager.getWxOperator().sendTxtMessage(fromUserName,"您好，欢迎盐城通信圈");
-        if(json.containsKey("EventKey")){
-            WxUser wxUser=wxManager.getWxUser(fromUserName);
-            String eventKey=json.getString("EventKey");
-            String sceneId=eventKey.substring(8);
-           // System.out.println("scene_id = [" + sceneId + "]");
-            WxPermQrCode wxPermQrCode =wxPermQrCodeDao.findBySceneId(Integer.parseInt(sceneId));
-            wxUser.setReferee(wxUserDao.findById(wxPermQrCode.getWxUserId()));
+        wxManager.getWxOperator().sendTxtMessage(fromUserName,"您好，欢迎关注盐城通信圈");
+        if(json.containsKey("EventKey")&&json.get("EventKey").toString().length()>=8){
+                 WxUser wxUser=wxManager.getWxUser(fromUserName);
+                 System.out.println("\n json="+json.toString());
+                 String eventKey=json.getString("EventKey");
+                 System.out.println("\n eventKey="+eventKey);
+                 String sceneId = eventKey.substring(8);
+                // System.out.println("scene_id = [" + sceneId + "]");
+                WxPermQrCode wxPermQrCode = wxPermQrCodeDao.findBySceneId(Integer.parseInt(sceneId));
+                wxUser.setReferee(wxUserDao.findById(wxPermQrCode.getWxUserId()));
             wxUserDao.save(wxUser);
         }
         updateEvent(wxEvent,"--回复用户欢迎光临");

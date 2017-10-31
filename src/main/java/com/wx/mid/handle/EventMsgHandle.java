@@ -7,10 +7,12 @@ import net.sf.json.JSONObject;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class EventMsgHandle implements WxMsgHandle, BeanFactoryAware {
+
     @Override
     public void handleEvent(WxInterfaceMessage wxInterfaceMessage) {
 
@@ -26,11 +28,20 @@ public class EventMsgHandle implements WxMsgHandle, BeanFactoryAware {
             this.beanFactory.getBean(MenuClickHandle.class).handleEvent(wxInterfaceMessage);
         }
 
+        if (wxInterfaceMessage.getEventType().equals(MessageUtil.EVENT_TYPE_SCAN)) {
+            this.beanFactory.getBean(ScanHandle.class).handleEvent(wxInterfaceMessage);
+        }
+        if (wxInterfaceMessage.getEventType().equals("VIEW")) {
+            updateEvent(wxInterfaceMessage, "view 已处理");
+        }
+
     }
 
+    @Autowired
+    WxInterfaceMessageDao wxInterfaceMessageDao;
     @Override
     public WxInterfaceMessageDao getWxInterfaceMessageDao() {
-        return null;
+        return wxInterfaceMessageDao;
     }
 
     BeanFactory beanFactory;

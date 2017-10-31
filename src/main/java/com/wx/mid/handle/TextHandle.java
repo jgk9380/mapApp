@@ -93,10 +93,13 @@ public class TextHandle implements WxMsgHandle {
         WxUser wxUser=wxManager.getWxUser(fromUserName);
         WxManualMessage wxManualMessage=new WxManualMessage();
         wxManualMessage.setId(wxUtils.getSeqencesValue().intValue());
-        wxManualMessage.setWxUserId(wxUser.getId().intValue());
+        wxManualMessage.setSender(""+wxUser.getId().intValue());
         wxManualMessage.setContent(json.getString("Content"));
-        wxManualMessage.setReceivedDate(new Date());
-        wxManualMessage.setReplyFlag(0);
+        wxManualMessage.setReaded(0);
+        wxManualMessage.setSendDate(new Date());
+        wxManualMessage.setType("up");
+        //wxManualMessage.setReceivedDate(new Date());
+        //wxManualMessage.setReplyFlag(0);
         wxManualMessageDao.save(wxManualMessage);
     }
 

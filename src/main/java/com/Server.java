@@ -26,8 +26,6 @@ public class Server implements CommandLineRunner {
         ConfigurableApplicationContext ctx = SpringApplication.run(Server.class, args);
     }
 
-
-
     @Autowired
     MenuPusher menuPusher;
     @Autowired
@@ -35,7 +33,7 @@ public class Server implements CommandLineRunner {
     @Autowired
     WxMsgListener wxMsgListener;
     @Override
-    public void run(String... strings) {
+    public void run(String... strings){
         //创建菜单
         //boolean b = menuPusher.pushMenu();
         //todo 方便测试代码，打包时去除
