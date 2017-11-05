@@ -9,7 +9,9 @@ import com.wx.entity.WxUser;
 import com.wx.mid.operator.WxManager;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ScanHandle implements WxMsgHandle {
     @Autowired
     WxInterfaceMessageDao wxInterfaceMessageDao;

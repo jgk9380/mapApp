@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "wx_perm_qrcode")
-public class WxPermQrCode {
+public class WxPermQrCode {//可以去除了
     @Id
     @Column
     Integer id;

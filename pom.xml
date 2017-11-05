@@ -66,18 +66,18 @@
             <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
         <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-test</artifactId>-->
-            <!--<scope>test</scope>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-test</artifactId>-->
+        <!--<scope>test</scope>-->
         <!--</dependency>-->
         <!--<dependency>-->
-            <!--<groupId>junit</groupId>-->
-            <!--<artifactId>junit</artifactId>-->
-            <!--<version>4.12</version>-->
+        <!--<groupId>junit</groupId>-->
+        <!--<artifactId>junit</artifactId>-->
+        <!--<version>4.12</version>-->
         <!--</dependency>-->
         <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-data-rest</artifactId>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-data-rest</artifactId>-->
         <!--</dependency>-->
 
         <dependency>
@@ -86,14 +86,14 @@
         </dependency>
 
         <!--<dependency>-->
-            <!--<groupId>org.springframework</groupId>-->
-            <!--<artifactId>spring-test</artifactId>-->
+        <!--<groupId>org.springframework</groupId>-->
+        <!--<artifactId>spring-test</artifactId>-->
         <!--</dependency>-->
 
         <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-test</artifactId>-->
-            <!--&lt;!&ndash;<version>1.4.1.RELEASE</version>&ndash;&gt;-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-test</artifactId>-->
+        <!--&lt;!&ndash;<version>1.4.1.RELEASE</version>&ndash;&gt;-->
         <!--</dependency>-->
 
         <dependency>
@@ -122,8 +122,8 @@
         </dependency>
 
         <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-thymeleaf</artifactId>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-thymeleaf</artifactId>-->
         <!--</dependency>-->
         <!--<dependency>-->
         <!--<groupId>operator.springframework.boot</groupId>-->
@@ -147,9 +147,9 @@
         </dependency>
 
         <!--<dependency>-->
-            <!--<groupId>org.springframework.session</groupId>-->
-            <!--<artifactId>spring-session</artifactId>-->
-            <!--<version>1.2.2.RELEASE</version>-->
+        <!--<groupId>org.springframework.session</groupId>-->
+        <!--<artifactId>spring-session</artifactId>-->
+        <!--<version>1.2.2.RELEASE</version>-->
         <!--</dependency>-->
 
         <dependency>
@@ -159,17 +159,17 @@
 
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <!--<dependency>-->
-            <!--<groupId>org.projectlombok</groupId>-->
-            <!--<artifactId>lombok</artifactId>-->
-            <!--<version>1.16.18</version>-->
-            <!--<scope>provided</scope>-->
+        <!--<groupId>org.projectlombok</groupId>-->
+        <!--<artifactId>lombok</artifactId>-->
+        <!--<version>1.16.18</version>-->
+        <!--<scope>provided</scope>-->
         <!--</dependency>-->
 
         <!--<dependency>-->
-            <!--&lt;!&ndash;weblogic链接包&ndash;&gt;-->
-            <!--<groupId>com.oracle</groupId>-->
-            <!--<artifactId>wlfullclient</artifactId>-->
-            <!--<version>6.0</version>-->
+        <!--&lt;!&ndash;weblogic链接包&ndash;&gt;-->
+        <!--<groupId>com.oracle</groupId>-->
+        <!--<artifactId>wlfullclient</artifactId>-->
+        <!--<version>6.0</version>-->
         <!--</dependency>-->
 
         <!--一信通的依赖包-->
@@ -226,16 +226,15 @@
         <!--/*解决参数以json方式传递*/-->
         <!-- https://mvnrepository.com/artifact/com.sun.faces/jsf-impl -->
         <!--<dependency>-->
-            <!--<groupId>com.sun.faces</groupId>-->
-            <!--<artifactId>jsf-impl</artifactId>-->
-            <!--<version>2.2.14</version>-->
+        <!--<groupId>com.sun.faces</groupId>-->
+        <!--<artifactId>jsf-impl</artifactId>-->
+        <!--<version>2.2.14</version>-->
         <!--</dependency>-->
-
         <!--<dependency>-->
-            <!--<groupId>javax.faces</groupId>-->
-            <!--<artifactId>jsf-api</artifactId>-->
-            <!--<version>2.1</version>-->
-            <!--&lt;!&ndash;<scope>provided</scope>&ndash;&gt;-->
+        <!--<groupId>javax.faces</groupId>-->
+        <!--<artifactId>jsf-api</artifactId>-->
+        <!--<version>2.1</version>-->
+        <!--&lt;!&ndash;<scope>provided</scope>&ndash;&gt;-->
         <!--</dependency>-->
         <!-- https://mvnrepository.com/artifact/commons-collections/commons-collections -->
         <dependency>
@@ -258,19 +257,51 @@
             <version>1.4.7</version>
         </dependency>
         <!--<dependency>-->
-            <!--<groupId>org.springframework</groupId>-->
-            <!--<artifactId>spring-web</artifactId>-->
-            <!--<version>4.3.3.RELEASE</version>-->
+        <!--<groupId>org.springframework</groupId>-->
+        <!--<artifactId>spring-web</artifactId>-->
+        <!--<version>4.3.3.RELEASE</version>-->
         <!--</dependency>-->
         <!--用于微信接口-->
+        <!---->
+        <!-- https://mvnrepository.com/artifact/com.google.zxing/core -->
+        <dependency>
+            <!--用于二维码-->
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>3.2.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.google.zxing/core -->
+        <dependency>
+            <!--用于二维码-->
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+            <version>3.2.1</version>
+        </dependency>
+        <!--mvn install:install-file -Dfile=e:\QRCode.jar -DgroupId=QRCode -DartifactId=QRCode -Dversion=3.0 -Dpackaging=jar-->
+        <dependency>
+            <!--用于二维码-->
+            <groupId>QRCode</groupId>
+            <artifactId>QRCode</artifactId>
+            <version>3.0</version>
+        </dependency>
+        <!--mvn install:install-file -Dfile=e:\QRCode_swetake.jar -DgroupId =QRCode -DartifactId=QRCode_swetake -Dversion=3.0 -Dpackaging=jar-->
+        <dependency>
+            <!--用于二维码-->
+            <groupId>QRCode</groupId>
+            <artifactId>QRCode_swetake</artifactId>
+            <version>3.0</version>
+        </dependency>
     </dependencies>
+
+
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-            <!--警告：com.sun.image.codec.jpeg.JPEGCodec 是Sun 的专用 API，可能会在未来版本中删除解决办法            在pom.xml中bulid -> publgins加入：-->
+            <!--警告：com.sun.image.codec.jpeg.JPEGCodec 是Sun 的专用 API，可能会在未来版本中删除解决办法    在pom.xml中bulid -> publgins加入：-->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>

@@ -92,8 +92,6 @@ public class PictureContrller {
         os.write(wxPicture.getResourceContent());
         os.flush();
     }
-
-
 }
 
 

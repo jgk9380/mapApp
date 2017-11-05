@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="assets/js/jquery/jquery.js"></script>
+    <script src="assets/js/initJquery.js"></script>
+</head>
+<body>
+二维码扫描
+<span id="info1"></span>
+<br>
+<span id="info2"></span>
+<!--<img src="http://127.0.0.1/show_pict/9000108" alt="">-->
+<img  alt="" id="img">
+<script>
+//    $("#info1").textContent("qrcode_id："+$.getUrlParam("qrcode_id"));
+//
+//    $("#info2").textContent("code："+$.getUrlParam("code"));
+//    $("#img").src("http://127.0.0.1/NoAuthService/show_pict/"+$.getUrlParam("code"));
+    alert($.getUrlParam("code"))
+    alert($.getUrlParam("state"))
+    alert(window.location);
+</script>
+</body>
+</html>
