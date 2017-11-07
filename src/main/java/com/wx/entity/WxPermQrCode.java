@@ -17,8 +17,8 @@ public class WxPermQrCode {//可以去除了
     int sceneId;
     @Column
     String url;
-    @Column
-    String ownerId;//empId
+//    @Column
+//    String ownerId;//empId
     @Column
     Integer wxUserId;
 
@@ -54,13 +54,13 @@ public class WxPermQrCode {//可以去除了
         this.url = url;
     }
 
-    public String getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
-    }
+//    public String getOwnerId() {
+//        return ownerId;
+//    }
+//
+//    public void setOwnerId(String ownerId) {
+//        this.ownerId = ownerId;
+//    }
 
     public Integer getWxUserId() {
         return wxUserId;

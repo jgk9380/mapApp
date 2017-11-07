@@ -15,12 +15,18 @@
 <img  alt="" id="img">
 <script>
 //    $("#info1").textContent("qrcode_id："+$.getUrlParam("qrcode_id"));
-//
 //    $("#info2").textContent("code："+$.getUrlParam("code"));
 //    $("#img").src("http://127.0.0.1/NoAuthService/show_pict/"+$.getUrlParam("code"));
     alert($.getUrlParam("code"))
+    var code=$.getUrlParam("code");
+    console.log("code="+$.getUrlParam("code"));
     alert($.getUrlParam("state"))
     alert(window.location);
+    var url = "/wx/codeToOpenId/"+ code;
+    console.log("url=" + url);
+    $.get(url, function (result) {
+        alert("user="+JSON.stringify(result))
+    });
 </script>
 </body>
 </html>

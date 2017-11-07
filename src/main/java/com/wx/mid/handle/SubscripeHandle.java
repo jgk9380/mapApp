@@ -24,10 +24,12 @@ public class SubscripeHandle  implements WxMsgHandle {
     WxPermQrCodeDao wxPermQrCodeDao;
     @Autowired
     WxUserDao wxUserDao;
+
     @Override
     public void handleEvent(WxInterfaceMessage wxEvent){
         JSONObject json = JSONObject.fromObject(wxEvent.getContent());
         String fromUserName = json.getString("FromUserName");
+        //todo 订购的同时，同时生成wx二维码
         //System.out.printf("---wxUser.name="+wxManager.getWxUser(fromUserName).getNickname());
         wxManager.getWxOperator().sendTxtMessage(fromUserName,"您好，欢迎关注盐城通信圈");
         if(json.containsKey("EventKey")&&json.get("EventKey").toString().length()>=8){

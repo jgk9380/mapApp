@@ -35,24 +35,7 @@ public class ScanHandle implements WxMsgHandle {
             wxManager.getWxOperator().sendTxtMessage(scaner_open_id,url);
             updateEvent(wxInterfaceMessage,"订购");
             return;
-
         }
-
-        if(wxPermQrCode.getOwnerId()!=null&&wxPermQrCode.getWxUserId()==null){
-            //发展代理页面agetSubmit.html：参数qrCode_id
-            String url="<a href='http://www.cu0515.con/agetSubmit?qrCodeId=" +wxPermQrCode.getId()+ "'>代理发展</a>";
-            wxManager.getWxOperator().sendTxtMessage(scaner_open_id,url);
-            updateEvent(wxInterfaceMessage,"代理发展");
-            return;
-        }
-
-        if(wxPermQrCode.getOwnerId()==null&&wxPermQrCode.getWxUserId()==null){
-            //回复无效二维码
-            wxManager.getWxOperator().sendTxtMessage(scaner_open_id,"无效二维码!!!");
-            updateEvent(wxInterfaceMessage,"无效二维码");
-            return;
-        }
-
     }
 
     @Override

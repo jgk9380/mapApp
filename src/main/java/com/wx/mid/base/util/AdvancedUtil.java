@@ -175,7 +175,7 @@ public class AdvancedUtil {
     }
 
     public static WeixinOauth2Token getOauth2AccessToken(String appId, String appSecret, String code) {
-        System.out.println("-----------code="+code);
+       log.info("-----------code="+code);
         WeixinOauth2Token wat = null;
         // 拼接请求地址
         String requestUrl =
@@ -184,15 +184,15 @@ public class AdvancedUtil {
         requestUrl = requestUrl.replace("SECRET", appSecret);
         requestUrl = requestUrl.replace("CODE", code);
         // 获取网页授权凭证
-        System.out.println("---appid=" + appId);
-        System.out.println("---SECRET=" + appSecret);
-        System.out.println("---code=" + code);
+        log.info("---appid=" + appId);
+        log.info("---secret=" + appSecret);
+        log.info("---code=" + code);
 
         JSONObject jsonObject = CommonUtil.httpsRequest(requestUrl, "GET", null);
-        System.out.println("-----------getOauth2AccessToken="+jsonObject.toString());
+        log.info("-----------getOauth2AccessToken="+jsonObject.toString());
 
 
-        if (null != jsonObject) {
+        if (null != jsonObject){
             try {
                 wat = new WeixinOauth2Token();
                 wat.setAccessToken(jsonObject.getString("access_token"));
@@ -207,8 +207,8 @@ public class AdvancedUtil {
                 wat = null;
                 int errorCode = jsonObject.getInt("errcode");
                 String errorMsg = jsonObject.getString("errmsg");
-                log.error("获取网页授权凭证失败 errcode:{} errmsg:{}", errorCode, errorMsg);
-                System.out.println("-----------requestUrl=" + requestUrl);
+                log.error("获取网页授权凭证失败 errcode:{} errmsg:{} code:{}", errorCode, errorMsg,code);
+                //System.out.println("-----------requestUrl=" + requestUrl);
                 throw e;
             }
         }

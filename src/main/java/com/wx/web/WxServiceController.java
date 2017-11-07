@@ -1,11 +1,15 @@
 package com.wx.web;
 
 import com.sun.org.apache.regexp.internal.RE;
+import com.wx.dao.WxUserDao;
 import com.wx.entity.WxUser;
+import com.wx.mid.base.pojo.SNSUserInfo;
 import com.wx.mid.base.pojo.WeixinOauth2Token;
+import com.wx.mid.base.util.AdvancedUtil;
 import com.wx.mid.base.util.MessageUtil;
 import com.wx.mid.operator.WxManager;
 import org.jboss.logging.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -16,6 +20,7 @@ import java.io.*;
 
 import java.io.IOException;
 
+import java.util.Date;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -36,6 +41,8 @@ public class WxServiceController {
 
     @Autowired
     WxManager wxManager;
+    @Autowired
+    WxUserDao wxUserDao;
 
     @RequestMapping(value = "/core", method = {RequestMethod.GET})
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -102,12 +109,14 @@ public class WxServiceController {
         //5 附：检验授权凭证（access_token）是否有效
         String openId = null;
         //TODO 测试
-        if (code.equalsIgnoreCase( "authdeny")||code==null) {
-            openId = "oEsXmwWQkf6V5KaLUMHCQHpC8F1E";
-            WxUser wxUser = wxManager.getWxUser(openId);
-            wxUser.setWxApp(null);
-            return new ResultCode<>(0, "ok", wxUser);
-        }
+//        if (code.equalsIgnoreCase( "authdeny")||code==null) {
+//            openId = "oEsXmwWQkf6V5KaLUMHCQHpC8F1E";
+//            WxUser wxUser = wxManager.getWxUser(openId);
+//            wxUser.setWxApp(null);
+//            return new ResultCode<>(0, "ok", wxUser);
+//        }
+        org.slf4j.Logger log = LoggerFactory.getLogger(WxServiceController.class);
+        log.info("\n-----------------begin code=" + code);
         if (code != null && !"authdeny".equals(code)) {
             WeixinOauth2Token weixinOauth2Token =
                     wxManager.getWxOperator().getOauth2AccessToken(code);
@@ -116,16 +125,34 @@ public class WxServiceController {
             }
             System.out.println("\n code=" + code + "openId=" + openId);
             WxUser wxUser = wxManager.getWxUser(openId);
+            log.info("\n----------------- wxUser.nickname=" + wxUser.getNickname());
+            if (wxUser.getSubscribeStatus() == 0 && wxUser.getNickname() == null) {//没有关注,但是通过SNSUserInfo更新下信息,only更新一次。
+                SNSUserInfo snsUserInfo = AdvancedUtil.getSNSUserInfo(weixinOauth2Token.getAccessToken(), openId);
+                wxUser.setNickname(snsUserInfo.getNickname());
+                wxUser.setCity(snsUserInfo.getCity());
+                wxUser.setProvince(snsUserInfo.getProvince());
+                wxUser.setHeadimgurl(snsUserInfo.getHeadImgUrl());
+                wxUser.setSex("" + snsUserInfo.getSex());
+                wxUser.setCountry(snsUserInfo.getCountry());
+                wxUser.setRefereshDate(new Date());
+                //wxUser.setSubscribeStatus(-2);
+                wxUserDao.save(wxUser);
+            }
             wxUser.setWxApp(null);
             return new ResultCode<>(0, "ok", wxUser);
         } else {
+            System.out.println("\n----------------- code=" + code);
             return new ResultCode<>(-1, "errorCode", code);
         }
-
-
     }
 
 
+        @RequestMapping(path = "/jsTicket", method = {RequestMethod.GET})
+        @ResponseBody
+        public ResultCode getJsticket () {
+            String ticket = wxManager.getWxOperator().getJsApiTicket().getTicket();
+            return new ResultCode(0, "ok", ticket);
+        }
 //MP_verify_LNKwjvrx0iNDE9om.txt
 
 }

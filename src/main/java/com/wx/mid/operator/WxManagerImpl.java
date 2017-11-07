@@ -12,6 +12,7 @@ import com.wx.entity.*;
 import com.wx.mid.base.pojo.WeixinUserInfo;
 
 
+import com.wx.mid.handle.WxMsgEvent;
 import com.wx.mid.util.WxUtils;
 import net.sf.json.JSONObject;
 import org.apache.log4j.Logger;
@@ -51,7 +52,6 @@ public class WxManagerImpl implements WxManager, CommandLineRunner, Initializing
     public void run(String... args) throws Exception {
         System.out.println("--WxManagerImpl.run()  appId=" + this.appName);
         //todo 测试代码
-
     }
 
     private void prodQRCode() {
@@ -76,6 +76,7 @@ public class WxManagerImpl implements WxManager, CommandLineRunner, Initializing
             res = refreshWxUser(openId);
             return res;
         }
+
         if ((currentDate.getTime() - res.getRefereshDate().getTime()) / 1000 / 3600 / 24 > 7) {
             res = refreshWxUser(openId);
             return res;
@@ -107,30 +108,30 @@ public class WxManagerImpl implements WxManager, CommandLineRunner, Initializing
             res.setWxApp(wx);
             res.setOpenId(openId);
         }
-        WeixinUserInfo wui = wxOperator.getUserInfo(openId);
+        WeixinUserInfo weixinUserInfo = wxOperator.getUserInfo(openId);
 
-        if (wui == null) {
+        if (weixinUserInfo == null) {
             return null;
         }
 
-        if (wui.getSubscribe() == 0) {
+        if (weixinUserInfo.getSubscribe() == 0) {
             if (res.getSubscribeStatus() == 1)
                 res.setSubscribeStatus(-1);
             return wxUserDao.save(res);
         }
 
-        res.setNickname(wui.getNickname());
-        res.setSex("" + wui.getSex());
-        res.setCountry(wui.getCountry());
-        res.setCity(wui.getCity());
-        res.setLanguage(wui.getLanguage());
-        res.setHeadimgurl(wui.getHeadImgUrl());
+        res.setNickname(weixinUserInfo.getNickname());
+        res.setSex("" + weixinUserInfo.getSex());
+        res.setCountry(weixinUserInfo.getCountry());
+        res.setCity(weixinUserInfo.getCity());
+        res.setLanguage(weixinUserInfo.getLanguage());
+        res.setHeadimgurl(weixinUserInfo.getHeadImgUrl());
         //System.out.println("ss=" + wui.getSubscribe());
-        res.setSubscribeStatus(wui.getSubscribe());
-        Long subTime = Long.parseLong(wui.getSubscribeTime()) * 1000;
+        res.setSubscribeStatus(weixinUserInfo.getSubscribe());
+        Long subTime = Long.parseLong(weixinUserInfo.getSubscribeTime()) * 1000;
         Date subDate = new Date(subTime);
         res.setSubscribeDate(subDate);
-        res.setProvince(wui.getProvince());
+        res.setProvince(weixinUserInfo.getProvince());
         res.setRefereshDate(new Date());
         return wxUserDao.save(res);
 
@@ -173,7 +174,7 @@ public class WxManagerImpl implements WxManager, CommandLineRunner, Initializing
         wxInterfaceMessage.setFlag(0);//0
         wxEventDao.save(wxInterfaceMessage);
         //todo 测试版本不要这个
-        //this.applicationEventPublisher.publishEvent(new WxMsgEvent(wxEvent));
+        this.applicationEventPublisher.publishEvent(new WxMsgEvent(wxInterfaceMessage));
         //发送Event
         return;
     }

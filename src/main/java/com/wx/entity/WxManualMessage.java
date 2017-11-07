@@ -20,6 +20,16 @@ public class WxManualMessage {
     Date sendDate;
     @Column
     String type;
+@Column
+Date replyDate;
+
+    public Date getReplyDate() {
+        return replyDate;
+    }
+
+    public void setReplyDate(Date replyDate) {
+        this.replyDate = replyDate;
+    }
 
     public Integer getReceiver() {
         return receiver;

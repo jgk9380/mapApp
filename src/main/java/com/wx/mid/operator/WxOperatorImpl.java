@@ -83,7 +83,7 @@ public class WxOperatorImpl  implements WxOperator {
             try {
                 throw new Exception("WxApp为空");
             } catch (Exception e) {
-                Logger.getLogger(WxOperatorImpl.class).error("aaabbb" + e.getMessage());
+                Logger.getLogger(WxOperatorImpl.class).error("找不到微信号："+appId + e.getMessage());
                 return null;
             }
 
