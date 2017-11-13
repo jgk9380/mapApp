@@ -12,34 +12,40 @@ import sun.tools.jar.CommandLine;
 public class MenuPusher {
     @Autowired
     WxManager wxManager;
-
+    String baseUrl="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx7dcc6b2e03a47c0b" +
+            "&redirect_uri=http://www.cu0515.com/URL&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect";
     Button knowledge() {
         Button buttons[] = new Button[3];
-        buttons[0] = new ClickButton("通信新闻", "news");//推送图文
-        buttons[1] = new ClickButton("通信趣事", "fun");//推送图文
-        buttons[2] = new ClickButton("我的收藏", "favorite");//推送图文
+        String url=baseUrl.replace("URL","articlelist.html").replace("STATE","1");
+        buttons[0] = new ViewButton("通信新闻", url);
+        url=url.replace("STATE","2");
+        buttons[1] = new ViewButton("通信趣事", url);//推送图文
+        url=url.replace("STATE","3");
+        buttons[2] = new ViewButton("我的收藏", url);//推送图文
         ComplexButton complexButton = new ComplexButton("通信知识", buttons);
         return complexButton;
     }
 
     Button financing() {
-        Button buttons[] = new Button[3];
-        buttons[0] = new ViewButton("腾讯大王卡", "http://www.sohu.com");
-        buttons[1] = new ViewButton("无限量卡", "http://www.sohu.com");
-        buttons[2] = new ViewButton("联通36卡", "http://www.sohu.com");
+        Button buttons[] = new Button[2];
+        String url=baseUrl.replace("URL","bill.html");
+        buttons[0] = new ViewButton("腾讯大王卡", url);
+        //url=baseUrl.replace("URL","http://m.10010.com/mobilegoodsdetail/341703169183.html?setkey=WM_INFO&setvalue=o2m%5E%5F%5E5014090900008196%5E%5F%5E3406309919%5E%5F%5E%25E9%2597%25B5%25E6%2595%258F%5E%5F%5E34a1797%5E%5F%5Ewww%2E10010%2Ecom%5E%5F%5E1030100%5E%5F%5E34%5E%5F%5E34a2e6%5E%5F%5E117%5E%5F%5E3434a1797&from=singlemessage&isappinstalled=1");
+        buttons[1] = new ViewButton("无限量卡", url);
+        //buttons[2] = new ViewButton("联通36卡", "http://www.sohu.com");
         ComplexButton complexButton = new ComplexButton("通信理财", buttons);
         return complexButton;
     }
 
     Button me() {
-        String bindTeleUrl="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx7dcc6b2e03a47c0b" +
-                "&redirect_uri=http://www.cu0515.com/myinfo.html&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect ";
-        Button buttons[] = new Button[3];
+        Button buttons[] = new Button[2];
         buttons[0] = new ViewButton("我的信息", "http://www.sohu.com");
-        buttons[1] = new ViewButton("号码绑定1", bindTeleUrl);
-        buttons[2] = new ViewButton("有奖活动", "http://www.sohu.com");
+        String url=baseUrl.replace("URL","myinfo.html");
+        buttons[1] = new ViewButton("号码绑定", url);
+        //buttons[2] = new ViewButton("有奖活动", "http://www.sohu.com");
         ComplexButton complexButton = new ComplexButton("@我", buttons);
         return complexButton;
+        //return buttons[1];
     }
 
     Menu getMenu() {
@@ -51,11 +57,13 @@ public class MenuPusher {
         return menu;
     }
 
+
     public boolean pushMenu() {
         boolean b = wxManager.getWxOperator().createMenu(this.getMenu());
         System.out.println("菜单推送：" + b);
         return b;
     }
+
 
 //    @Override
 //    public void run(String... strings) throws Exception {

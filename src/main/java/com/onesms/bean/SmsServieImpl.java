@@ -16,7 +16,6 @@ public class SmsServieImpl implements SmsService {
     //@Value("${corpId}")
     //需要getSet才可属性注入
     private String corpId;
-
     private String loginId;
 
     private String pwd; //�??yclt123

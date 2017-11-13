@@ -13,6 +13,7 @@ public class Menu {
     public Menu(Button[] button) {
         this.button = button;
     }
+
     private Button[] button;
 
 	public Button[] getButton() {

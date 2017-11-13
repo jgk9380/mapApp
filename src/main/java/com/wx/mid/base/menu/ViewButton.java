@@ -12,6 +12,7 @@ public class ViewButton extends Button {
     public ViewButton(){
         
     }
+
     public ViewButton(String name, String url) {
         super(name);
         this.type = "view";

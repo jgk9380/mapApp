@@ -42,7 +42,7 @@ public class MenuUtil {
 				result = true;
 			} else {
 				result = false;
-				log.error("�����˵�ʧ�� errcode:{} errmsg:{}", errorCode, errorMsg);
+				log.error("菜单创建失败 errcode:{} errmsg:{}", errorCode, errorMsg);
 			}
 		}
 

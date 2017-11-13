@@ -32,8 +32,10 @@ public class Server implements CommandLineRunner {
     QrCodeCreater qrCodeCreater;
     @Autowired
     WxMsgListener wxMsgListener;
+
     @Override
     public void run(String... strings){
+        System.out.println("------------System started--------------");
         //创建菜单
         //boolean b = menuPusher.pushMenu();
         //todo 方便测试代码，打包时去除

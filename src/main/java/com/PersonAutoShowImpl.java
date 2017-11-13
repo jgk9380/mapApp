@@ -40,6 +40,6 @@ public class PersonAutoShowImpl implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        System.out.println("age=" + ctx.getBean(Person.class).getAge());
+        //System.out.println("age=" + ctx.getBean(Person.class).getAge());
     }
 }

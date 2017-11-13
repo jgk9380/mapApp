@@ -92,24 +92,22 @@ public class QrCodeCreater {
         wxResource.setResourceContent(b);
         wxResource.setRemark("二维码:" + id + "的图形");
         wxResource.setFileType("jpg");
-        ;
         WxQrCode wxQrCode = new WxQrCode();
         wxQrCode.setId(id);
         wxQrCode.setUrl(url);
         wxQrCode.setPictId(resourceId);
         wxResourceDao.save(wxResource);
         wxQrCodeDao.save(wxQrCode);
-
         System.out.println("\n  创建二维码成功！");
-
     }
+
 //    public void create500PermQrCode(){
 //        for(int i=0;i<500;i++)
 //            this.createPermQrCode();
 //    }
 
     public void create500QrCode() {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 2000; i++)
             try {
                 this.createWxQrCode();
             } catch (WriterException e) {
@@ -118,4 +116,5 @@ public class QrCodeCreater {
                 e.printStackTrace();
             }
     }
+
 }

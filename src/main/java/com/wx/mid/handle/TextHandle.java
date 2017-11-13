@@ -34,43 +34,44 @@ public class TextHandle implements WxMsgHandle {
         String content=json.getString("Content");
 
        switch (content){
-           case "号码绑定":
-           case "hmbd":
-               wxManager.getWxOperator().sendTxtMessage(wxEvent.getFromUserOpenId(),"回复："+content);
-               updateEvent(wxEvent,"--号码绑定");
-               break;
-           case "我的海报":
-           case "wdhb":
-               wxManager.getWxOperator().sendTxtMessage(wxEvent.getFromUserOpenId(),"回复："+content);
-               updateEvent(wxEvent,"--我的海报");
-               break;
-           case  "二维码":
-           case "ewm":
-               WxUser wxUser = wxManager.getWxUser(wxEvent.getFromUserOpenId());
-               WxPermQrCode wxPermQrCode=wxPermQrCodeDao.findByWxUserId(wxUser.getId().intValue());
-               if(wxPermQrCode!=null){
-                   String ticket=wxPermQrCode.getTicket();
-                   String url="https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket="+ticket;
-                   String cont="<a href='"+url+"'>点击查看二维码</a>";
+//           case "号码绑定":
+//           case "hmbd":
+//               wxManager.getWxOperator().sendTxtMessage(wxEvent.getFromUserOpenId(),"回复："+content);
+//               updateEvent(wxEvent,"--号码绑定");
+//               break;
+//           case "我的海报":
+//           case "wdhb":
+//               wxManager.getWxOperator().sendTxtMessage(wxEvent.getFromUserOpenId(),"回复："+content);
+//               updateEvent(wxEvent,"--我的海报");
+//               break;
+//           case  "二维码":
+//           case "ewm":
+//               WxUser wxUser = wxManager.getWxUser(wxEvent.getFromUserOpenId());
+//               WxPermQrCode wxPermQrCode=wxPermQrCodeDao.findByWxUserId(wxUser.getId().intValue());
+//               if(wxPermQrCode!=null){
+//                   String ticket=wxPermQrCode.getTicket();
+//                   String url="https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket="+ticket;
+//                   String cont="<a href='"+url+"'>点击查看二维码</a>";
+//
+//                   wxManager.getWxOperator().sendTxtMessage(wxEvent.getFromUserOpenId(), cont);
+//               }else {
+//                   String url=null;
+//                   wxManager.getWxOperator().sendTxtMessage(wxEvent.getFromUserOpenId(), "你没有注册的二维码，注册代理点击<a href='"+url+"'>我</a>>" );//
+//               }
+//               updateEvent(wxEvent,"--二维码");
+//               break;
 
-                   wxManager.getWxOperator().sendTxtMessage(wxEvent.getFromUserOpenId(), cont);
-               }else {
-                   String url=null;
-                   wxManager.getWxOperator().sendTxtMessage(wxEvent.getFromUserOpenId(), "你没有注册的二维码，注册代理点击<a href='"+url+"'>我</a>>" );//
-               }
-               updateEvent(wxEvent,"--二维码");
-               break;
            case "我要代理":
            case "wydl":
-               wxManager.getWxOperator().sendTxtMessage(wxEvent.getFromUserOpenId(),"回复："+content);
+               wxManager.getWxOperator().sendTxtMessage(wxEvent.getFromUserOpenId(),"你没有注册的二维码，注册代理点击<a href='http://www.cu0515.com/agentapply.html?openId="+wxEvent.getFromUserOpenId()+">我要代理</a>");
                updateEvent(wxEvent,"--我要代理");
                break;
 
-           case "发展代理":
-           case "fzdl":
-               wxManager.getWxOperator().sendTxtMessage(wxEvent.getFromUserOpenId(),"回复："+content);
-               updateEvent(wxEvent,"--发展代理");
-               break;
+//           case "发展代理":
+//           case "fzdl":
+//               wxManager.getWxOperator().sendTxtMessage(wxEvent.getFromUserOpenId(),"回复："+content);
+//               updateEvent(wxEvent,"--发展代理");
+//               break;
            default:
                //TODO 进入客服信息库：
 
