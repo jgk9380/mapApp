@@ -26,10 +26,14 @@ public class WxMpVerifyAuth {
 
     @RequestMapping(value = "/wx/transactionTest", method = {RequestMethod.GET})
     @ResponseBody
-
     public Date transactionTest() {
         testTrans.ddd();
         return new Date();
     }
+
+    @RequestMapping(value = "/", method = {RequestMethod.GET})
+    public String  transactionTest11() {
+      return  "";
+   }
 //    MP_verify_LNKwjvrx0iNDE9om.txt
 }

@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
@@ -49,6 +50,8 @@ public class LoginController {
     @RequestMapping(method = RequestMethod.POST, path = "/login",
             produces = "application/json;charset=utf8", consumes = "application/json;charset=utf8")
     public Map<String, Object> login(@RequestBody(required = true) Map<String, Object> map, Device device, HttpSession session) {
+
+
         String username = (String) map.get("username");
         String passwd = (String) map.get("passwd");
         String authCode = (String) map.get("authCode");
@@ -116,7 +119,7 @@ public class LoginController {
             mid.add(sr.getName());
         }
         r.put("token", token);
-        r.put("token1", "testCompile1234111");
+        //r.put("token1", "testCompile1234111");
         r.put("realName", loginUser.getEmployee().getName());
         r.put("roles", mid);
 

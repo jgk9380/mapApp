@@ -2,6 +2,8 @@ package com;
 
 import com.wx.QrCodeCreater;
 import com.wx.mid.handle.WxMsgListener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -32,10 +34,12 @@ public class Server implements CommandLineRunner {
     QrCodeCreater qrCodeCreater;
     @Autowired
     WxMsgListener wxMsgListener;
-
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Override
     public void run(String... strings){
         System.out.println("------------System started--------------");
+        //logger.error("error");
+
         //创建菜单
         //boolean b = menuPusher.pushMenu();
         //todo 方便测试代码，打包时去除

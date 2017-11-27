@@ -103,5 +103,4 @@ public class TextHandle implements WxMsgHandle {
         //wxManualMessage.setReplyFlag(0);
         wxManualMessageDao.save(wxManualMessage);
     }
-
 }

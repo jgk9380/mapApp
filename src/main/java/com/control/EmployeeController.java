@@ -4,12 +4,19 @@ import com.dao.p.EmployeeDao;
 import com.dao.p.LoginUserDao;
 import com.entity.p.Employee;
 import com.entity.p.LoginUser;
+
+
+import org.apache.commons.logging.LogFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.logging.Logger;
+
+import static org.apache.log4j.Logger.getLogger;
 
 /**
  * Created by jianggk on 2017/2/13.
@@ -23,7 +30,10 @@ public class EmployeeController {
     @Autowired
     LoginUserDao lud;
     @RequestMapping("/{id}")//获取员工信息,登录时获取员工登录信息传送给客户端。
+
+
     Employee getEmp(@PathVariable("id") String userId) {
+
         Employee lu= employeeDao.findById(userId);
         return lu;
     }

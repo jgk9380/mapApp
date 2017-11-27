@@ -21,10 +21,9 @@ public class DemoIntecepter extends HandlerInterceptorAdapter {
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
         long endTime=System.currentTimeMillis();
-        long startTime=(Long)request.getAttribute("startTime");
+       // long startTime=(Long)request.getAttribute("startTime");
         request.removeAttribute("startTime");
-        System.out.println("本次请求的时间为："+(endTime-startTime)/1000+"秒 path:"+ request.getPathInfo()+"   user:"+request.getRemoteUser());
-
+       // System.out.println("本次请求的时间为："+(endTime-startTime)/1000+"秒 path:"+ request.getPathInfo()+"   user:"+request.getRemoteUser());
 
     }
 }

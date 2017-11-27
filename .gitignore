@@ -19,6 +19,6 @@ target/
 nbproject/private/
 build/
 nbbuild/
-dist/
+src/main/resources/templates/wxfront1/
 nbdist/
 .nb-gradle/

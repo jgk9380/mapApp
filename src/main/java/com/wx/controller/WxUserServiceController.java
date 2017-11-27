@@ -133,7 +133,7 @@ public class WxUserServiceController {
     @RequestMapping(path = "/replyMessage/{sender}/{receiver}/{replyContent}", method = RequestMethod.POST)
     @ResponseBody
     public ResultCode replyMsg(@PathVariable("sender") String sender, @PathVariable("receiver") int receiver, @PathVariable("replyContent") String replyContent) {
-        if (replyContent == "confirmAll") { //这个时间前面的flag改为1
+        if (replyContent.equals("confirmAll")) { //这个时间前面的flag改为1
             java.util.List<WxManualMessage> wxManualMessageList = wxManualMessageDao.findBySenderAndReadedAndSendDateBefore("" + receiver, new Date());
             wxManualMessageList.stream().forEach(wmm -> wmm.setReaded(1));
             wxManualMessageDao.save(wxManualMessageList);

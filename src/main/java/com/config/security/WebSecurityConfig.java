@@ -37,6 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         authenticationManagerBuilder
                 .userDetailsService(this.userDetailsService);
         //.passwordEncoder(BcryptPasswordEncoder()); 不用加密密码
+
     }
     @Bean
     public PasswordEncoder BcryptPasswordEncoder() {
@@ -115,7 +116,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/StockPromotion/**",
                         "/wx/**",
                         "/MP_verify_LNKwjvrx0iNDE9om.txt",
-                        "/NoAuthService/**"
+                        "/NoAuthService/**",
+                        "/wxfront/**",
+                        "/wxf/**"
                 ).permitAll()
                 .antMatchers(HttpMethod.POST, "/login","/wx/**","/NoAuthService/**").permitAll()
                // .antMatchers(HttpMethod.POST, "/wx/**").permitAll()
@@ -128,6 +131,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         // disable page caching
         httpSecurity.headers().cacheControl();
+        //httpSecurity.logout().deleteCookies();
+        //httpSecurity.sessionManagement().maximumSessions(1);
     }
 
 //    @Autowired
