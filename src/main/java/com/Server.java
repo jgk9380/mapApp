@@ -41,9 +41,10 @@ public class Server implements CommandLineRunner {
         //logger.error("error");
 
         //创建菜单
-        //boolean b = menuPusher.pushMenu();
+        boolean b = menuPusher.pushMenu();
         //todo 方便测试代码，打包时去除
         //wxMsgListener.startListen();
+
         //创建二维码
         //qrCodeCreater.create500PermQrCode();
         //qrCodeCreater.create500QrCode();

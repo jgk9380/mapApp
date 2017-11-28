@@ -116,13 +116,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/StockPromotion/**",
                         "/wx/**",
                         "/MP_verify_LNKwjvrx0iNDE9om.txt",
-                        "/NoAuthService/**",
+                        "/public/**",
                         "/wxfront/**",
                         "/wxf/**"
                 ).permitAll()
-                .antMatchers(HttpMethod.POST, "/login","/wx/**","/NoAuthService/**").permitAll()
-               // .antMatchers(HttpMethod.POST, "/wx/**").permitAll()
-                // .antMatchers(HttpMethod.POST, "/**").permitAll() //debug 时, 不用对 Authorization 作验证
+                .antMatchers(HttpMethod.POST, "/login","/wx/**","/public/**").permitAll()
+                //.antMatchers(HttpMethod.POST, "/wx/**").permitAll()
+                //.antMatchers(HttpMethod.POST, "/**").permitAll() //debug 时, 不用对 Authorization 作验证
                 .anyRequest().authenticated();
 
         // Custom JWT based security filter

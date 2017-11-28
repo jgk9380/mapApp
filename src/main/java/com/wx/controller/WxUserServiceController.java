@@ -24,8 +24,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import static org.slf4j.LoggerFactory.getLogger;
+
 @Controller
-@RequestMapping("/NoAuthService")
+@RequestMapping("/public")
 public class WxUserServiceController {
     @Autowired
     private SmsService smsService;
@@ -42,11 +44,12 @@ public class WxUserServiceController {
 
     @Autowired
     QrCodeCreater qrCodeCreater;
+    private final Logger logger = getLogger(this.getClass());
 
     static Map<String, String> authCodeMap = new HashMap<>();
     static Map<String, Date> authCodeDateMap = new HashMap<>();
 
-    private static Logger log = LoggerFactory.getLogger(QrCodeCreater.class);
+    private static Logger log = getLogger(QrCodeCreater.class);
 
     @RequestMapping(path = "/smsAuth/{tele}")//发送验证码
     @ResponseBody
@@ -66,8 +69,12 @@ public class WxUserServiceController {
             strCode = strCode + rand;
         }
         //将字符保存到session中用于前端的验证
+
         authCodeMap.put(tele, strCode);
         authCodeDateMap.put(tele, new Date());
+
+        logger.info("tele="+tele+" code="+strCode);
+
         String smsContent = "尊敬的用户:您本次验证码为" + strCode + ",请在10分钟内使用。";
         String res = smsService.sendSms(tele, smsContent);
         System.out.println("sms res = [" + res + "]");
@@ -91,7 +98,7 @@ public class WxUserServiceController {
     public ResultCode bindTele(@PathVariable("tele") String tele, @PathVariable("code") String code, @PathVariable("wxUserId") int wxUserId) {
 
         if (!code.equals(authCodeMap.get(tele))) {
-            return new ResultCode<>(-1, "errorCode", false);
+            return new ResultCode<>(-1, "错误的验证码！", false);
         }
         if (wxUserDao.findByTeleAndAppId(tele, wxManager.getAppId()) != null) {
             return new ResultCode<>(-1, "tele duplicate", "号码重复!");
@@ -178,5 +185,6 @@ public class WxUserServiceController {
         return new ResultCode<>(0, "ok", qrCodeCreater.getWxUserPermQrCde(wxUser.getId().intValue()));
     }
 
-
 }
+
+

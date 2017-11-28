@@ -15,7 +15,7 @@ import java.io.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/NoAuthService")
+@RequestMapping("/public")
 public class PictureContrller {
     @Autowired
     WxResourceDao wxPictureDao;

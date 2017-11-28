@@ -7,9 +7,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import sun.tools.jar.CommandLine;
 
+import java.io.UnsupportedEncodingException;
+
 @Component
 //todo 运行一次，推送菜单
-
+//https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx7dcc6b2e03a47c0b&redirect_uri=http%3A%2F%2Fwww.cu0515.com%2F%23%2Fbind&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect
+//http://www.cu0515.com/?code=011In5ag1ycxXy03rbag1DHK9g1In5aA&state=STATE#/bind
 public class MenuPusher {
     @Autowired
     WxManager wxManager;
@@ -41,8 +44,8 @@ public class MenuPusher {
 
     Button me(){
         Button buttons[] = new Button[1];
-        //buttons[0] = new ViewButton("我的信息", "http://www.sohu.com");
-        String url=baseUrl.replace("URL","myinfo.html");
+
+        String url= "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx7dcc6b2e03a47c0b&redirect_uri=http%3A%2F%2Fwww.cu0515.com%2F%23%2Fbind&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect";
         buttons[0] = new ViewButton("号码绑定", url);
         //buttons[2] = new ViewButton("有奖活动", "http://www.sohu.com");
         ComplexButton complexButton = new ComplexButton("@我", buttons);

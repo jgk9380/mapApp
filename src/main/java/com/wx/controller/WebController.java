@@ -18,17 +18,16 @@ public class WebController  {
      * @param request
      * @param response
      */
-
 //    @RequestMapping("**")
 //    public void routes(HttpServletRequest request , HttpServletResponse response) {
 //        request.setAttribute("routes","路由跳转");
 //        try {
 //            // 此处路径要打两点，如果直接写 index.html 会循环反问/web/index.html 造成死循环
-//            request.getRequestDispatcher("/wxfront/index.html").forward(request,response);
+//            request.getRequestDispatcher("../index.html").forward(request,response);
 //        } catch (Exception es) {
 //            logger.error("路由失败",es);
-//
 //        }
 //    }
+
 }
 
